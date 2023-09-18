@@ -1,2 +1,2 @@
 # CS2340C_Team47
-I'm Shreya
+Project CS2340
