@@ -1,7 +1,4 @@
 package com.example.dungeoncrawling;
 
-
-public class GameScreen1 {
-
-
+public class Background {
 }
