@@ -10,9 +10,7 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -82,7 +80,8 @@ public class PlayerCreation extends AppCompatActivity {
                 int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+                final PopupWindow popupWindow = new PopupWindow(popupView, width,
+                        height, focusable);
 
                 // show the popup window
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
