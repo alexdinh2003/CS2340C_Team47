@@ -34,7 +34,7 @@ public class PlayerCreation extends AppCompatActivity {
         createPlayer = (Button) findViewById(R.id.createPlayerButton);
 
         createPlayer.setOnClickListener(v -> {
-            double difficulty = 1;
+            int difficulty = 0;
             int spriteNum = 0;
             boolean invalidName = true;
 
@@ -43,11 +43,11 @@ public class PlayerCreation extends AppCompatActivity {
 
             int checkedRadioButtonId = difficultyRadioGroup.getCheckedRadioButtonId();
             if (checkedRadioButtonId == R.id.radioEasy) {
-                difficulty = 0.5;
-            } else if (checkedRadioButtonId == R.id.radioMedium) {
-                difficulty = 0.75;
-            } else {
                 difficulty = 1;
+            } else if (checkedRadioButtonId == R.id.radioMedium) {
+                difficulty = 2;
+            } else {
+                difficulty = 3;
             }
 
 
@@ -99,6 +99,7 @@ public class PlayerCreation extends AppCompatActivity {
                 Intent game = new Intent(PlayerCreation.this, GameScreen1.class);
                 game.putExtra("difficulty", difficulty);
                 game.putExtra("playerName", name);
+                game.putExtra("spriteNum", spriteNum);
                 startActivity(game);
                 finish();
             }
