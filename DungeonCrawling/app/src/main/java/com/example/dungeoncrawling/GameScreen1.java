@@ -42,10 +42,10 @@ public class GameScreen1 extends AppCompatActivity {
             switch(difficultyNum) {
                 case 1:
                     difficulty.setText("Easy");
-                    params.horizontalBias = 0.77f;
+                    params.horizontalBias = 0.73f;
                     health.setLayoutParams(params);
-                    health.setImageResource(R.drawable.three_hearts);
-                    health.getLayoutParams().width = 250;
+                    health.setImageResource(R.drawable.five_hearts);
+                    health.getLayoutParams().width = 450;
                     break;
                 case 2:
                     difficulty.setText("Medium");
@@ -56,10 +56,10 @@ public class GameScreen1 extends AppCompatActivity {
                     break;
                 case 3:
                     difficulty.setText("Hard");
-                    params.horizontalBias = 0.73f;
+                    params.horizontalBias = 0.77f;
                     health.setLayoutParams(params);
-                    health.setImageResource(R.drawable.five_hearts);
-                    health.getLayoutParams().width = 450;
+                    health.setImageResource(R.drawable.three_hearts);
+                    health.getLayoutParams().width = 250;
                     break;
             }
 
