@@ -41,28 +41,28 @@
         android:id="@+id/difficultyToggles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checkedButton="@id/easyButton"
         app:layout_constraintBottom_toTopOf="@+id/playerSpriteBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerName">
 
         <RadioButton
-            android:id="@+id/easyButton"
+            android:id="@+id/radioEasy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:buttonTint="#9C27B0"
             android:text="Easy" />
 
         <RadioButton
-            android:id="@+id/mediumButton"
+            android:id="@+id/radioMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#9C27B0"
             android:text="Medium" />
 
         <RadioButton
-            android:id="@+id/hardButton"
+            android:id="@+id/radioHard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#9C27B0"
@@ -73,7 +73,15 @@
         android:id="@+id/playerSpriteBar"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
+        android:clickable="true"
         android:fillViewport="true"
+        android:isScrollContainer="true"
+        android:nestedScrollingEnabled="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarThumbHorizontal="?android:attr/scrollbarThumbHorizontal"
+        android:scrollbarTrackHorizontal="?android:attr/fastScrollTrackDrawable"
+        android:scrollbars="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/createPlayerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,38 +92,63 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/playerSprite3"
-                style="@android:style/Widget.ImageButton"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:cropToPadding="true"
-                android:scaleType="centerInside"
-                android:src="@android:drawable/btn_star"
-                tools:src="@drawable/charTest" />
+            <RadioGroup
+                android:id="@+id/player_sprites"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/playerSprite2"
-                style="@android:style/Widget.ImageButton"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:cropToPadding="true"
-                android:scaleType="centerInside"
-                android:src="@android:drawable/btn_star"
-                tools:src="@drawable/charTest" />
+                <RadioButton
+                    android:id="@+id/playerSprite1"
+                    style="@android:style/Widget.ImageButton"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/char_test"
+                    android:button="@android:drawable/btn_radio"
+                    android:buttonTint="#9C27B0"
+                    android:checked="true"
+                    android:cropToPadding="true"
+                    android:scaleType="centerInside" />
 
-            <ImageButton
-                android:id="@+id/playerSprite1"
-                style="@android:style/Widget.ImageButton"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:cropToPadding="true"
-                android:scaleType="centerInside"
-                android:src="@android:drawable/btn_star"
-                tools:src="@drawable/charTest" />
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <RadioButton
+                    android:id="@+id/playerSprite2"
+                    style="@android:style/Widget.ImageButton"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/char_test"
+                    android:button="@android:drawable/btn_radio"
+                    android:buttonTint="#9C27B0"
+                    android:cropToPadding="true"
+                    android:scaleType="centerInside" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <RadioButton
+                    android:id="@+id/playerSprite3"
+                    style="@android:style/Widget.ImageButton"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/char_test"
+                    android:button="@android:drawable/btn_radio"
+                    android:buttonTint="#9C27B0"
+                    android:cropToPadding="true"
+                    android:scaleType="centerInside" />
+            </RadioGroup>
         </LinearLayout>
     </HorizontalScrollView>
 
