@@ -4,38 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTintMode="multiply">
+    android:backgroundTintMode="multiply"
+    android:padding="10sp">
 
     <TextView
         android:id="@+id/playerCreateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:background="#9C27B0"
+        android:backgroundTint="#9C27B0"
+        android:padding="5sp"
         android:text="CREATE YOUR PLAYER"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/playerName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/namePrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Enter your name:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/playerName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerCreateText" />
 
     <EditText
         android:id="@+id/playerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:backgroundTint="#9C27B0"
         android:ems="10"
         android:inputType="text"
-        android:text="Enter Your Name"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/difficultyToggles"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerCreateText" />
+
+    <TextView
+        android:id="@+id/difficultyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Choose your difficulty:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/difficultyToggles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerName" />
+
+    <TextView
+        android:id="@+id/spriteChooseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Choose your sprite:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/playerSpriteBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficultyToggles" />
 
     <RadioGroup
         android:id="@+id/difficultyToggles"
@@ -49,30 +94,40 @@
         <RadioButton
             android:id="@+id/radioEasy"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content"
             android:checked="true"
+=======
+            android:layout_height="30dp"
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
             android:buttonTint="#9C27B0"
+            android:checked="true"
             android:text="Easy" />
 
         <RadioButton
             android:id="@+id/radioMedium"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:buttonTint="#9C27B0"
             android:text="Medium" />
 
         <RadioButton
             android:id="@+id/radioHard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:buttonTint="#9C27B0"
             android:text="Hard" />
+
     </RadioGroup>
 
     <HorizontalScrollView
         android:id="@+id/playerSpriteBar"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
+<<<<<<< HEAD
+=======
+        android:layout_marginBottom="-20dp"
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
         android:clickable="true"
         android:fillViewport="true"
         android:isScrollContainer="true"
@@ -89,7 +144,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioGroup
@@ -104,7 +159,11 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+<<<<<<< HEAD
                     android:background="@drawable/char_test"
+=======
+                    android:background="@drawable/panda_sprite"
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:checked="true"
@@ -124,7 +183,11 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+<<<<<<< HEAD
                     android:background="@drawable/char_test"
+=======
+                    android:background="@drawable/sheep_sprite"
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:cropToPadding="true"
@@ -143,7 +206,11 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+<<<<<<< HEAD
                     android:background="@drawable/char_test"
+=======
+                    android:background="@drawable/monkey_sprite"
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:cropToPadding="true"
@@ -154,14 +221,15 @@
 
     <Button
         android:id="@+id/createPlayerButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="50dp"
         android:backgroundTint="#9C27B0"
+        android:padding="5sp"
         android:text="Create Player!"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerSpriteBar" />
 
