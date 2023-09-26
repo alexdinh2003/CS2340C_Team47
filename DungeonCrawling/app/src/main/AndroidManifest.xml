@@ -28,8 +28,11 @@
             android:exported="false" />
         <activity android:name=".GameScreen1"
             android:exported="false" />
+<<<<<<< HEAD
+=======
         <activity android:name=".GameEnd"
             android:exported="false" />
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
 
     </application>
 
