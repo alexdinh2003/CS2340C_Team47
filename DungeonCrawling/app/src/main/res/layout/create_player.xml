@@ -94,12 +94,7 @@
         <RadioButton
             android:id="@+id/radioEasy"
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="wrap_content"
-            android:checked="true"
-=======
             android:layout_height="30dp"
->>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
             android:buttonTint="#9C27B0"
             android:checked="true"
             android:text="Easy" />
@@ -124,10 +119,7 @@
         android:id="@+id/playerSpriteBar"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-<<<<<<< HEAD
-=======
         android:layout_marginBottom="-20dp"
->>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
         android:clickable="true"
         android:fillViewport="true"
         android:isScrollContainer="true"
@@ -159,11 +151,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-<<<<<<< HEAD
-                    android:background="@drawable/char_test"
-=======
                     android:background="@drawable/panda_sprite"
->>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:checked="true"
@@ -183,11 +171,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-<<<<<<< HEAD
-                    android:background="@drawable/char_test"
-=======
                     android:background="@drawable/sheep_sprite"
->>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:cropToPadding="true"
@@ -206,11 +190,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-<<<<<<< HEAD
-                    android:background="@drawable/char_test"
-=======
                     android:background="@drawable/monkey_sprite"
->>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:cropToPadding="true"
