@@ -10,7 +10,12 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
+<<<<<<< HEAD
+
+=======
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
 import android.widget.RadioGroup;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -32,7 +37,11 @@ public class PlayerCreation extends AppCompatActivity {
         createPlayer = (Button) findViewById(R.id.createPlayerButton);
 
         createPlayer.setOnClickListener(v -> {
+<<<<<<< HEAD
+            double difficulty = 1;
+=======
             int difficulty = 0;
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
             int spriteNum = 0;
             boolean invalidName = true;
 
@@ -41,11 +50,19 @@ public class PlayerCreation extends AppCompatActivity {
 
             int checkedRadioButtonId = difficultyRadioGroup.getCheckedRadioButtonId();
             if (checkedRadioButtonId == R.id.radioEasy) {
+<<<<<<< HEAD
+                difficulty = 0.5;
+            } else if (checkedRadioButtonId == R.id.radioMedium) {
+                difficulty = 0.75;
+            } else {
+                difficulty = 1;
+=======
                 difficulty = 1;
             } else if (checkedRadioButtonId == R.id.radioMedium) {
                 difficulty = 2;
             } else {
                 difficulty = 3;
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
             }
 
 
@@ -80,8 +97,13 @@ public class PlayerCreation extends AppCompatActivity {
                 int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
+<<<<<<< HEAD
+                final PopupWindow popupWindow = new PopupWindow(popupView,
+                        width, height, focusable);
+=======
                 final PopupWindow popupWindow = new PopupWindow(popupView, width,
                         height, focusable);
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
 
                 // show the popup window
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
@@ -98,7 +120,10 @@ public class PlayerCreation extends AppCompatActivity {
                 Intent game = new Intent(PlayerCreation.this, GameScreen1.class);
                 game.putExtra("difficulty", difficulty);
                 game.putExtra("playerName", name);
+<<<<<<< HEAD
+=======
                 game.putExtra("spriteNum", spriteNum);
+>>>>>>> e5efabcc7f8ab797aeef46e0c38fa4af592a3ce0
                 startActivity(game);
                 finish();
             }
