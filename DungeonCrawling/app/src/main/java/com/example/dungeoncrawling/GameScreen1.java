@@ -13,11 +13,13 @@ public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;
     private TextView playerName;
     private TextView difficulty;
+    private TextView timerText;
     private ImageView sprite;
     private ImageView health;
     private int difficultyNum;
     private String playerNameStr;
     private int spriteNum;
+    private Timer timer;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @Override
@@ -30,6 +32,7 @@ public class GameScreen1 extends AppCompatActivity {
         difficulty = (TextView) findViewById(R.id.difficultyDisplay);
         sprite = (ImageView) findViewById(R.id.sprite);
         health = (ImageView) findViewById(R.id.health);
+        timerText = (TextView) findViewById(R.id.timerTextView);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -39,6 +42,9 @@ public class GameScreen1 extends AppCompatActivity {
 
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
+
+        timer = new Timer(System.currentTimeMillis(), timerText);
+        timer.runTimer();
 
         switch (difficultyNum) {
         case 1:
@@ -82,6 +88,7 @@ public class GameScreen1 extends AppCompatActivity {
         }
 
         exitGame.setOnClickListener(v -> {
+            timer.stopTimer();
             Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
             startActivity(endScreen);
             finish();
