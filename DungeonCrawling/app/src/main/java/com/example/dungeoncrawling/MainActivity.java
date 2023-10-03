@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        start = (Button) findViewById(R.id.startButton);
-        exit = (Button) findViewById(R.id.exitButton);
+        start = findViewById(R.id.startButton);
+        exit = findViewById(R.id.exitButton);
 
         start.setOnClickListener(v -> {
             Intent createPlayer = new Intent(MainActivity.this, PlayerCreation.class);
