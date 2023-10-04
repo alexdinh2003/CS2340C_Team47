@@ -1,9 +1,9 @@
 package com.example.dungeoncrawling;
 
-<<<<<<< HEAD
+
 import java.util.TimerTask;
 
-=======
+
 import android.annotation.SuppressLint;
 >>>>>>> 343af55c1d72e0a270b7568027f2b58b3d9e7315
 import android.content.Intent;
@@ -42,7 +42,7 @@ public class GameScreen1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen_1);
 
-<<<<<<< HEAD
+
         exitGame = (Button) findViewById(R.id.endScreenButton);
         playerName = (TextView) findViewById(R.id.playerNameDisplay);
         difficulty = (TextView) findViewById(R.id.difficultyDisplay);
@@ -50,7 +50,7 @@ public class GameScreen1 extends AppCompatActivity {
         health = (ImageView) findViewById(R.id.health);
         timerText = (TextView) findViewById(R.id.timerTextView);
         scoreText = (TextView) findViewById(R.id.scoreTextView);
-=======
+
         //No need to cast exitGame = (Button) ..
         exitGame = findViewById(R.id.endScreenButton);
         playerName = findViewById(R.id.playerNameDisplay);
@@ -58,7 +58,7 @@ public class GameScreen1 extends AppCompatActivity {
         sprite = findViewById(R.id.sprite);
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
->>>>>>> 343af55c1d72e0a270b7568027f2b58b3d9e7315
+
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
