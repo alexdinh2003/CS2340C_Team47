@@ -3,6 +3,8 @@ package com.example.dungeoncrawling;
 import android.os.Handler;
 import android.widget.TextView;
 
+import java.util.TimerTask;
+
 public class Timer {
 
     private TextView timerTextView;
@@ -11,9 +13,12 @@ public class Timer {
     private Handler timerHandler;
     private Runnable timerRunnable;
 
-    public Timer(long startTime, TextView timerTextView) {
+    private TextView scoreText;
+
+    public Timer(long startTime, TextView timerTextView, TextView scoreText) {
         this.startTime = startTime;
         this.timerTextView = timerTextView;
+        this.scoreText = scoreText;
 
         this.timerHandler = new Handler();
         this.timerRunnable = new Runnable() {
@@ -23,7 +28,11 @@ public class Timer {
                 int seconds = (int) (millis / 1000);
                 int minutes = seconds / 60;
                 seconds = seconds % 60;
-
+                if (!(timerTextView.getText().equals(String.format("%d:%02d", minutes, seconds)))) {
+                    int currScore = Integer.parseInt(scoreText.getText().toString());
+                    currScore--;
+                    scoreText.setText(Integer.toString(currScore));
+                }
                 timerTextView.setText(String.format("%d:%02d", minutes, seconds));
 
                 timerHandler.postDelayed(this, 500);
@@ -49,5 +58,8 @@ public class Timer {
         return this.oldTime;
     }
 
+    public void schedule(TimerTask task, int i, int i1) {
+    }
+    }
 
-}
+

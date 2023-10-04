@@ -10,13 +10,15 @@ public class GameEnd extends AppCompatActivity {
     private Timer timer;
     private TextView timerText;
 
+    private TextView scoreText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_screen);
 
         timerText = (TextView) findViewById(R.id.timerTextView);
-        timer = new Timer(System.currentTimeMillis(), timerText);
+        timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.runTimer();
 
     }

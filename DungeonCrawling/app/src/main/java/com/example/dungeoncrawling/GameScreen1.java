@@ -1,5 +1,7 @@
 package com.example.dungeoncrawling;
 
+import java.util.TimerTask;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,6 +10,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+
+
+
 
 public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;
@@ -20,6 +26,7 @@ public class GameScreen1 extends AppCompatActivity {
     private String playerNameStr;
     private int spriteNum;
     private Timer timer;
+    private TextView scoreText;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @Override
@@ -33,6 +40,7 @@ public class GameScreen1 extends AppCompatActivity {
         sprite = (ImageView) findViewById(R.id.sprite);
         health = (ImageView) findViewById(R.id.health);
         timerText = (TextView) findViewById(R.id.timerTextView);
+        scoreText = (TextView) findViewById(R.id.scoreTextView);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -43,7 +51,7 @@ public class GameScreen1 extends AppCompatActivity {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
 
-        timer = new Timer(System.currentTimeMillis(), timerText);
+        timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.runTimer();
 
         switch (difficultyNum) {
