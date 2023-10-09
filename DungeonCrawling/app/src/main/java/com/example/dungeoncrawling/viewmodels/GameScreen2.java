@@ -11,7 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.Leaderboard;
+import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
+
+import java.util.Date;
 
 public class GameScreen2 extends AppCompatActivity {
     private Button exitGame;

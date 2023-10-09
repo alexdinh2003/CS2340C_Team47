@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.Leaderboard;
+import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
 
 import java.util.Date;
@@ -106,6 +108,7 @@ public class GameScreen1 extends AppCompatActivity {
             Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
 
             Leaderboard leaderboard = Leaderboard.getInstance();
+            int playerScore = 0;
             ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
             leaderboard.addScore(scoreEntry);
             

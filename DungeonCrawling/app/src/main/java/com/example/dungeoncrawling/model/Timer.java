@@ -75,6 +75,9 @@ public class Timer {
 
     public void schedule(TimerTask task, int i, int i1) {
     }
+
+    public int getScore() {
+    }
 }
 
 
