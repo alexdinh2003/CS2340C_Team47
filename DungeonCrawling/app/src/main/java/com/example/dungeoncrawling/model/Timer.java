@@ -15,6 +15,7 @@ public class Timer {
 
     private TextView scoreText;
     private static int currScore = 100;
+    private int score;
 
     public Timer(long startTime, TextView timerTextView, TextView scoreText) {
         this.startTime = startTime;
@@ -74,6 +75,14 @@ public class Timer {
     }
 
     public void schedule(TimerTask task, int i, int i1) {
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
 
