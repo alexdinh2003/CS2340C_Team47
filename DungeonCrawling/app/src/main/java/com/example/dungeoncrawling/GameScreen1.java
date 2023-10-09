@@ -93,6 +93,11 @@ public class GameScreen1 extends AppCompatActivity {
 
         exitGame.setOnClickListener(v -> {
             timer.stopTimer();
+
+            Leaderboard leaderboard = Leaderboard.getInstance();
+            ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, timer.getScore(), new Date());
+            leaderboard.addScore(scoreEntry);
+
             Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
             startActivity(endScreen);
             finish();
