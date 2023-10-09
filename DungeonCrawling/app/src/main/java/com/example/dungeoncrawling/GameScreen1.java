@@ -1,12 +1,20 @@
 package com.example.dungeoncrawling;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.SurfaceHolder.Callback;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,17 +34,41 @@ public class GameScreen1 extends AppCompatActivity {
     private int spriteNum;
     private Timer timer;
     private TextView scoreText;
-    private Map1View map1;
+    private Tilemap tilemap;
+    private int roomInd;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        map1 = new Map1View(this);
-        setContentView(map1);
+        setContentView(R.layout.game_screen_1);
 
-        /*
+        SurfaceView surface = (SurfaceView) findViewById(R.id.surface);
+        surface.getHolder().addCallback(new Callback() {
+
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                // Do some drawing when surface is ready
+                Canvas canvas = holder.lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000),paint);
+                tilemap.draw(canvas);
+                holder.unlockCanvasAndPost(canvas);
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            }
+        });
+
         exitGame = findViewById(R.id.endScreenButton);
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
@@ -48,12 +80,16 @@ public class GameScreen1 extends AppCompatActivity {
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
         spriteNum = getIntent().getIntExtra("spriteNum", 1);
+        roomInd = getIntent().getIntExtra("Room Number", 0);
 
         playerName.setText(playerNameStr);
 
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.runTimer();
 
+        if (roomInd == 2) {
+            exitGame.setText("Exit");
+        }
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
 
@@ -100,12 +136,19 @@ public class GameScreen1 extends AppCompatActivity {
 
         exitGame.setOnClickListener(v -> {
             timer.stopTimer();
-            Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
-            startActivity(endScreen);
+            Intent nextScreen;
+            if (roomInd < 2) {
+                nextScreen = new Intent(GameScreen1.this, GameScreen1.class);
+                nextScreen.putExtra("Room Number", ++roomInd);
+                nextScreen.putExtra("difficulty", difficultyNum);
+                nextScreen.putExtra("playerName", playerNameStr);
+                nextScreen.putExtra("spriteNum", spriteNum);
+            } else {
+                nextScreen = new Intent(GameScreen1.this, GameEnd.class);
+            }
+            startActivity(nextScreen);
             finish();
         });
-
-         */
 
     }
 }

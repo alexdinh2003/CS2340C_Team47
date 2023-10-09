@@ -23,7 +23,7 @@ class Map1View extends SurfaceView implements SurfaceHolder.Callback {
         surfaceHolder.addCallback(this);
         SpriteSheet spriteSheet = new SpriteSheet(context);
 
-        tilemap = new Tilemap(spriteSheet);
+        tilemap = new Tilemap(spriteSheet, 0);
     }
     @Override
     public void draw(Canvas canvas) {

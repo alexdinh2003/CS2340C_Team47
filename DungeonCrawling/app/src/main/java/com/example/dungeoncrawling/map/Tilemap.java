@@ -18,13 +18,13 @@ public class Tilemap {
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
 
-    public Tilemap(SpriteSheet spriteSheet) {
-        mapLayout = new MapLayout();
+    public Tilemap(SpriteSheet spriteSheet, int ind) {
+        mapLayout = new MapLayout(ind);
         this.spriteSheet = spriteSheet;
-        initializeTilemap();
+        initializeTilemap(ind);
     }
 
-    private void initializeTilemap() {
+    private void initializeTilemap(int ind) {
         int[][] layout = mapLayout.getLayout();
         tilemap = new Tile[NUM_ROWS][NUM_COLS];
         for (int iRow = 0; iRow < NUM_ROWS; iRow++) {
