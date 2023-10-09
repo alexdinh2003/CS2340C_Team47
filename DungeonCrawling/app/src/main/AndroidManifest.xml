@@ -16,7 +16,6 @@
         <activity
             android:name="com.example.dungeoncrawling.MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:label="@string/app_name">
 
             <intent-filter>
@@ -29,13 +28,8 @@
             android:exported="false" />
         <activity android:name=".GameScreen1"
             android:exported="false" />
-        <activity android:name=".GameScreen2"
-            android:exported="false" />
-        <activity android:name=".GameScreen3"
-            android:exported="false" />
         <activity android:name=".GameEnd"
             android:exported="false" />
-
 
 
     </application>
