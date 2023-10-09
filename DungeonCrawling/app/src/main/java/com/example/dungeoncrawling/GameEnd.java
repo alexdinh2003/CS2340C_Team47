@@ -36,33 +36,4 @@ public class GameEnd extends AppCompatActivity {
             finish();
         });
     }
-
-    private ListView leaderboardListView;
-    private TextView mostRecentAttemptTextView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.end_screen);
-
-        // Initialize views
-        leaderboardListView = findViewById(R.id.leaderboardListView);
-        mostRecentAttemptTextView = findViewById(R.id.mostRecentAttemptTextView);
-
-        // Display the leaderboard
-        Leaderboard leaderboard = Leaderboard.getInstance();
-        List<ScoreEntry> scores = leaderboard.getScores();
-        ArrayAdapter<ScoreEntry> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, scores);
-        leaderboardListView.setAdapter(adapter);
-
-        // Display the most recent attempt
-        ScoreEntry mostRecentAttempt = scores.isEmpty() ? null : scores.get(0);
-        if (mostRecentAttempt != null) {
-            mostRecentAttemptTextView.setText("Most Recent Attempt:\n" +
-                    "Player: " + mostRecentAttempt.getPlayerName() + "\n" +
-                    "Score: " + mostRecentAttempt.getScore() + "\n" +
-                    "Date: " + mostRecentAttempt.getDate());
-        }
-    }
-}
 }
