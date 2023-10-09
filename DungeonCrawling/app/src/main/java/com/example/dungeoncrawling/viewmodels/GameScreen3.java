@@ -16,6 +16,8 @@ import com.example.dungeoncrawling.model.Timer;
 public class GameScreen3 extends AppCompatActivity {
     private Button exitGame;
     private Button resetGame;
+    //Temp button
+    private Button next;
     private TextView playerName;
     private TextView difficulty;
     private TextView timerText;
@@ -40,7 +42,7 @@ public class GameScreen3 extends AppCompatActivity {
         sprite = findViewById(R.id.sprite);
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
-
+        next  = findViewById(R.id.nextButton);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");

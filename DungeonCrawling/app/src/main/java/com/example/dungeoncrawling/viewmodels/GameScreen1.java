@@ -13,9 +13,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Timer;
 
+import java.util.Date;
+
 
 public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;
+    private Button next;
+    //Temp button
     private TextView playerName;
     private TextView difficulty;
     private TextView timerText;
@@ -41,6 +45,7 @@ public class GameScreen1 extends AppCompatActivity {
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
+        next  = findViewById(R.id.nextButton);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -97,6 +102,8 @@ public class GameScreen1 extends AppCompatActivity {
 
         exitGame.setOnClickListener(v -> {
             timer.stopTimer();
+            
+
             Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
 
             Leaderboard leaderboard = Leaderboard.getInstance();
@@ -107,6 +114,11 @@ public class GameScreen1 extends AppCompatActivity {
             finish();
         });
 
+        next.setOnClickListener(v -> {
+            Intent gameScreen2 = new Intent(GameScreen1.this, GameScreen2.class);
+            startActivity(gameScreen2);
+            finish();
+        });
     }
 }
 
