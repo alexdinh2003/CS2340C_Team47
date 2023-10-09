@@ -30,6 +30,7 @@ public class Timer {
                 int seconds = (int) (millis / 1000);
                 int minutes = seconds / 60;
                 seconds = seconds % 60;
+                //currScore = 100;
                 if (scoreText != null) {
                     scoreText.setText(Integer.toString(currScore));
                     currScore--;
@@ -78,11 +79,11 @@ public class Timer {
     }
 
     public int getScore() {
-        return score;
+        return currScore;
     }
 
     public void setScore(int score) {
-        this.score = score;
+        this.currScore = score;
     }
 }
 
