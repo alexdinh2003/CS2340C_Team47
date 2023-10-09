@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
         android:background="#9C27B0"
         android:backgroundTint="#9C27B0"
-        android:text="Score: 100"
+        android:text="100"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/gameMap"

@@ -12,9 +12,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;
+
     private Button resetGame;
     //Temp button
     private Button next;
+  
     private TextView playerName;
     private TextView difficulty;
     private TextView timerText;
@@ -24,6 +26,7 @@ public class GameScreen1 extends AppCompatActivity {
     private String playerNameStr;
     private int spriteNum;
     private Timer timer;
+    private TextView scoreText;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -31,15 +34,18 @@ public class GameScreen1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen_1);
-
-        //No need to cast exitGame = (Button) ..
+      
         exitGame = findViewById(R.id.endScreenButton);
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
         sprite = findViewById(R.id.sprite);
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
+
         next  = findViewById(R.id.nextButton);
+
+        scoreText = findViewById(R.id.scoreTextView);
+
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -47,11 +53,11 @@ public class GameScreen1 extends AppCompatActivity {
 
         playerName.setText(playerNameStr);
 
+        timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
+        timer.runTimer();
+
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
-
-        timer = new Timer(System.currentTimeMillis(), timerText);
-        timer.runTimer();
 
         switch (difficultyNum) {
         case 1:

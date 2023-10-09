@@ -11,6 +11,7 @@ public class GameEnd extends AppCompatActivity {
 
     private Timer timer;
     private TextView timerText;
+    private TextView scoreText;
     private Button resetGame;
 
     @Override
@@ -18,14 +19,18 @@ public class GameEnd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_screen);
 
-        timerText = (TextView) findViewById(R.id.timerTextView);
-        timer = new Timer(System.currentTimeMillis(), timerText);
-        timer.runTimer();
+        timerText = findViewById(R.id.timerTextView);
+        scoreText = findViewById(R.id.scoreTextView);
+        timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
+        timer.displayOldTime(timerText);
+        timer.displayScore(scoreText);
 
         //Reset button
         resetGame = findViewById(R.id.ResetButton);
 
         resetGame.setOnClickListener(v -> {
+            timer.stopTimer();
+            timer.resetTimer();
             Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
             startActivity(createPlayer);
             finish();
