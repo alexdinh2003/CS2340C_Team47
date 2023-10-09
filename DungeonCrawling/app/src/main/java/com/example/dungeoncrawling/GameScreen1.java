@@ -1,6 +1,7 @@
 package com.example.dungeoncrawling;
 
 import android.annotation.SuppressLint;
+import android.graphics.Canvas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.dungeoncrawling.graphics.SpriteSheet;
+import com.example.dungeoncrawling.map.Tilemap;
 
 public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;
@@ -22,14 +26,17 @@ public class GameScreen1 extends AppCompatActivity {
     private int spriteNum;
     private Timer timer;
     private TextView scoreText;
+    private Map1View map1;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_screen_1);
-      
+        map1 = new Map1View(this);
+        setContentView(map1);
+
+        /*
         exitGame = findViewById(R.id.endScreenButton);
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
@@ -97,6 +104,8 @@ public class GameScreen1 extends AppCompatActivity {
             startActivity(endScreen);
             finish();
         });
+
+         */
 
     }
 }
