@@ -103,7 +103,6 @@ public class GameScreen1 extends AppCompatActivity {
         exitGame.setOnClickListener(v -> {
             timer.stopTimer();
             
-
             Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
             startActivity(endScreen);
             finish();
