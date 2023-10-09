@@ -12,11 +12,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;
-
-    private Button resetGame;
-    //Temp button
-    private Button next;
-  
     private TextView playerName;
     private TextView difficulty;
     private TextView timerText;
@@ -41,11 +36,7 @@ public class GameScreen1 extends AppCompatActivity {
         sprite = findViewById(R.id.sprite);
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
-
-        next  = findViewById(R.id.nextButton);
-
         scoreText = findViewById(R.id.scoreTextView);
-
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -104,12 +95,6 @@ public class GameScreen1 extends AppCompatActivity {
             timer.stopTimer();
             Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
             startActivity(endScreen);
-            finish();
-        });
-
-        next.setOnClickListener(v -> {
-            Intent gameScreen2 = new Intent(GameScreen1.this, GameScreen2.class);
-            startActivity(gameScreen2);
             finish();
         });
 
