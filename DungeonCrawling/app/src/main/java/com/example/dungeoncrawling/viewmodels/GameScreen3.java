@@ -100,11 +100,14 @@ public class GameScreen3 extends AppCompatActivity {
         exitGame.setOnClickListener(v -> {
             timer.stopTimer();
             Intent endScreen = new Intent(GameScreen3.this, GameEnd.class);
+
+            Leaderboard leaderboard = Leaderboard.getInstance();
+            ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, timer.getScore(), new Date());
+            leaderboard.addScore(scoreEntry);
+            
             startActivity(endScreen);
             finish();
         });
-
-
 
     }
 }
