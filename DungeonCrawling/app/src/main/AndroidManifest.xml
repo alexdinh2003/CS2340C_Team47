@@ -28,15 +28,12 @@
             android:exported="false" />
         <activity android:name=".viewmodels.GameScreen1"
             android:exported="false" />
-<<<<<<< Updated upstream
-        <activity android:name=".GameEnd"
-=======
         <activity android:name=".viewmodels.GameScreen2"
             android:exported="false" />
         <activity android:name=".viewmodels.GameScreen3"
             android:exported="false" />
         <activity android:name=".viewmodels.GameEnd"
->>>>>>> Stashed changes
+
             android:exported="false" />
 
 

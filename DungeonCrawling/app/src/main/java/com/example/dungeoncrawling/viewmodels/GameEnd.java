@@ -2,7 +2,9 @@ package com.example.dungeoncrawling.viewmodels;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +13,17 @@ import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Timer;
 import com.example.dungeoncrawling.views.MainActivity;
 
+
+
 public class GameEnd extends AppCompatActivity {
 
     private Timer timer;
     private TextView timerText;
     private TextView scoreText;
     private Button resetGame;
+
+    private ListView leaderboardListView;
+    private TextView mostRecentAttemptTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class GameEnd extends AppCompatActivity {
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.displayOldTime(timerText);
         timer.displayScore(scoreText);
+
 
         //Reset button
         resetGame = findViewById(R.id.ResetButton);
