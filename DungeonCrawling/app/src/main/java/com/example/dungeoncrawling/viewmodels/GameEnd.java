@@ -1,8 +1,10 @@
 package com.example.dungeoncrawling.viewmodels;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -10,9 +12,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.Leaderboard;
+import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
 import com.example.dungeoncrawling.views.MainActivity;
+import com.google.android.material.color.utilities.Score;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 
 public class GameEnd extends AppCompatActivity {
@@ -25,6 +33,10 @@ public class GameEnd extends AppCompatActivity {
     private ListView leaderboardListView;
     private TextView mostRecentAttemptTextView;
 
+    private Leaderboard leaderboard;
+    private TextView leaderboardTextView;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,37 +47,45 @@ public class GameEnd extends AppCompatActivity {
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.displayOldTime(timerText);
         timer.displayScore(scoreText);
+        timer.stopTimer();
 
         // Initialize views
         leaderboardListView = findViewById(R.id.leaderboardListView);
         mostRecentAttemptTextView = findViewById(R.id.mostRecentAttemptTextView);
 
+
         // Display the leaderboard
         Leaderboard leaderboard = Leaderboard.getInstance();
         List<ScoreEntry> scores = leaderboard.getScores();
-        ArrayAdapter<ScoreEntry> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, scores);
+        ArrayAdapter<ScoreEntry> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, scores);
         leaderboardListView.setAdapter(adapter);
+
 
         // Display the most recent attempt
         ScoreEntry mostRecentAttempt = scores.isEmpty() ? null : scores.get(0);
+
         if (mostRecentAttempt != null) {
-            mostRecentAttemptTextView.setText("Most Recent Attempt:\n" +
-                    "Player: " + mostRecentAttempt.getPlayerName() + "\n" +
-                    "Score: " + mostRecentAttempt.getScore() + "\n" +
-                    "Date: " + mostRecentAttempt.getDate());
+            mostRecentAttemptTextView.setText("Most Recent Attempt:\n"
+                    + "Player: " + mostRecentAttempt.getPlayerName()
+                    + "\n"
+                    + "Score: " + mostRecentAttempt.getScore() + "\n"
+                    + "Date: " + mostRecentAttempt.getDate());
+
+
+            //Reset button
+            resetGame = findViewById(R.id.ResetButton);
+
+            resetGame.setOnClickListener(v -> {
+                timer.stopTimer();
+                timer.resetTimer();
+                Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
+                startActivity(createPlayer);
+                finish();
+            });
         }
 
 
-        //Reset button
-        resetGame = findViewById(R.id.ResetButton);
 
-        resetGame.setOnClickListener(v -> {
-            timer.stopTimer();
-            timer.resetTimer();
-            Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
-            startActivity(createPlayer);
-            finish();
-        });
     }
-
 }

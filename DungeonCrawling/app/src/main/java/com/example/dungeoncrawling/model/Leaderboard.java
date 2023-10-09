@@ -29,5 +29,18 @@ public class Leaderboard {
     public void addScore(ScoreEntry score) {
         scores.add(score);
     }
+
+    public void addAttempt(ScoreEntry attempt) {
+        scores.add(attempt);
+        // Sort the leaderboard in descending order by score
+        Collections.sort(scores, Collections.reverseOrder());
+    }
+
+    public List<ScoreEntry> getTopAttempts(int count) {
+        if (count >= scores.size()) {
+            return scores; // Return all attempts if count exceeds the list size
+        }
+        return scores.subList(0, count);
+    }
 }
 

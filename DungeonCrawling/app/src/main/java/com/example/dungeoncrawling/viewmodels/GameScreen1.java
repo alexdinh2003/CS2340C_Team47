@@ -108,7 +108,7 @@ public class GameScreen1 extends AppCompatActivity {
             Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
 
             Leaderboard leaderboard = Leaderboard.getInstance();
-            int playerScore = 0;
+            int playerScore = 100;
             ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
             leaderboard.addScore(scoreEntry);
             
@@ -118,6 +118,8 @@ public class GameScreen1 extends AppCompatActivity {
 
         next.setOnClickListener(v -> {
             Intent gameScreen2 = new Intent(GameScreen1.this, GameScreen2.class);
+            gameScreen2.putExtra("playerName", playerNameStr);
+            gameScreen2.putExtra("playerScore", timer.getScore());
             startActivity(gameScreen2);
             finish();
         });

@@ -25,6 +25,7 @@ public class GameScreen3 extends AppCompatActivity {
     private TextView playerName;
     private TextView difficulty;
     private TextView timerText;
+    private TextView scoreText;
     private ImageView sprite;
     private ImageView health;
     private int difficultyNum;
@@ -47,6 +48,7 @@ public class GameScreen3 extends AppCompatActivity {
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
         next  = findViewById(R.id.nextButton);
+        scoreText = findViewById(R.id.scoreTextView);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -57,7 +59,7 @@ public class GameScreen3 extends AppCompatActivity {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
 
-        timer = new Timer(System.currentTimeMillis(), timerText);
+        timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.runTimer();
 
         switch (difficultyNum) {
