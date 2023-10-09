@@ -102,10 +102,6 @@ public class GameScreen3 extends AppCompatActivity {
             finish();
         });
 
-        Leaderboard leaderboard = Leaderboard.getInstance();
-        ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
-        leaderboard.addScore(scoreEntry);
-
     }
 }
 
