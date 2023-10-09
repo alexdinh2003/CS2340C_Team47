@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling;
+package com.example.dungeoncrawling.viewmodels;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.Timer;
+import com.example.dungeoncrawling.views.MainActivity;
 
 public class GameEnd extends AppCompatActivity {
 

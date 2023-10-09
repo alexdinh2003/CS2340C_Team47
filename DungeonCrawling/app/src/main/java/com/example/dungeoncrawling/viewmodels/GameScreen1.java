@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling;
+package com.example.dungeoncrawling.viewmodels;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.Timer;
+
 
 public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;

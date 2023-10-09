@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling;
+package com.example.dungeoncrawling.views;
 
 import android.os.Bundle;
 import android.view.Window;
@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dungeoncrawling.model.PlayerCreation;
+import com.example.dungeoncrawling.R;
 
 public class MainActivity extends AppCompatActivity {
 
