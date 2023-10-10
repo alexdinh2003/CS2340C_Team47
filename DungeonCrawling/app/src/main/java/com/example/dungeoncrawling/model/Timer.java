@@ -77,9 +77,6 @@ public class Timer {
         scoreText.setText(Integer.toString(currScore));
     }
 
-    public void schedule(TimerTask task, int i, int i1) {
-    }
-
     public int getScore() {
         return currScore;
     }
