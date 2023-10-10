@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
-import com.example.dungeoncrawling.model.Player;
+
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
 import com.example.dungeoncrawling.views.MainActivity;
