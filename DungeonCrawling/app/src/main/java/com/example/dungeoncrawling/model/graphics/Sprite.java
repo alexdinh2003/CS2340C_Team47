@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling.graphics;
+package com.example.dungeoncrawling.model.graphics;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;

@@ -8,7 +8,7 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dungeoncrawling.model.PlayerCreation;
+import com.example.dungeoncrawling.viewmodels.PlayerCreation;
 import com.example.dungeoncrawling.R;
 
 public class MainActivity extends AppCompatActivity {

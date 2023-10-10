@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling.model;
+package com.example.dungeoncrawling.viewmodels;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.R;
-import com.example.dungeoncrawling.viewmodels.GameScreen1;
+import com.example.dungeoncrawling.model.Player;
 
 public class PlayerCreation extends AppCompatActivity {
 
@@ -25,6 +25,8 @@ public class PlayerCreation extends AppCompatActivity {
     private ImageButton sprite1;
     private ImageButton sprite2;
     private ImageButton sprite3;
+
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class PlayerCreation extends AppCompatActivity {
         createPlayer = (Button) findViewById(R.id.createPlayerButton);
 
         createPlayer.setOnClickListener(v -> {
+            player = Player.getInstance();
+            player.setScore(100);
             int difficulty = 0;
             int spriteNum = 0;
             boolean invalidName = true;
@@ -45,21 +49,26 @@ public class PlayerCreation extends AppCompatActivity {
             int checkedRadioButtonId = difficultyRadioGroup.getCheckedRadioButtonId();
             if (checkedRadioButtonId == R.id.radioEasy) {
                 difficulty = 1;
+                player.setHealth(5);
             } else if (checkedRadioButtonId == R.id.radioMedium) {
                 difficulty = 2;
+                player.setHealth(4);
             } else {
                 difficulty = 3;
+                player.setHealth(3);
             }
-
 
             RadioGroup playerSpriteGroup = findViewById(R.id.player_sprites);
             int radioButtonId = playerSpriteGroup.getCheckedRadioButtonId();
             if (radioButtonId == R.id.playerSprite1) {
                 spriteNum = 1;
+                player.setSpriteId(0);
             } else if (radioButtonId == R.id.playerSprite2) {
                 spriteNum = 2;
+                player.setSpriteId(1);
             } else {
                 spriteNum = 3;
+                player.setSpriteId(2);
             }
 
             String name = playerName.getText().toString();
@@ -69,6 +78,7 @@ public class PlayerCreation extends AppCompatActivity {
                     char c = name.charAt(i);
                     if (!Character.isWhitespace(c)) {
                         inValidName = false;
+                        player.setName(name);
                     }
                 }
             }
@@ -99,9 +109,9 @@ public class PlayerCreation extends AppCompatActivity {
                 });
             } else {
                 Intent game = new Intent(PlayerCreation.this, GameScreen1.class);
-                game.putExtra("difficulty", difficulty);
-                game.putExtra("playerName", name);
-                game.putExtra("spriteNum", spriteNum);
+                //game.putExtra("difficulty", difficulty);
+                //game.putExtra("playerName", name);
+                //game.putExtra("spriteNum", spriteNum);
                 startActivity(game);
                 finish();
             }

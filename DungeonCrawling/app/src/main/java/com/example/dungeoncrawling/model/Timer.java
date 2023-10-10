@@ -12,16 +12,16 @@ public class Timer {
     private static long oldTime = 0;
     private Handler timerHandler;
     private Runnable timerRunnable;
-
     private TextView scoreText;
-    private static int currScore = 100;
     private int score;
+    private Player player;
 
 
     public Timer(long startTime, TextView timerTextView, TextView scoreText) {
         this.startTime = startTime;
         this.timerTextView = timerTextView;
         this.scoreText = scoreText;
+        this.player = Player.getInstance();
 
         this.timerHandler = new Handler();
         this.timerRunnable = new Runnable() {
@@ -33,8 +33,9 @@ public class Timer {
                 seconds = seconds % 60;
                 //currScore = 100;
                 if (scoreText != null) {
-                    scoreText.setText(Integer.toString(currScore));
-                    currScore--;
+                    scoreText.setText(Integer.toString(player.getScore()));
+                    int score = player.getScore();
+                    player.setScore(--score);
                 }
                 timerTextView.setText(String.format("%d:%02d", minutes, seconds));
 
@@ -58,8 +59,7 @@ public class Timer {
 
     public void resetTimer() {
         oldTime = 0;
-        currScore = 100;
-        //scoreText.setText("100");
+        player.setScore(100);
     }
 
     public long getOldTime() {
@@ -74,18 +74,15 @@ public class Timer {
     }
 
     public void displayScore(TextView scoreText) {
-        scoreText.setText(Integer.toString(currScore));
-    }
-
-    public void schedule(TimerTask task, int i, int i1) {
+        scoreText.setText(Integer.toString(player.getScore()));
     }
 
     public int getScore() {
-        return currScore;
+        return player.getScore();
     }
 
     public void setScore(int score) {
-        this.currScore = score;
+        player.setScore(score);
     }
 }
 
