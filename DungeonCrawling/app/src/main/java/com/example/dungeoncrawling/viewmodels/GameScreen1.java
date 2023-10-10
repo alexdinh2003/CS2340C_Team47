@@ -164,13 +164,42 @@ public class GameScreen1 extends AppCompatActivity {
             startActivity(endScreen);
 
 
+
             int playerScore = timer.getScore();
             ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
             leaderboard.addScore(scoreEntry);
             startActivity(nextScreen);
 
+
+        timer = (Timer) getIntent().getSerializableExtra("timer");
+
+        next.setOnClickListener(v -> {
+            onPause();
+            Intent gameScreen2 = new Intent(GameScreen1.this, GameScreen2.class);
+            gameScreen2.putExtra("playerName", playerNameStr);
+            //gameScreen2.putExtra("playerScore", timer.getScore());
+
+            startActivity(gameScreen2);
             finish();
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Pause the timer when the activity is paused
+        if (timer != null) {
+            timer.stopTimer();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Resume the timer when the activity is resumed
+        if (timer != null) {
+            timer.runTimer();
+        }
     }
 }
 

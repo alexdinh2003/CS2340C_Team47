@@ -122,14 +122,32 @@ public class GameScreen2 extends AppCompatActivity {
         });
 
         next.setOnClickListener(v -> {
+            onPause();
             Intent gameScreen3 = new Intent(GameScreen2.this, GameScreen3.class);
             gameScreen3.putExtra("playerName", playerNameStr);
-            gameScreen3.putExtra("playerScore", timer.getScore());
+            //gameScreen3.putExtra("playerScore", timer.getScore());
             startActivity(gameScreen3);
             timer.stopTimer();
             finish();
         });
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Pause the timer when the activity is paused
+        if (timer != null) {
+            timer.stopTimer();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Resume the timer when the activity is resumed
+        if (timer != null) {
+            timer.runTimer();
+        }
     }
 }
 

@@ -104,7 +104,6 @@ public class GameScreen3 extends AppCompatActivity {
         }
 
         exitGame.setOnClickListener(v -> {
-            timer.stopTimer();
             Intent endScreen = new Intent(GameScreen3.this, GameEnd.class);
 
             Leaderboard leaderboard = Leaderboard.getInstance();

@@ -17,6 +17,7 @@ public class Timer {
     private static int currScore = 100;
     private int score;
 
+
     public Timer(long startTime, TextView timerTextView, TextView scoreText) {
         this.startTime = startTime;
         this.timerTextView = timerTextView;
