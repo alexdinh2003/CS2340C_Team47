@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling;
+package com.example.dungeoncrawling.model;
 
 import android.os.Handler;
 import android.widget.TextView;
@@ -15,6 +15,7 @@ public class Timer {
 
     private TextView scoreText;
     private static int currScore = 100;
+    private int score;
 
     public Timer(long startTime, TextView timerTextView, TextView scoreText) {
         this.startTime = startTime;
@@ -29,6 +30,7 @@ public class Timer {
                 int seconds = (int) (millis / 1000);
                 int minutes = seconds / 60;
                 seconds = seconds % 60;
+                //currScore = 100;
                 if (scoreText != null) {
                     scoreText.setText(Integer.toString(currScore));
                     currScore--;
@@ -74,6 +76,14 @@ public class Timer {
     }
 
     public void schedule(TimerTask task, int i, int i1) {
+    }
+
+    public int getScore() {
+        return currScore;
+    }
+
+    public void setScore(int score) {
+        this.currScore = score;
     }
 }
 

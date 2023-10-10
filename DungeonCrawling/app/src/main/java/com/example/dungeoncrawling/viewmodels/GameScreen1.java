@@ -1,16 +1,13 @@
-package com.example.dungeoncrawling;
+package com.example.dungeoncrawling.viewmodels;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,9 +18,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.graphics.SpriteSheet;
 import com.example.dungeoncrawling.map.Tilemap;
+import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.Leaderboard;
+import com.example.dungeoncrawling.model.ScoreEntry;
+import com.example.dungeoncrawling.model.Timer;
+import java.util.Date;
 
 public class GameScreen1 extends AppCompatActivity {
     private Button exitGame;
+    private Button next;
+    //Temp button
     private TextView playerName;
     private TextView difficulty;
     private TextView timerText;
@@ -76,6 +80,7 @@ public class GameScreen1 extends AppCompatActivity {
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
+        next  = findViewById(R.id.nextButton);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -146,10 +151,21 @@ public class GameScreen1 extends AppCompatActivity {
             } else {
                 nextScreen = new Intent(GameScreen1.this, GameEnd.class);
             }
+            Leaderboard leaderboard = Leaderboard.getInstance();
+            int playerScore = 100;
+            ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
+            leaderboard.addScore(scoreEntry);
             startActivity(nextScreen);
             finish();
         });
 
+        next.setOnClickListener(v -> {
+            Intent gameScreen2 = new Intent(GameScreen1.this, GameScreen2.class);
+            gameScreen2.putExtra("playerName", playerNameStr);
+            gameScreen2.putExtra("playerScore", timer.getScore());
+            startActivity(gameScreen2);
+            finish();
+        });
     }
 }
 

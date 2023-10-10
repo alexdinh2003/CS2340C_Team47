@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling;
+package com.example.dungeoncrawling.model;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -14,6 +14,9 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.viewmodels.GameScreen1;
 
 public class PlayerCreation extends AppCompatActivity {
 
