@@ -15,9 +15,9 @@ public class SpriteSheet {
     public SpriteSheet(Context context) {
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inScaled = false;
-        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.spritesheet, bitmapOptions);
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.spritesheet,
+                bitmapOptions);
     }
-
     public Bitmap getBitmap() {
         return bitmap;
     }
@@ -40,10 +40,10 @@ public class SpriteSheet {
 
     private Sprite getSpriteByIndex(int idxRow, int idxCol) {
         return new Sprite(this, new Rect(
-                idxCol*SPRITE_WIDTH_PIXELS,
-                idxRow*SPRITE_HEIGHT_PIXELS,
-                (idxCol + 1)*SPRITE_WIDTH_PIXELS,
-                (idxRow + 1)*SPRITE_HEIGHT_PIXELS
+                idxCol * SPRITE_WIDTH_PIXELS,
+                idxRow * SPRITE_HEIGHT_PIXELS,
+                (idxCol + 1) * SPRITE_WIDTH_PIXELS,
+                (idxRow + 1) * SPRITE_HEIGHT_PIXELS
         ));
     }
 

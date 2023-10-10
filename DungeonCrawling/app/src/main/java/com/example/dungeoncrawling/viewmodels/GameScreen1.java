@@ -60,7 +60,7 @@ public class GameScreen1 extends AppCompatActivity {
                 tilemap = new Tilemap(spriteSheet, roomInd);
                 Paint paint = new Paint();
                 paint.setColor(-1);
-                canvas.drawRect(new Rect(0, 0, 4000, 1000),paint);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
                 tilemap.draw(canvas);
                 holder.unlockCanvasAndPost(canvas);
             }
@@ -161,8 +161,10 @@ public class GameScreen1 extends AppCompatActivity {
                 leaderboard.addScore(scoreEntry);
             }
             startActivity(nextScreen);
+            finish();
         });
     }
 }
+
 
 

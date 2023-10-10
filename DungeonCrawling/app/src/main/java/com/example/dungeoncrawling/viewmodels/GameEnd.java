@@ -17,10 +17,7 @@ import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
 import com.example.dungeoncrawling.views.MainActivity;
-import com.google.android.material.color.utilities.Score;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
@@ -34,8 +31,6 @@ public class GameEnd extends AppCompatActivity {
     private ListView leaderboardListView;
     private TextView mostRecentAttemptTextView;
 
-    private Leaderboard leaderboard;
-    private TextView leaderboardTextView;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -88,3 +83,4 @@ public class GameEnd extends AppCompatActivity {
     }
 
 }
+
