@@ -58,6 +58,7 @@ public class Timer {
     public void resetTimer() {
         oldTime = 0;
         currScore = 100;
+        //scoreText.setText("100");
     }
 
     public long getOldTime() {

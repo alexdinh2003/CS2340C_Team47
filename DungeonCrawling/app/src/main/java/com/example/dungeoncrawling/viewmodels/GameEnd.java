@@ -79,6 +79,7 @@ public class GameEnd extends AppCompatActivity {
             resetGame.setOnClickListener(v -> {
                 timer.stopTimer();
                 timer.resetTimer();
+                //scoreText.setText("100");
                 Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
                 startActivity(createPlayer);
                 finish();
