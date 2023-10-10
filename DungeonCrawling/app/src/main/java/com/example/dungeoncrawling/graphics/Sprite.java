@@ -1,6 +1,5 @@
 package com.example.dungeoncrawling.graphics;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
@@ -18,7 +17,7 @@ public class Sprite {
         canvas.drawBitmap(
                 spriteSheet.getBitmap(),
                 rect,
-                new Rect(x, y, x+getWidth(), y+getHeight()),
+                new Rect(x, y, x + getWidth(), y + getHeight()),
                 null
         );
     }

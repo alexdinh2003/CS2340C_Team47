@@ -39,8 +39,8 @@ public class Tilemap {
 
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         mapBitmap = Bitmap.createBitmap(
-                NUM_COLS*TILE_WIDTH,
-                NUM_ROWS*TILE_HEIGHT,
+                NUM_COLS * TILE_WIDTH,
+                NUM_ROWS * TILE_HEIGHT,
                 config
         );
 
@@ -56,10 +56,10 @@ public class Tilemap {
 
     private Rect getRectByIndex(int idxRow, int idxCol) {
         return new Rect(
-                idxCol*TILE_WIDTH,
-                idxRow*TILE_HEIGHT,
-                (idxCol + 1)*TILE_WIDTH,
-                (idxRow + 1)*TILE_HEIGHT
+                idxCol * TILE_WIDTH,
+                idxRow * TILE_HEIGHT,
+                (idxCol + 1) * TILE_WIDTH,
+                (idxRow + 1) * TILE_HEIGHT
         );
     }
 
