@@ -21,6 +21,7 @@ public class Leaderboard {
     }
 
     public List<ScoreEntry> getScores() {
+        // Scores already in descending order
         return scores;
     }
 
