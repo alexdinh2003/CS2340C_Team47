@@ -71,6 +71,10 @@ public class GameEnd extends AppCompatActivity {
                     + "\n"
                     + "Score: " + mostRecentAttempt.getScore() + "\n"
                     + "Date: " + mostRecentAttempt.getDate());
+        }
+
+        //Reset button
+        resetGame = findViewById(R.id.ResetButton);
 
 
             //Reset button
@@ -79,11 +83,21 @@ public class GameEnd extends AppCompatActivity {
             resetGame.setOnClickListener(v -> {
                 timer.stopTimer();
                 timer.resetTimer();
+                //scoreText.setText("100");
                 Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
                 startActivity(createPlayer);
                 finish();
             });
         }
+
+        resetGame.setOnClickListener(v -> {
+            timer.stopTimer();
+            timer.resetTimer();
+            Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
+            startActivity(createPlayer);
+            finish();
+        });
+
 
 
 

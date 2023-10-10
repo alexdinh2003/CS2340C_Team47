@@ -1,25 +1,30 @@
 package com.example.dungeoncrawling.viewmodels;
 
 import android.annotation.SuppressLint;
+import android.graphics.Canvas;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.SurfaceHolder.Callback;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.dungeoncrawling.graphics.SpriteSheet;
+import com.example.dungeoncrawling.map.Tilemap;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
-
 import java.util.Date;
 
-
 public class GameScreen1 extends AppCompatActivity {
-    private Button exitGame;
     private Button next;
     //Temp button
     private TextView playerName;
@@ -32,6 +37,8 @@ public class GameScreen1 extends AppCompatActivity {
     private int spriteNum;
     private Timer timer;
     private TextView scoreText;
+    private Tilemap tilemap;
+    private int roomInd;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -39,25 +46,53 @@ public class GameScreen1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen_1);
-      
-        exitGame = findViewById(R.id.endScreenButton);
+
+        SurfaceView surface = (SurfaceView) findViewById(R.id.surface);
+        surface.getHolder().addCallback(new Callback() {
+
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                // Do some drawing when surface is ready
+                Canvas canvas = holder.lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000),paint);
+                tilemap.draw(canvas);
+                holder.unlockCanvasAndPost(canvas);
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            }
+        });
+
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
         sprite = findViewById(R.id.sprite);
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
-        next  = findViewById(R.id.nextButton);
+        next  = findViewById(R.id.nextScreenButton);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
         spriteNum = getIntent().getIntExtra("spriteNum", 1);
+        roomInd = getIntent().getIntExtra("Room Number", 0);
 
         playerName.setText(playerNameStr);
 
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.runTimer();
 
+        if (roomInd == 2) {
+            next.setText("Exit");
+        }
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
 
@@ -102,19 +137,39 @@ public class GameScreen1 extends AppCompatActivity {
             System.out.println("Error!");
         }
 
-        exitGame.setOnClickListener(v -> {
-            timer.stopTimer();
-            
-            Intent endScreen = new Intent(GameScreen1.this, GameEnd.class);
 
+        exitGame.setOnClickListener(v -> {
+            int score = timer.getScore();
+
+        next.setOnClickListener(v -> {
+
+            timer.stopTimer();
+            Intent nextScreen;
+            if (roomInd < 2) {
+                nextScreen = new Intent(GameScreen1.this, GameScreen1.class);
+                nextScreen.putExtra("Room Number", ++roomInd);
+                nextScreen.putExtra("difficulty", difficultyNum);
+                nextScreen.putExtra("playerName", playerNameStr);
+                nextScreen.putExtra("spriteNum", spriteNum);
+            } else {
+                nextScreen = new Intent(GameScreen1.this, GameEnd.class);
+            }
+          
             Leaderboard leaderboard = Leaderboard.getInstance();
-            int playerScore = 100;
+
+            int playerScore = score;
             ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
             leaderboard.addScore(scoreEntry);
             
             startActivity(endScreen);
-            finish();
-        });
+
+
+
+            int playerScore = timer.getScore();
+            ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
+            leaderboard.addScore(scoreEntry);
+            startActivity(nextScreen);
+
 
         timer = (Timer) getIntent().getSerializableExtra("timer");
 

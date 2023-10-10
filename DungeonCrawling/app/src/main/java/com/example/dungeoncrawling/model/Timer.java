@@ -53,12 +53,13 @@ public class Timer {
 
     public void stopTimer() {
         this.timerHandler.removeCallbacks(this.timerRunnable);
-        oldTime = System.currentTimeMillis() - startTime;
+        oldTime = System.currentTimeMillis() - startTime + oldTime;
     }
 
     public void resetTimer() {
         oldTime = 0;
         currScore = 100;
+        //scoreText.setText("100");
     }
 
     public long getOldTime() {

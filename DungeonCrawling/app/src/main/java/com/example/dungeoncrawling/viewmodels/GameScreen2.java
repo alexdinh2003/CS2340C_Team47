@@ -127,6 +127,7 @@ public class GameScreen2 extends AppCompatActivity {
             gameScreen3.putExtra("playerName", playerNameStr);
             //gameScreen3.putExtra("playerScore", timer.getScore());
             startActivity(gameScreen3);
+            timer.stopTimer();
             finish();
         });
     }
