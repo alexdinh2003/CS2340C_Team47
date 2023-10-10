@@ -16,10 +16,7 @@ import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
 import com.example.dungeoncrawling.views.MainActivity;
-import com.google.android.material.color.utilities.Score;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
@@ -33,8 +30,6 @@ public class GameEnd extends AppCompatActivity {
     private ListView leaderboardListView;
     private TextView mostRecentAttemptTextView;
 
-    private Leaderboard leaderboard;
-    private TextView leaderboardTextView;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -76,30 +71,14 @@ public class GameEnd extends AppCompatActivity {
         //Reset button
         resetGame = findViewById(R.id.ResetButton);
 
-
-            //Reset button
-            resetGame = findViewById(R.id.ResetButton);
-
-            resetGame.setOnClickListener(v -> {
-                timer.stopTimer();
-                timer.resetTimer();
-                //scoreText.setText("100");
-                Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
-                startActivity(createPlayer);
-                finish();
-            });
-        }
-
         resetGame.setOnClickListener(v -> {
             timer.stopTimer();
             timer.resetTimer();
+            //scoreText.setText("100");
             Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
             startActivity(createPlayer);
             finish();
         });
-
-
-
-
     }
 }
+
