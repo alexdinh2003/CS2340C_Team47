@@ -25,7 +25,6 @@ import com.example.dungeoncrawling.model.Timer;
 import java.util.Date;
 
 public class GameScreen1 extends AppCompatActivity {
-    private Button exitGame;
     private Button next;
     //Temp button
     private TextView playerName;
@@ -73,14 +72,13 @@ public class GameScreen1 extends AppCompatActivity {
             }
         });
 
-        exitGame = findViewById(R.id.endScreenButton);
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
         sprite = findViewById(R.id.sprite);
         health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
-        next  = findViewById(R.id.nextButton);
+        next  = findViewById(R.id.nextScreenButton);
 
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
@@ -93,7 +91,7 @@ public class GameScreen1 extends AppCompatActivity {
         timer.runTimer();
 
         if (roomInd == 2) {
-            exitGame.setText("Exit");
+            next.setText("Exit");
         }
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
@@ -139,7 +137,7 @@ public class GameScreen1 extends AppCompatActivity {
             System.out.println("Error!");
         }
 
-        exitGame.setOnClickListener(v -> {
+        next.setOnClickListener(v -> {
             timer.stopTimer();
             Intent nextScreen;
             if (roomInd < 2) {
@@ -152,13 +150,14 @@ public class GameScreen1 extends AppCompatActivity {
                 nextScreen = new Intent(GameScreen1.this, GameEnd.class);
             }
             Leaderboard leaderboard = Leaderboard.getInstance();
-            int playerScore = 100;
+            int playerScore = timer.getScore();
             ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
             leaderboard.addScore(scoreEntry);
             startActivity(nextScreen);
             finish();
         });
 
+        /*
         next.setOnClickListener(v -> {
             Intent gameScreen2 = new Intent(GameScreen1.this, GameScreen2.class);
             gameScreen2.putExtra("playerName", playerNameStr);
@@ -166,6 +165,8 @@ public class GameScreen1 extends AppCompatActivity {
             startActivity(gameScreen2);
             finish();
         });
+
+         */
     }
 }
 
