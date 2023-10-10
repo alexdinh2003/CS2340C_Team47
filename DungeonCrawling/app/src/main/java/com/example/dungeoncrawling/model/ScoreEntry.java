@@ -4,23 +4,25 @@ import java.util.Date;
 
 public class ScoreEntry implements Comparable<ScoreEntry> {
     private String playerName;
+    private Player player;
     private int score;
     private Date date;
 
-    public ScoreEntry(String playerName, int score, Date date) {
-        this.playerName = playerName;
-        this.score = score;
+    public ScoreEntry(Date date) {
+        this.player = Player.getInstance();
+        this.playerName = player.getName();
+        this.score = player.getScore();
         this.date = date;
     }
 
     public ScoreEntry(int score) {
-        this.score = score;
+        this(new Date());
     }
 
     @Override
     public int compareTo(ScoreEntry other) {
         // Compare score in descending order
-        return Integer.compare(other.score, this.score);
+        return Integer.compare(this.score, other.score);
     }
 
     public String getPlayerName() {

@@ -16,10 +16,11 @@ import android.view.SurfaceHolder.Callback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.dungeoncrawling.graphics.SpriteSheet;
-import com.example.dungeoncrawling.map.Tilemap;
+import com.example.dungeoncrawling.model.graphics.SpriteSheet;
+import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
+import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
 import java.util.Date;
@@ -39,6 +40,7 @@ public class GameScreen1 extends AppCompatActivity {
     private TextView scoreText;
     private Tilemap tilemap;
     private int roomInd;
+    private Player player;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -72,6 +74,7 @@ public class GameScreen1 extends AppCompatActivity {
             }
         });
 
+
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
         sprite = findViewById(R.id.sprite);
@@ -79,13 +82,17 @@ public class GameScreen1 extends AppCompatActivity {
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
         next  = findViewById(R.id.nextScreenButton);
+        player = Player.getInstance();
+        roomInd = getIntent().getIntExtra("Room Number", 0);
 
+        /*
         difficultyNum = getIntent().getIntExtra("difficulty", 1);
         playerNameStr = getIntent().getStringExtra("playerName");
         spriteNum = getIntent().getIntExtra("spriteNum", 1);
-        roomInd = getIntent().getIntExtra("Room Number", 0);
 
-        playerName.setText(playerNameStr);
+         */
+
+        playerName.setText(player.getName());
 
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.runTimer();
@@ -93,18 +100,19 @@ public class GameScreen1 extends AppCompatActivity {
         if (roomInd == 2) {
             next.setText("Exit");
         }
+
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
 
-        switch (difficultyNum) {
-        case 1:
+        switch (player.getHealth()) {
+        case 5:
             difficulty.setText("Easy");
             params.horizontalBias = 0.73f;
             health.setLayoutParams(params);
             health.setImageResource(R.drawable.five_hearts);
             health.getLayoutParams().width = 450;
             break;
-        case 2:
+        case 4:
             difficulty.setText("Medium");
             params.horizontalBias = 0.65f;
             health.setLayoutParams(params);
@@ -123,14 +131,14 @@ public class GameScreen1 extends AppCompatActivity {
 
         }
 
-        switch (spriteNum) {
-        case 1:
+        switch (player.getSpriteId()) {
+        case 0:
             sprite.setImageResource(R.drawable.panda_sprite);
             break;
-        case 2:
+        case 1:
             sprite.setImageResource(R.drawable.sheep_sprite);
             break;
-        case 3:
+        case 2:
             sprite.setImageResource(R.drawable.monkey_sprite);
             break;
         default:
@@ -138,29 +146,22 @@ public class GameScreen1 extends AppCompatActivity {
         }
 
         next.setOnClickListener(v -> {
-
             timer.stopTimer();
             Intent nextScreen;
             if (roomInd < 2) {
                 nextScreen = new Intent(GameScreen1.this, GameScreen1.class);
                 nextScreen.putExtra("Room Number", ++roomInd);
-                nextScreen.putExtra("difficulty", difficultyNum);
-                nextScreen.putExtra("playerName", playerNameStr);
-                nextScreen.putExtra("spriteNum", spriteNum);
+                //nextScreen.putExtra("difficulty", difficultyNum);
+                //nextScreen.putExtra("playerName", playerNameStr);
+                //nextScreen.putExtra("spriteNum", spriteNum);
             } else {
                 nextScreen = new Intent(GameScreen1.this, GameEnd.class);
+                Leaderboard leaderboard = Leaderboard.getInstance();
+                ScoreEntry scoreEntry = new ScoreEntry(new Date());
+                leaderboard.addScore(scoreEntry);
             }
-          
-            Leaderboard leaderboard = Leaderboard.getInstance();
-
-            int playerScore = timer.getScore();
-            ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
-            leaderboard.addScore(scoreEntry);
             startActivity(nextScreen);
-
-
-            timer = (Timer) getIntent().getSerializableExtra("timer");
-
+            finish();
         });
     }
 }

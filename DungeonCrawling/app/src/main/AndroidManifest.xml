@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".model.PlayerCreation"
+            android:name=".viewmodels.PlayerCreation"
             android:exported="false" />
         <activity android:name=".viewmodels.GameScreen1"
             android:exported="false" />

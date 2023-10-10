@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling.map;
+package com.example.dungeoncrawling.model.map;
 
 public class MapLayout {
     public static final int TILE_WIDTH = 64;
