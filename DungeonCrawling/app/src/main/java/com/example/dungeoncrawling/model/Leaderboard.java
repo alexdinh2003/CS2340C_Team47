@@ -20,8 +20,7 @@ public class Leaderboard {
     }
 
     public List<ScoreEntry> getScores() {
-        // Sort scores in descending order
-        Collections.sort(scores, Collections.reverseOrder());
+        // Scores already in descending order
         return scores;
     }
 
@@ -31,8 +30,7 @@ public class Leaderboard {
 
     public void addAttempt(ScoreEntry attempt) {
         scores.add(attempt);
-        // Sort the leaderboard in descending order by score
-        Collections.sort(scores, Collections.reverseOrder());
+        // leaderboard in descending order by score
     }
 
     public List<ScoreEntry> getTopAttempts(int count) {
