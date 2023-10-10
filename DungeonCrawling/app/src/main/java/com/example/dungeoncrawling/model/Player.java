@@ -19,21 +19,23 @@ public class Player {
     }
 
     private Player(String name) {
-        this(name, 0, 5, 100, new Rect(0,0,64,64));
+        this(name, 0, 5, 100, new Rect(0, 0,
+                64, 64));
     }
 
     private Player() {
-        this("n/a", 0, 5, 100, new Rect(0,0,64,64));
+        this("n/a", 0, 5, 100, new Rect(0, 0,
+                64, 64));
     }
 
     public static Player getInstance() {
         return getInstance("n/a", 0, 5, 100,
-                new Rect(0,0,64,64));
+                new Rect(0, 0, 64, 64));
     }
 
     public static Player getInstance(String name) {
         return getInstance(name, 0, 5, 100,
-                new Rect(0,0,64,64));
+                new Rect(0, 0, 64, 64));
     }
 
     public static Player getInstance(String name, int id, int health, int points,

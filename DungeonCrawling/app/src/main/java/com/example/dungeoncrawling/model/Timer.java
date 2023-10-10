@@ -3,7 +3,6 @@ package com.example.dungeoncrawling.model;
 import android.os.Handler;
 import android.widget.TextView;
 
-import java.util.TimerTask;
 
 public class Timer {
 
