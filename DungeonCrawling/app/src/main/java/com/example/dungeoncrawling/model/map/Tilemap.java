@@ -1,15 +1,10 @@
-package com.example.dungeoncrawling.map;
+package com.example.dungeoncrawling.model.map;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.example.dungeoncrawling.graphics.SpriteSheet;
-
-import static com.example.dungeoncrawling.map.MapLayout.NUM_COLS;
-import static com.example.dungeoncrawling.map.MapLayout.NUM_ROWS;
-import static com.example.dungeoncrawling.map.MapLayout.TILE_HEIGHT;
-import static com.example.dungeoncrawling.map.MapLayout.TILE_WIDTH;
+import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
 public class Tilemap {
 
@@ -26,9 +21,9 @@ public class Tilemap {
 
     private void initializeTilemap(int ind) {
         int[][] layout = mapLayout.getLayout();
-        tilemap = new Tile[NUM_ROWS][NUM_COLS];
-        for (int iRow = 0; iRow < NUM_ROWS; iRow++) {
-            for (int iCol = 0; iCol < NUM_COLS; iCol++) {
+        tilemap = new Tile[MapLayout.NUM_ROWS][MapLayout.NUM_COLS];
+        for (int iRow = 0; iRow < MapLayout.NUM_ROWS; iRow++) {
+            for (int iCol = 0; iCol < MapLayout.NUM_COLS; iCol++) {
                 tilemap[iRow][iCol] = Tile.getTile(
                         layout[iRow][iCol],
                         spriteSheet,
@@ -39,15 +34,15 @@ public class Tilemap {
 
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         mapBitmap = Bitmap.createBitmap(
-                NUM_COLS*TILE_WIDTH,
-                NUM_ROWS*TILE_HEIGHT,
+                MapLayout.NUM_COLS* MapLayout.TILE_WIDTH,
+                MapLayout.NUM_ROWS* MapLayout.TILE_HEIGHT,
                 config
         );
 
         Canvas mapCanvas = new Canvas(mapBitmap);
 
-        for (int iRow = 0; iRow < NUM_ROWS; iRow++) {
-            for (int iCol = 0; iCol < NUM_COLS; iCol++) {
+        for (int iRow = 0; iRow < MapLayout.NUM_ROWS; iRow++) {
+            for (int iCol = 0; iCol < MapLayout.NUM_COLS; iCol++) {
                 tilemap[iRow][iCol].draw(mapCanvas);
             }
         }
@@ -56,10 +51,10 @@ public class Tilemap {
 
     private Rect getRectByIndex(int idxRow, int idxCol) {
         return new Rect(
-                idxCol*TILE_WIDTH,
-                idxRow*TILE_HEIGHT,
-                (idxCol + 1)*TILE_WIDTH,
-                (idxRow + 1)*TILE_HEIGHT
+                idxCol* MapLayout.TILE_WIDTH,
+                idxRow* MapLayout.TILE_HEIGHT,
+                (idxCol + 1)* MapLayout.TILE_WIDTH,
+                (idxRow + 1)* MapLayout.TILE_HEIGHT
         );
     }
 

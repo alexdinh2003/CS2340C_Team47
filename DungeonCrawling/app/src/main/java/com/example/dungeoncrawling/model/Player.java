@@ -1,10 +1,6 @@
 package com.example.dungeoncrawling.model;
 
-import android.graphics.Canvas;
 import android.graphics.Rect;
-
-import com.example.dungeoncrawling.graphics.Sprite;
-import com.example.dungeoncrawling.graphics.SpriteSheet;
 
 public class Player {
     private String name;

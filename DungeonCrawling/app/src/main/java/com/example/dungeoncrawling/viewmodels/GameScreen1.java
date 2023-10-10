@@ -16,8 +16,8 @@ import android.view.SurfaceHolder.Callback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.dungeoncrawling.graphics.SpriteSheet;
-import com.example.dungeoncrawling.map.Tilemap;
+import com.example.dungeoncrawling.model.graphics.SpriteSheet;
+import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.Player;

@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling.graphics;
+package com.example.dungeoncrawling.model.graphics;
 
 import android.content.Context;
 import android.graphics.Bitmap;
