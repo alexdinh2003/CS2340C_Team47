@@ -18,14 +18,6 @@ public class SpriteSheet {
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.spritesheet, bitmapOptions);
     }
 
-    public Sprite[] getPlayerSpriteArray() {
-        Sprite[] spriteArray = new Sprite[3];
-        spriteArray[0] = new Sprite(this, new Rect(0*64, 0, 1*64, 64));
-        spriteArray[1] = new Sprite(this, new Rect(1*64, 0, 2*64, 64));
-        spriteArray[2] = new Sprite(this, new Rect(2*64, 0, 3*64, 64));
-        return spriteArray;
-    }
-
     public Bitmap getBitmap() {
         return bitmap;
     }
@@ -53,5 +45,9 @@ public class SpriteSheet {
                 (idxCol + 1)*SPRITE_WIDTH_PIXELS,
                 (idxRow + 1)*SPRITE_HEIGHT_PIXELS
         ));
+    }
+
+    public Sprite getPlayer(int id) {
+        return getSpriteByIndex(0, id);
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 public class Leaderboard {
     private static Leaderboard instance;
     private List<ScoreEntry> scores;
+    private int recentAttemptInd;
 
     private Leaderboard() {
         scores = new ArrayList<>();
@@ -21,19 +22,13 @@ public class Leaderboard {
     }
 
     public List<ScoreEntry> getScores() {
-        // Sort scores in descending order
-        Collections.sort(scores, Collections.reverseOrder());
         return scores;
     }
 
     public void addScore(ScoreEntry score) {
         scores.add(score);
-    }
-
-    public void addAttempt(ScoreEntry attempt) {
-        scores.add(attempt);
-        // Sort the leaderboard in descending order by score
         Collections.sort(scores, Collections.reverseOrder());
+        recentAttemptInd = scores.indexOf(score);
     }
 
     public List<ScoreEntry> getTopAttempts(int count) {
@@ -41,6 +36,10 @@ public class Leaderboard {
             return scores; // Return all attempts if count exceeds the list size
         }
         return scores.subList(0, count);
+    }
+
+    public ScoreEntry getRecentAttempt() {
+        return scores.get(recentAttemptInd);
     }
 }
 
