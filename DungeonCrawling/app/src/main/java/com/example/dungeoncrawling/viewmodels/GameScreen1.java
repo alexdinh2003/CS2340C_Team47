@@ -58,7 +58,7 @@ public class GameScreen1 extends AppCompatActivity {
                 tilemap = new Tilemap(spriteSheet, roomInd);
                 Paint paint = new Paint();
                 paint.setColor(-1);
-                canvas.drawRect(new Rect(0, 0, 4000, 1000),paint);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
                 tilemap.draw(canvas);
                 holder.unlockCanvasAndPost(canvas);
             }
@@ -137,10 +137,6 @@ public class GameScreen1 extends AppCompatActivity {
             System.out.println("Error!");
         }
 
-
-        exitGame.setOnClickListener(v -> {
-            int score = timer.getScore();
-
         next.setOnClickListener(v -> {
 
             timer.stopTimer();
@@ -157,50 +153,17 @@ public class GameScreen1 extends AppCompatActivity {
           
             Leaderboard leaderboard = Leaderboard.getInstance();
 
-            int playerScore = score;
-            ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
-            leaderboard.addScore(scoreEntry);
-            
-            startActivity(endScreen);
-
-
-
             int playerScore = timer.getScore();
             ScoreEntry scoreEntry = new ScoreEntry(playerNameStr, playerScore, new Date());
             leaderboard.addScore(scoreEntry);
             startActivity(nextScreen);
 
 
-        timer = (Timer) getIntent().getSerializableExtra("timer");
+            timer = (Timer) getIntent().getSerializableExtra("timer");
 
-        next.setOnClickListener(v -> {
-            onPause();
-            Intent gameScreen2 = new Intent(GameScreen1.this, GameScreen2.class);
-            gameScreen2.putExtra("playerName", playerNameStr);
-            //gameScreen2.putExtra("playerScore", timer.getScore());
-
-            startActivity(gameScreen2);
-            finish();
         });
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Pause the timer when the activity is paused
-        if (timer != null) {
-            timer.stopTimer();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Resume the timer when the activity is resumed
-        if (timer != null) {
-            timer.runTimer();
-        }
-    }
 }
+
 
 
