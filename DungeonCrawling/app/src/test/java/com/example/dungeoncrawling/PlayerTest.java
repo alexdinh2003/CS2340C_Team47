@@ -188,5 +188,5 @@ public class PlayerTest {
         // Assert
         assertNotEquals(0, leaderboard.getRecentAttempt().getScore());
     }
-    
+
 }
