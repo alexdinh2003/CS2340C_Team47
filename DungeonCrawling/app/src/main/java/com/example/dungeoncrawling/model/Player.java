@@ -18,12 +18,12 @@ public class Player {
         this.points = points;
     }
 
-    private Player(String name) {
+    public Player(String name) {
         this(name, 0, 5, 100, new Rect(0, 0,
                 64, 64));
     }
 
-    private Player() {
+    public Player() {
         this("n/a", 0, 5, 100, new Rect(0, 0,
                 64, 64));
     }
