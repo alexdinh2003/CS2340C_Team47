@@ -8,11 +8,11 @@ import com.example.dungeoncrawling.model.Player;
 public class PlayerTests {
     @Test
     public void playerCreatedProperly() {
-        Player p1 = Player.getInstance("Pedro");
-        assertEquals(p1.getName(), "Pedro");
-        assertEquals(p1.getHealth(), 5);
-        assertEquals(p1.getScore(), 100);
-        assertEquals(p1.getSpriteId(), 0);
+        Player p3 = Player.getInstance("Pedro");
+        assertEquals(p3.getName(), "Pedro");
+        assertEquals(p3.getHealth(), 5);
+        assertEquals(p3.getScore(), 100);
+        assertEquals(p3.getSpriteId(), 0);
     }
 
     @Test
