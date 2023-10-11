@@ -17,6 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Player;
+import com.example.dungeoncrawling.model.UsernameValidator;
 
 public class PlayerCreation extends AppCompatActivity {
 
@@ -27,26 +28,28 @@ public class PlayerCreation extends AppCompatActivity {
     private ImageButton sprite3;
 
     private Player player;
+    private UsernameValidator usernameValidator; // Initialize the validator
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_player);
 
-        playerName = (EditText) findViewById(R.id.playerName);
-        createPlayer = (Button) findViewById(R.id.createPlayerButton);
+        playerName = findViewById(R.id.playerName);
+        createPlayer = findViewById(R.id.createPlayerButton);
+
+        // Initialize the username validator
+        usernameValidator = new UsernameValidator();
 
         createPlayer.setOnClickListener(v -> {
             player = Player.getInstance();
             player.setScore(100);
             int difficulty = 0;
             int spriteNum = 0;
-            boolean invalidName = true;
 
             RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyToggles);
-            int radioID = difficultyRadioGroup.getCheckedRadioButtonId();
-
             int checkedRadioButtonId = difficultyRadioGroup.getCheckedRadioButtonId();
+
             if (checkedRadioButtonId == R.id.radioEasy) {
                 difficulty = 1;
                 player.setHealth(5);
@@ -72,29 +75,27 @@ public class PlayerCreation extends AppCompatActivity {
             }
 
             String name = playerName.getText().toString();
-            boolean inValidName = true;
-            if (name != null) {
-                for (int i = 0; i < name.length(); i++) {
-                    char c = name.charAt(i);
-                    if (!Character.isWhitespace(c)) {
-                        inValidName = false;
-                        player.setName(name);
-                    }
-                }
-            }
+            boolean isValidName = usernameValidator.isValidUsername(name); // Use the validator method
 
-            if (inValidName) {
+            if (isValidName) {
+                player.setName(name);
+                Intent game = new Intent(PlayerCreation.this, GameScreen1.class);
+                // Add other intent extras if needed
+                startActivity(game);
+                finish();
+            } else {
+                // Handle invalid username here
+                // For example, show a popup or provide a message to the user
+                // Here's the code for displaying a popup similar to your original code
                 // inflate the layout of the popup window
-                LayoutInflater inflater = (LayoutInflater)
-                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_window, null);
 
                 // create the popup window
                 int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
-                final PopupWindow popupWindow = new PopupWindow(popupView, width,
-                        height, focusable);
+                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
                 // show the popup window
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
@@ -107,15 +108,7 @@ public class PlayerCreation extends AppCompatActivity {
                         return true;
                     }
                 });
-            } else {
-                Intent game = new Intent(PlayerCreation.this, GameScreen1.class);
-                //game.putExtra("difficulty", difficulty);
-                //game.putExtra("playerName", name);
-                //game.putExtra("spriteNum", spriteNum);
-                startActivity(game);
-                finish();
             }
         });
-
     }
 }
