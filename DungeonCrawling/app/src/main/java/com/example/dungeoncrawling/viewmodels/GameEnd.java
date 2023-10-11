@@ -23,18 +23,18 @@ import java.util.List;
 
 public class GameEnd extends AppCompatActivity {
 
-    private Timer timer;
-    private TextView timerText;
-    private TextView scoreText;
-    private Button resetGame;
+    public Timer timer;
+    public TextView timerText;
+    public TextView scoreText;
+    public Button resetGame;
 
-    private ListView leaderboardListView;
-    private TextView mostRecentAttemptTextView;
+    public ListView leaderboardListView;
+    public TextView mostRecentAttemptTextView;
 
 
     @SuppressLint("SetTextI18n")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_screen);
 
