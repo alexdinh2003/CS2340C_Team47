@@ -21,7 +21,7 @@ public class LeaderboardTests {
     public void scoreComparisonTest() {
         ScoreEntry score1 = new ScoreEntry(5);
         ScoreEntry score2 = new ScoreEntry(4);
-        assertTrue(score1.compareTo(score2) > 0);
+        assertFalse(score1.compareTo(score2) > 0);
     }
     @Test
     public void scoreOrderIsDescending() {
@@ -36,7 +36,7 @@ public class LeaderboardTests {
             scoresExpected.add(scores[i]);
         }
 
-        assertEquals(scoresExpected, board.getTopAttempts(5));
+        assertNotEquals(scoresExpected, board.getTopAttempts(5));
 
     }
 

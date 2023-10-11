@@ -19,6 +19,12 @@ public class ScoreEntry implements Comparable<ScoreEntry> {
         this(new Date());
     }
 
+    public ScoreEntry(String playName, int score) {
+        this.player = Player.getInstance();
+        this.playerName = player.getName();
+        this.score = player.getScore();
+    }
+
     @Override
     public int compareTo(ScoreEntry other) {
         // Compare score in descending order
