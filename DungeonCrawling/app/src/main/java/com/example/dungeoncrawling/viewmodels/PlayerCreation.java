@@ -75,7 +75,8 @@ public class PlayerCreation extends AppCompatActivity {
             }
 
             String name = playerName.getText().toString();
-            boolean isValidName = usernameValidator.isValidUsername(name); // Use the validator method
+            // Use the validator method
+            boolean isValidName = usernameValidator.isValidUsername(name);
 
             if (isValidName) {
                 player.setName(name);
@@ -88,14 +89,16 @@ public class PlayerCreation extends AppCompatActivity {
                 // For example, show a popup or provide a message to the user
                 // Here's the code for displaying a popup similar to your original code
                 // inflate the layout of the popup window
-                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater =
+                        (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_window, null);
 
                 // create the popup window
                 int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+                final PopupWindow popupWindow = new PopupWindow(popupView,
+                        width, height, focusable);
 
                 // show the popup window
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);

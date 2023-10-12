@@ -23,13 +23,13 @@ import java.util.List;
 
 public class GameEnd extends AppCompatActivity {
 
-    public Timer timer;
-    public TextView timerText;
-    public TextView scoreText;
-    public Button resetGame;
+    private Timer timer;
+    private TextView timerText;
+    private TextView scoreText;
+    private Button resetGame;
 
-    public ListView leaderboardListView;
-    public TextView mostRecentAttemptTextView;
+    private ListView leaderboardListView;
+    private TextView mostRecentAttemptTextView;
 
 
     @SuppressLint("SetTextI18n")
