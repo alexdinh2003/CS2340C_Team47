@@ -65,4 +65,12 @@ public class Tilemap {
                 null
         );
     }
+
+    public boolean isWallTileCollision(int row, int col) {
+        // Out of bounds can be treated as walls
+        if (row < 0 || row >= MapLayout.NUM_ROWS || col < 0 || col >= MapLayout.NUM_COLS) {
+            return true;
+        }
+        return tilemap[row][col].getTileType() == Tile.TileType.STONE_TILE;
+    }
 }

@@ -36,4 +36,8 @@ abstract class Tile {
     }
 
     public abstract void draw(Canvas canvas);
+    public abstract TileType getTileType();
 }
+
+
+

@@ -37,7 +37,7 @@ public class SpriteSheet {
     public Sprite getDirtSprite() {
         return getSpriteByIndex(0, 6);
     }
-
+    
     private Sprite getSpriteByIndex(int idxRow, int idxCol) {
         return new Sprite(this, new Rect(
                 idxCol * SPRITE_WIDTH_PIXELS,

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
+import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
@@ -41,6 +43,10 @@ public class GameScreen1 extends AppCompatActivity {
     private Tilemap tilemap;
     private int roomInd;
     private Player player;
+    private int characterX;
+    private int characterY;
+    private int characterSpeed = 5;
+    private int tileSize = MapLayout.TILE_WIDTH;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -61,7 +67,30 @@ public class GameScreen1 extends AppCompatActivity {
                 Paint paint = new Paint();
                 paint.setColor(-1);
                 canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+
+                //draw tile map
                 tilemap.draw(canvas);
+
+                // character's position
+                characterX = 0;
+                characterY = 0;
+
+                //next position of character
+                int nextCharacterX = characterX + characterSpeed;
+                int nextCharacterY = characterY;
+
+                //check for collisions with wall
+                int tileX = nextCharacterX / tileSize;
+                int tileY = nextCharacterY / tileSize;
+
+                if (!tilemap.isWallTileCollision(tileY, tileX)) {
+                    // No collision with a wall, then will update the character's position
+                    characterX = nextCharacterX;
+                    characterY = nextCharacterY;
+                }
+
+
+                //unlock canvas and post drawing
                 holder.unlockCanvasAndPost(canvas);
             }
 
