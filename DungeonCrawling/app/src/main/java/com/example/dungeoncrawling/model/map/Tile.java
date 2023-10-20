@@ -36,15 +36,15 @@ abstract class Tile {
         case FLOOR_TILE:
             return new DirtTile(spriteSheet, mapLocationRect);
         case H_WALL_TILE:
-            return new StoneTile(spriteSheet, mapLocationRect);
+            return new HorizontalWallTile(spriteSheet, mapLocationRect, false);
         case CORNER_L:
             return new CornerWallTile(spriteSheet, mapLocationRect, true);
         case CORNER_R:
             return new CornerWallTile(spriteSheet, mapLocationRect, false);
         case BANNER:
-            return new ExitTile(spriteSheet, mapLocationRect, true);
+            return new HorizontalWallTile(spriteSheet, mapLocationRect, true);
         case STEPS:
-            return new ExitTile(spriteSheet, mapLocationRect, false);
+            return new ExitTile(spriteSheet, mapLocationRect);
         case PIT:
             return new PitTile(spriteSheet, mapLocationRect);
         default:

@@ -39,7 +39,6 @@ public class GameScreen1 extends AppCompatActivity {
     private Tilemap tilemap;
     private int roomInd;
     private Player player;
-    private Sprite playerIcon;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")

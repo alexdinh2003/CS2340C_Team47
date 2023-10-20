@@ -5,12 +5,12 @@ import android.graphics.Rect;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
-class StoneTile extends Tile {
+class HorizontalWallTile extends Tile {
     private final Sprite sprite;
 
-    public StoneTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
+    public HorizontalWallTile(SpriteSheet spriteSheet, Rect mapLocationRect, boolean banner) {
         super(mapLocationRect);
-        sprite = spriteSheet.getStoneSprite();
+        sprite = spriteSheet.getHWallSprite(banner);
     }
 
     @Override

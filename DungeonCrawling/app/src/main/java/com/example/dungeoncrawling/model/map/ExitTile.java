@@ -8,9 +8,9 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 class ExitTile extends Tile {
     private final Sprite sprite;
 
-    public ExitTile(SpriteSheet spriteSheet, Rect mapLocationRect, boolean banner) {
+    public ExitTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
         super(mapLocationRect);
-        sprite = spriteSheet.getExitSprite(banner);
+        sprite = spriteSheet.getExitSprite();
     }
 
     @Override

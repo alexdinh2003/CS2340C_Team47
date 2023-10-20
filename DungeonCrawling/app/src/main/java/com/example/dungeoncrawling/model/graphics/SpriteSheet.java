@@ -42,16 +42,16 @@ public class SpriteSheet {
         }
     }
 
-    public Sprite getStoneSprite() {
-        return new Sprite(this, new Rect(16, 28,
-                16 + SPRITE_WIDTH_PIXELS, 28 + SPRITE_HEIGHT_PIXELS));
-    }
-
-    public Sprite getExitSprite(boolean banner) {
+    public Sprite getHWallSprite(boolean banner) {
         if (banner) {
             return new Sprite(this, new Rect(16, 170,
                     16 + SPRITE_WIDTH_PIXELS, 170 + SPRITE_HEIGHT_PIXELS * 3));
         }
+        return new Sprite(this, new Rect(16, 28,
+                16 + SPRITE_WIDTH_PIXELS, 28 + SPRITE_HEIGHT_PIXELS));
+    }
+
+    public Sprite getExitSprite() {
         return new Sprite(this, new Rect(275,
                 750, 275 + SPRITE_WIDTH_PIXELS, 750 + SPRITE_HEIGHT_PIXELS));
     }
