@@ -66,8 +66,6 @@ public class GameScreen1 extends AppCompatActivity {
                 player.setSpriteSheet(spriteSheet);
                 player.setPositionArr(startPos);
                 player.draw(canvas);
-                //playerIcon = spriteSheet.getPlayer(player.getSpriteId());
-                //playerIcon.draw(canvas, 400,300);
                 holder.unlockCanvasAndPost(canvas);
             }
 
@@ -90,14 +88,6 @@ public class GameScreen1 extends AppCompatActivity {
         next  = findViewById(R.id.nextScreenButton);
         player = Player.getInstance();
         roomInd = getIntent().getIntExtra("Room Number", 0);
-
-        /*
-        difficultyNum = getIntent().getIntExtra("difficulty", 1);
-        playerNameStr = getIntent().getStringExtra("playerName");
-        spriteNum = getIntent().getIntExtra("spriteNum", 1);
-
-         */
-
         playerName.setText(player.getName());
 
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
@@ -157,9 +147,6 @@ public class GameScreen1 extends AppCompatActivity {
             if (roomInd < 2) {
                 nextScreen = new Intent(GameScreen1.this, GameScreen1.class);
                 nextScreen.putExtra("Room Number", ++roomInd);
-                //nextScreen.putExtra("difficulty", difficultyNum);
-                //nextScreen.putExtra("playerName", playerNameStr);
-                //nextScreen.putExtra("spriteNum", spriteNum);
             } else {
                 nextScreen = new Intent(GameScreen1.this, GameEnd.class);
                 Leaderboard leaderboard = Leaderboard.getInstance();

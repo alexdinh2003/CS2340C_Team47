@@ -113,13 +113,13 @@ public class Player {
         createSprite();
     }
 
-    public void setPosition(int x, int y) {
-        this.row = y;
-        this.col = x;
+    public void setPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
-    public void setPositionArr(int[] xy) {
-        setPosition(xy[0], xy[1]);
+    public void setPositionArr(int[] rowCol) {
+        setPosition(rowCol[0], rowCol[1]);
     }
 
     private void createSprite() {

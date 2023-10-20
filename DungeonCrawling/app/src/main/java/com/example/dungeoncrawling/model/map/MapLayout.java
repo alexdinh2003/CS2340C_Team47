@@ -10,9 +10,9 @@ public class MapLayout {
 
     public MapLayout(int ind) {
         if (ind == 0) {
-            this.startPos = new int[]{NUM_COLS - 2, 23};
+            this.startPos = new int[]{23, NUM_COLS - 2};
         } else if (ind == 1) {
-            this.startPos = new int[]{1, 24};
+            this.startPos = new int[]{24, 1};
         } else {
             this.startPos = new int[]{1, 1};
         }
@@ -36,7 +36,7 @@ public class MapLayout {
             layout[0][6] = 7;
             //actual exit & entrance
             layout[0][5] = 8;
-            layout[startPos[1]][startPos[0] + 1] = 8;
+            layout[startPos[0]][startPos[1] + 1] = 8;
 
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
@@ -98,7 +98,7 @@ public class MapLayout {
             layout[16][0] = 7;
             //actual exit & entrance
             layout[15][0] = 8;
-            layout[startPos[1]][startPos[0] - 1] = 8;
+            layout[startPos[0]][startPos[1] - 1] = 8;
 
             //make pits (for fun)
             layout[3][8] = 9;
@@ -153,7 +153,7 @@ public class MapLayout {
             layout[25][6] = 7;
             //actual exit & entrance
             layout[25][5] = 8;
-            layout[startPos[1]][startPos[0] - 1] = 8;
+            layout[startPos[0]][startPos[1] - 1] = 8;
 
             //add corners where needed
             layout[NUM_ROWS - 1][10] = 5;

@@ -10,9 +10,6 @@ import com.example.dungeoncrawling.R;
 public class SpriteSheet {
     private static final int SPRITE_WIDTH_PIXELS = 100;
     private static final int SPRITE_HEIGHT_PIXELS = 100;
-
-    private static final int WALL_START_X = 16;
-    private static final int WALL_START_Y = 28;
     private Bitmap bitmap;
 
     public SpriteSheet(Context context) {
