@@ -1,7 +1,6 @@
 package com.example.dungeoncrawling.model;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
@@ -18,7 +17,8 @@ public class Player {
     private SpriteSheet spriteSheet;
 
 
-    private Player(String name, SpriteSheet spriteSheet, int id, int health, int points, int row, int col) {
+    private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
+                   int row, int col) {
         this.spriteId = id;
         this.name = name;
         this.health = health;
@@ -40,7 +40,7 @@ public class Player {
     }
 
     public Player() {
-        this("n/a", null,0, 5, 100, 0, 0);
+        this("n/a", null, 0, 5, 100, 0, 0);
     }
 
     public static Player getInstance() {
@@ -118,7 +118,7 @@ public class Player {
         this.col = x;
     }
 
-    public void setPositionArr(int[] xy){
+    public void setPositionArr(int[] xy) {
         setPosition(xy[0], xy[1]);
     }
 
@@ -128,10 +128,14 @@ public class Player {
 
     public void draw(Canvas canvas) {
         if (this.spriteSheet == null) {
-            System.out.println("Sorry, it looks like you never specified a sprite sheet for the player.");
+            System.out.println("Sorry, it looks like you never specified a "
+                    + "sprite sheet for the player.");
             return;
         }
-        sprite.draw(canvas, this.col * MapLayout.TILE_WIDTH, this.row * MapLayout.TILE_HEIGHT + 256);
+        sprite.draw(
+                canvas,
+                this.col * MapLayout.TILE_WIDTH,
+                this.row * MapLayout.TILE_HEIGHT + 256);
     }
 
 }

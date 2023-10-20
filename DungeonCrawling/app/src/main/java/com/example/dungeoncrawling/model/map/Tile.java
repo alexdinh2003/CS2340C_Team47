@@ -27,28 +27,28 @@ abstract class Tile {
 
     public static Tile getTile(int idxTileType, SpriteSheet spriteSheet, Rect mapLocationRect) {
         switch (TileType.values()[idxTileType]) {
-            case FILLER:
-                return null;
-            case V_WALL_TILE_L:
-                return new VerticalWallTile(spriteSheet, mapLocationRect, true);
-            case V_WALL_TILE_R:
-                return new VerticalWallTile(spriteSheet, mapLocationRect, false);
-            case FLOOR_TILE:
-                return new DirtTile(spriteSheet, mapLocationRect);
-            case H_WALL_TILE:
-                return new StoneTile(spriteSheet, mapLocationRect);
-            case CORNER_L:
-                return new CornerWallTile(spriteSheet, mapLocationRect, true);
-            case CORNER_R:
-                return new CornerWallTile(spriteSheet, mapLocationRect, false);
-            case BANNER:
-                return new ExitTile(spriteSheet, mapLocationRect, true);
-            case STEPS:
-                return new ExitTile(spriteSheet, mapLocationRect, false);
-            case PIT:
-                return new PitTile(spriteSheet, mapLocationRect);
-            default:
-                return new DirtTile(spriteSheet, mapLocationRect);
+        case FILLER:
+            return null;
+        case V_WALL_TILE_L:
+            return new VerticalWallTile(spriteSheet, mapLocationRect, true);
+        case V_WALL_TILE_R:
+            return new VerticalWallTile(spriteSheet, mapLocationRect, false);
+        case FLOOR_TILE:
+            return new DirtTile(spriteSheet, mapLocationRect);
+        case H_WALL_TILE:
+            return new StoneTile(spriteSheet, mapLocationRect);
+        case CORNER_L:
+            return new CornerWallTile(spriteSheet, mapLocationRect, true);
+        case CORNER_R:
+            return new CornerWallTile(spriteSheet, mapLocationRect, false);
+        case BANNER:
+            return new ExitTile(spriteSheet, mapLocationRect, true);
+        case STEPS:
+            return new ExitTile(spriteSheet, mapLocationRect, false);
+        case PIT:
+            return new PitTile(spriteSheet, mapLocationRect);
+        default:
+            return new DirtTile(spriteSheet, mapLocationRect);
         }
 
     }

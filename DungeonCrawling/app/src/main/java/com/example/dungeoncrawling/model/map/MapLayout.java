@@ -1,7 +1,5 @@
 package com.example.dungeoncrawling.model.map;
 
-import android.graphics.Bitmap;
-
 public class MapLayout {
     public static final int TILE_WIDTH = 64;
     public static final int TILE_HEIGHT = 64;
@@ -12,7 +10,7 @@ public class MapLayout {
 
     public MapLayout(int ind) {
         if (ind == 0) {
-            this.startPos = new int[]{NUM_COLS-2, 23};
+            this.startPos = new int[]{NUM_COLS - 2, 23};
         } else if (ind == 1) {
             this.startPos = new int[]{1, 24};
         } else {
@@ -38,7 +36,7 @@ public class MapLayout {
             layout[0][6] = 7;
             //actual exit & entrance
             layout[0][5] = 8;
-            layout[startPos[1]][startPos[0]+1] = 8;
+            layout[startPos[1]][startPos[0] + 1] = 8;
 
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
@@ -53,7 +51,7 @@ public class MapLayout {
                         layout[i][j] = 1;
                     } else if (i > 13 && i < 18 && j == 6) {
                         // vertical wall (bottom half) @ col 6
-                        layout [i][j] = 1;
+                        layout[i][j] = 1;
                     } else if ((i > 6 && i < 9) && (j > 7 && j < 11)) {
                         //hole central
                         layout[i][j] = 9;
@@ -73,15 +71,15 @@ public class MapLayout {
 
             //add corners where needed
             layout[10][6] = 5;
-            layout[NUM_ROWS-8][0] = 5;
+            layout[NUM_ROWS - 8][0] = 5;
             layout[10][0] = 5;
-            layout[NUM_ROWS-8][NUM_COLS-1] = 6;
-            layout[10][NUM_COLS-1] = 6;
+            layout[NUM_ROWS - 8][NUM_COLS - 1] = 6;
+            layout[10][NUM_COLS - 1] = 6;
 
         } else if (ind == 1) {
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
-                     if (j != NUM_COLS - 4 && i == NUM_ROWS - 5) {
+                    if (j != NUM_COLS - 4 && i == NUM_ROWS - 5) {
                         layout[i][j] = 4;
                     } else if ((i < NUM_ROWS - 5 && i != 5) && j == 10) {
                         layout[i][j] = 1;
@@ -100,7 +98,7 @@ public class MapLayout {
             layout[16][0] = 7;
             //actual exit & entrance
             layout[15][0] = 8;
-            layout[startPos[1]][startPos[0]-1] = 8;
+            layout[startPos[1]][startPos[0] - 1] = 8;
 
             //make pits (for fun)
             layout[3][8] = 9;
@@ -116,8 +114,8 @@ public class MapLayout {
             layout[23][4] = 9;
 
             //add corners where needed
-            layout[NUM_ROWS-5][0] = 5;
-            layout[NUM_ROWS-5][NUM_COLS-1] = 6;
+            layout[NUM_ROWS - 5][0] = 5;
+            layout[NUM_ROWS - 5][NUM_COLS - 1] = 6;
             layout[11][0] = 5;
             layout[0][10] = 5;
 
@@ -155,12 +153,12 @@ public class MapLayout {
             layout[25][6] = 7;
             //actual exit & entrance
             layout[25][5] = 8;
-            layout[startPos[1]][startPos[0]-1] = 8;
+            layout[startPos[1]][startPos[0] - 1] = 8;
 
             //add corners where needed
-            layout[NUM_ROWS-1][10] = 5;
-            layout[NUM_ROWS-20][NUM_COLS-1] = 6;
-            layout[NUM_ROWS-20][0] = 5;
+            layout[NUM_ROWS - 1][10] = 5;
+            layout[NUM_ROWS - 20][NUM_COLS - 1] = 6;
+            layout[NUM_ROWS - 20][0] = 5;
             layout[0][10] = 5;
             layout[6][10] = 5;
         }
@@ -172,17 +170,17 @@ public class MapLayout {
         //populate horizontal wall tiles
         for (int j = 0; j < NUM_COLS; j++) {
             layout[0][j] = 4;
-            layout[NUM_ROWS-1][j] = 4;
+            layout[NUM_ROWS - 1][j] = 4;
         }
 
         //corner tiles
         layout[0][0] = 5;
-        layout[0][NUM_COLS-1] = 6;
+        layout[0][NUM_COLS - 1] = 6;
 
         //populate vertical wall tiles
-        for (int i = 1; i < NUM_ROWS-1; i++) {
+        for (int i = 1; i < NUM_ROWS - 1; i++) {
             layout[i][0] = 1;
-            layout[i][NUM_COLS-1] = 2;
+            layout[i][NUM_COLS - 1] = 2;
         }
     }
 }

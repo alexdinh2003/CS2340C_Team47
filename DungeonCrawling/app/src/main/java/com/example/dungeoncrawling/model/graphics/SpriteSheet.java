@@ -30,30 +30,30 @@ public class SpriteSheet {
             return new Sprite(this, new Rect(80, 590,
                     80 + SPRITE_WIDTH_PIXELS, 590 + SPRITE_HEIGHT_PIXELS));
         } else {
-            return new Sprite(this, new Rect(210-SPRITE_WIDTH_PIXELS+43, 590,
-                    210+43, 590 + SPRITE_HEIGHT_PIXELS));
+            return new Sprite(this, new Rect(210 - SPRITE_WIDTH_PIXELS + 43, 590,
+                    210 + 43, 590 + SPRITE_HEIGHT_PIXELS));
         }
     }
 
     public Sprite getCornerWallSprite(boolean left) {
         if (left) {
             return new Sprite(this, new Rect(80, 510,
-                    80 + SPRITE_WIDTH_PIXELS, 510+SPRITE_HEIGHT_PIXELS));
+                    80 + SPRITE_WIDTH_PIXELS, 510 + SPRITE_HEIGHT_PIXELS));
         } else {
-            return new Sprite(this, new Rect(210-SPRITE_WIDTH_PIXELS+43, 510,
-                    210+43, 510+SPRITE_HEIGHT_PIXELS));
+            return new Sprite(this, new Rect(210 - SPRITE_WIDTH_PIXELS + 43, 510,
+                    253, 510 + SPRITE_HEIGHT_PIXELS));
         }
     }
 
     public Sprite getStoneSprite() {
-        return new Sprite(this, new Rect(16,28,
-                16+SPRITE_WIDTH_PIXELS, 28+SPRITE_HEIGHT_PIXELS));
+        return new Sprite(this, new Rect(16, 28,
+                16 + SPRITE_WIDTH_PIXELS, 28 + SPRITE_HEIGHT_PIXELS));
     }
 
     public Sprite getExitSprite(boolean banner) {
         if (banner) {
-            return new Sprite(this, new Rect(16,170,
-                    16+SPRITE_WIDTH_PIXELS, 170+SPRITE_HEIGHT_PIXELS*3));
+            return new Sprite(this, new Rect(16, 170,
+                    16 + SPRITE_WIDTH_PIXELS, 170 + SPRITE_HEIGHT_PIXELS * 3));
         }
         return new Sprite(this, new Rect(275,
                 750, 275 + SPRITE_WIDTH_PIXELS, 750 + SPRITE_HEIGHT_PIXELS));
