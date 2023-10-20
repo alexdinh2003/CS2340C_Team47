@@ -13,24 +13,42 @@ abstract class Tile {
         this.mapLocationRect = mapLocationRect;
     }
     public enum TileType {
-            WATER_TILE,
-            DIRT_TILE,
-            STONE_TILE,
-            GRASS_TILE,
+            FILLER,
+            V_WALL_TILE_L,
+            V_WALL_TILE_R,
+            FLOOR_TILE,
+            H_WALL_TILE,
+            CORNER_L,
+            CORNER_R,
+            BANNER,
+            STEPS,
+            PIT
     }
 
     public static Tile getTile(int idxTileType, SpriteSheet spriteSheet, Rect mapLocationRect) {
         switch (TileType.values()[idxTileType]) {
-        case WATER_TILE:
-            return new WaterTile(spriteSheet, mapLocationRect);
-        case DIRT_TILE:
-            return new DirtTile(spriteSheet, mapLocationRect);
-        case STONE_TILE:
-            return new StoneTile(spriteSheet, mapLocationRect);
-        case GRASS_TILE:
-            return new GrassTile(spriteSheet, mapLocationRect);
-        default:
-            return new DirtTile(spriteSheet, mapLocationRect);
+            case FILLER:
+                return null;
+            case V_WALL_TILE_L:
+                return new VerticalWallTile(spriteSheet, mapLocationRect, true);
+            case V_WALL_TILE_R:
+                return new VerticalWallTile(spriteSheet, mapLocationRect, false);
+            case FLOOR_TILE:
+                return new DirtTile(spriteSheet, mapLocationRect);
+            case H_WALL_TILE:
+                return new StoneTile(spriteSheet, mapLocationRect);
+            case CORNER_L:
+                return new CornerWallTile(spriteSheet, mapLocationRect, true);
+            case CORNER_R:
+                return new CornerWallTile(spriteSheet, mapLocationRect, false);
+            case BANNER:
+                return new ExitTile(spriteSheet, mapLocationRect, true);
+            case STEPS:
+                return new ExitTile(spriteSheet, mapLocationRect, false);
+            case PIT:
+                return new PitTile(spriteSheet, mapLocationRect);
+            default:
+                return new DirtTile(spriteSheet, mapLocationRect);
         }
 
     }

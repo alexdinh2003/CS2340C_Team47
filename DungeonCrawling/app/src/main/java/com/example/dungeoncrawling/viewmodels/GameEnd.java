@@ -38,21 +38,13 @@ public class GameEnd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_screen);
 
-        timerText = findViewById(R.id.timerTextView);
-        scoreText = findViewById(R.id.scoreTextView);
-        timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
-        timer.displayOldTime(timerText);
-        timer.displayScore(scoreText);
-        timer.stopTimer();
-
         // Initialize views
         leaderboardListView = findViewById(R.id.leaderboardListView);
         mostRecentAttemptTextView = findViewById(R.id.mostRecentAttemptTextView);
 
-
         // Display the leaderboard
         Leaderboard leaderboard = Leaderboard.getInstance();
-        List<ScoreEntry> scores = leaderboard.getScores();
+        List<ScoreEntry> scores = leaderboard.getTopAttempts(5);
         ArrayAdapter<ScoreEntry> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, scores);
         leaderboardListView.setAdapter(adapter);
@@ -73,9 +65,6 @@ public class GameEnd extends AppCompatActivity {
         resetGame = findViewById(R.id.ResetButton);
 
         resetGame.setOnClickListener(v -> {
-            timer.stopTimer();
-            timer.resetTimer();
-            //scoreText.setText("100");
             Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
             startActivity(createPlayer);
             finish();

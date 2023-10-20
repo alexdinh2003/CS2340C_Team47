@@ -16,6 +16,7 @@ import android.view.SurfaceHolder.Callback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
@@ -33,14 +34,12 @@ public class GameScreen1 extends AppCompatActivity {
     private TextView timerText;
     private ImageView sprite;
     private ImageView health;
-    private int difficultyNum;
-    private String playerNameStr;
-    private int spriteNum;
     private Timer timer;
     private TextView scoreText;
     private Tilemap tilemap;
     private int roomInd;
     private Player player;
+    private Sprite playerIcon;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -62,6 +61,13 @@ public class GameScreen1 extends AppCompatActivity {
                 paint.setColor(-1);
                 canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
                 tilemap.draw(canvas);
+
+                int[] startPos = tilemap.getStartPos();
+                player.setSpriteSheet(spriteSheet);
+                player.setPositionArr(startPos);
+                player.draw(canvas);
+                //playerIcon = spriteSheet.getPlayer(player.getSpriteId());
+                //playerIcon.draw(canvas, 400,300);
                 holder.unlockCanvasAndPost(canvas);
             }
 
@@ -133,13 +139,13 @@ public class GameScreen1 extends AppCompatActivity {
 
         switch (player.getSpriteId()) {
         case 0:
-            sprite.setImageResource(R.drawable.panda_sprite);
+            sprite.setImageResource(R.drawable.char1);
             break;
         case 1:
-            sprite.setImageResource(R.drawable.sheep_sprite);
+            sprite.setImageResource(R.drawable.char2);
             break;
         case 2:
-            sprite.setImageResource(R.drawable.monkey_sprite);
+            sprite.setImageResource(R.drawable.char3);
             break;
         default:
             System.out.println("Error!");

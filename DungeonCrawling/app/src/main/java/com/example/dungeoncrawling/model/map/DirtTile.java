@@ -10,7 +10,7 @@ class DirtTile extends Tile {
 
     public DirtTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
         super(mapLocationRect);
-        sprite = spriteSheet.getDirtSprite();
+        sprite = spriteSheet.getFloorSprite();
     }
 
     @Override
