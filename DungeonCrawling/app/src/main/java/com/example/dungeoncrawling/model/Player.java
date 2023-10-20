@@ -9,6 +9,7 @@ public class Player {
     private int health;
     private int points;
     private static Player player;
+    private int x, y;
 
     private Player(String name, int id, int health, int points, Rect mapLocation) {
         this.spriteId = id;
@@ -75,5 +76,6 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+
 
 }

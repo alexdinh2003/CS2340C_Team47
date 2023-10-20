@@ -162,8 +162,8 @@ public class PlayerTest {
     public void shouldHaveDifferentStartingLivesBasedOnDifficulty() {
         // Arrange
         int easyDifficultyStartingLives = 5;
-        int mediumDifficultyStartingLives = 3;
-        int hardDifficultyStartingLives = 1;
+        int mediumDifficultyStartingLives = 4;
+        int hardDifficultyStartingLives = 3;
 
         // Act
         Player easyDifficultyPlayer = Player.getInstance("Alex Dinh", 0, easyDifficultyStartingLives, 100, new Rect(0, 0, 64, 64));

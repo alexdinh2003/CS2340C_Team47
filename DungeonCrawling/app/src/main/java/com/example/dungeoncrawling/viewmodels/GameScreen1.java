@@ -48,6 +48,16 @@ public class GameScreen1 extends AppCompatActivity {
     private int characterSpeed = 5;
     private int tileSize = MapLayout.TILE_WIDTH;
 
+    private Player player1;
+
+    // Define the boundaries of the game world
+    private int maxX = MapLayout.NUM_COLS;
+    private int maxY = MapLayout.NUM_ROWS;
+
+    // Define exitX and exitY for room transitions
+    private int exitX; // Set the actual X-coordinate of the exit
+    private int exitY; // Set the actual Y-coordinate of the exit
+
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
     @Override

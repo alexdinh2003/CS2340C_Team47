@@ -8,6 +8,8 @@ public class MapLayout {
 
     private int[][] layout;
 
+    private int exitX; // Set the actual X-coordinate of the exit
+    private int exitY; // Set the actual Y-coordinate of the exit
     public MapLayout(int ind) {
         initializeLayout(ind);
     }
@@ -43,6 +45,9 @@ public class MapLayout {
                     }
                 }
             }
+            // Set the exit coordinates
+            exitX = 1; // Set the X-coordinate of the exit
+            exitY = NUM_ROWS / 2; // Set the Y-coordinate of the exit
         } else if (ind == 1) {
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
@@ -69,6 +74,9 @@ public class MapLayout {
                     }
                 }
             }
+            // Set the exit coordinates
+            exitX = NUM_COLS / 2; // Set the X-coordinate of the exit
+            exitY = NUM_ROWS - 1; // Set the Y-coordinate of the exit
         } else {
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
@@ -91,6 +99,9 @@ public class MapLayout {
                     }
                 }
             }
+            // Set the exit coordinates
+            exitX = NUM_COLS - 1; // Set the X-coordinate of the exit
+            exitY = NUM_ROWS / 2; // Set the Y-coordinate of the exit
         }
     }
 }
