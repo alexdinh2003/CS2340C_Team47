@@ -36,7 +36,7 @@ public class MapLayout {
             layout[0][6] = 7;
             //actual exit & entrance
             layout[0][5] = 8;
-            layout[startPos[0]][startPos[1] + 1] = 8;
+            layout[startPos[0]][startPos[1] + 1] = 10;
 
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
@@ -98,7 +98,7 @@ public class MapLayout {
             layout[16][0] = 7;
             //actual exit & entrance
             layout[15][0] = 8;
-            layout[startPos[0]][startPos[1] - 1] = 8;
+            layout[startPos[0]][startPos[1] - 1] = 10;
 
             //make pits (for fun)
             layout[3][8] = 9;
@@ -153,7 +153,7 @@ public class MapLayout {
             layout[25][6] = 7;
             //actual exit & entrance
             layout[25][5] = 8;
-            layout[startPos[0]][startPos[1] - 1] = 8;
+            layout[startPos[0]][startPos[1] - 1] = 10;
 
             //add corners where needed
             layout[NUM_ROWS - 1][10] = 5;

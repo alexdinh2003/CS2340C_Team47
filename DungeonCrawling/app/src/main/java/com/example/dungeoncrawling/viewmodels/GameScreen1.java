@@ -140,6 +140,9 @@ public class GameScreen1 extends AppCompatActivity {
             System.out.println("Error!");
         }
 
+        // using whatever new actionListener we have:
+        // move to next screen by checking if player is on exitTile that gives isExit() == T
+        // if so, do the nextScreen stuff below
         next.setOnClickListener(v -> {
             timer.stopTimer();
             Intent nextScreen;

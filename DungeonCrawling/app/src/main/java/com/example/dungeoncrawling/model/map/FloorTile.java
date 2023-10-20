@@ -5,12 +5,12 @@ import android.graphics.Rect;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
-class CornerWallTile extends Tile {
+class FloorTile extends Tile {
     private final Sprite sprite;
 
-    public CornerWallTile(SpriteSheet spriteSheet, Rect mapLocationRect, boolean left) {
+    public FloorTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
         super(mapLocationRect);
-        sprite = spriteSheet.getCornerWallSprite(left);
+        sprite = spriteSheet.getFloorSprite();
     }
 
     @Override

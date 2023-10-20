@@ -38,8 +38,7 @@ public class Tilemap {
                     tilemap[iRow][iCol] = Tile.getTile(
                             layout[iRow][iCol],
                             spriteSheet,
-                            getRectByIndex(iRow, iCol)
-                    );
+                            getRectByIndex(iRow, iCol));
                 }
             }
         }

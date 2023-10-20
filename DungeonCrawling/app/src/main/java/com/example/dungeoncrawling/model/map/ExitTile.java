@@ -7,10 +7,16 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
 class ExitTile extends Tile {
     private final Sprite sprite;
+    private boolean exit;
 
-    public ExitTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
+    public ExitTile(SpriteSheet spriteSheet, Rect mapLocationRect, boolean exit) {
         super(mapLocationRect);
         sprite = spriteSheet.getExitSprite();
+        this.exit = exit;
+    }
+
+    public boolean isExit() {
+        return this.exit;
     }
 
     @Override

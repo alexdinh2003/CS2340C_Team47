@@ -21,8 +21,9 @@ abstract class Tile {
             CORNER_L,
             CORNER_R,
             BANNER,
-            STEPS,
-            PIT
+            EXIT,
+            PIT,
+            ENTER,
     }
 
     public static Tile getTile(int idxTileType, SpriteSheet spriteSheet, Rect mapLocationRect) {
@@ -30,25 +31,27 @@ abstract class Tile {
         case FILLER:
             return null;
         case V_WALL_TILE_L:
-            return new VerticalWallTile(spriteSheet, mapLocationRect, true);
+            return new WallTile(spriteSheet, mapLocationRect, 1,true);
         case V_WALL_TILE_R:
-            return new VerticalWallTile(spriteSheet, mapLocationRect, false);
+            return new WallTile(spriteSheet, mapLocationRect, 1,false);
         case FLOOR_TILE:
-            return new DirtTile(spriteSheet, mapLocationRect);
+            return new FloorTile(spriteSheet, mapLocationRect);
         case H_WALL_TILE:
-            return new HorizontalWallTile(spriteSheet, mapLocationRect, false);
+            return new WallTile(spriteSheet, mapLocationRect, 0,false);
         case CORNER_L:
-            return new CornerWallTile(spriteSheet, mapLocationRect, true);
+            return new WallTile(spriteSheet, mapLocationRect, 2,true);
         case CORNER_R:
-            return new CornerWallTile(spriteSheet, mapLocationRect, false);
+            return new WallTile(spriteSheet, mapLocationRect, 2,false);
         case BANNER:
-            return new HorizontalWallTile(spriteSheet, mapLocationRect, true);
-        case STEPS:
-            return new ExitTile(spriteSheet, mapLocationRect);
+            return new WallTile(spriteSheet, mapLocationRect, 0,true);
+        case EXIT:
+            return new ExitTile(spriteSheet, mapLocationRect, true);
         case PIT:
             return new PitTile(spriteSheet, mapLocationRect);
+        case ENTER:
+            return new ExitTile(spriteSheet, mapLocationRect, false);
         default:
-            return new DirtTile(spriteSheet, mapLocationRect);
+            return new FloorTile(spriteSheet, mapLocationRect);
         }
 
     }
