@@ -146,12 +146,12 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/playerSprite1"
+                    android:id="@+id/char1Sprite"
                     style="@android:style/Widget.ImageButton"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/panda_sprite"
+                    android:background="@drawable/char1"
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:checked="true"
@@ -166,12 +166,12 @@
                     android:background="?android:attr/listDivider" />
 
                 <RadioButton
-                    android:id="@+id/playerSprite2"
+                    android:id="@+id/char2Sprite"
                     style="@android:style/Widget.ImageButton"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/sheep_sprite"
+                    android:background="@drawable/char2"
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:cropToPadding="true"
@@ -185,12 +185,12 @@
                     android:background="?android:attr/listDivider" />
 
                 <RadioButton
-                    android:id="@+id/playerSprite3"
+                    android:id="@+id/char3Sprite"
                     style="@android:style/Widget.ImageButton"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/monkey_sprite"
+                    android:background="@drawable/char3"
                     android:button="@android:drawable/btn_radio"
                     android:buttonTint="#9C27B0"
                     android:cropToPadding="true"

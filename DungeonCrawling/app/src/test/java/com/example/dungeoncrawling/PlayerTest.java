@@ -128,7 +128,7 @@ public class PlayerTest {
         int id = 1;
 
         // Act
-        Player player = Player.getInstance("Alex Dinh", id, 5, 100, new Rect(0, 0, 64, 64));
+        Player player = Player.getInstance("Alex Dinh", null, id, 5, 100, 0, 0);
 
         // Assert
         assertEquals(id, player.getSpriteId());
@@ -140,7 +140,7 @@ public class PlayerTest {
         int health = 200;
 
         // Act
-        Player player = Player.getInstance("Alex Dinh", 0, health, 100, new Rect(0, 0, 64, 64));
+        Player player = Player.getInstance("Alex Dinh", null, 0, health, 100, 0, 0);
 
         // Assert
         assertNotEquals(health, player.getHealth());
@@ -152,7 +152,7 @@ public class PlayerTest {
         int points = 200;
 
         // Act
-        Player player = Player.getInstance("Alex Dinh", 0, 5, points, new Rect(0, 0, 64, 64));
+        Player player = Player.getInstance("Alex Dinh", null, 0, 5, points, 0,0);
 
         // Assert
         assertNotEquals(points, player.getScore());
@@ -166,9 +166,9 @@ public class PlayerTest {
         int hardDifficultyStartingLives = 3;
 
         // Act
-        Player easyDifficultyPlayer = Player.getInstance("Alex Dinh", 0, easyDifficultyStartingLives, 100, new Rect(0, 0, 64, 64));
-        Player mediumDifficultyPlayer = Player.getInstance("Alex Dinh", 0, mediumDifficultyStartingLives, 100, new Rect(0, 0, 64, 64));
-        Player hardDifficultyPlayer = Player.getInstance("Alex Dinh", 0, hardDifficultyStartingLives, 100, new Rect(0, 0, 64, 64));
+        Player easyDifficultyPlayer = Player.getInstance("Alex Dinh", null, 0, easyDifficultyStartingLives, 100, 0,0);
+        Player mediumDifficultyPlayer = Player.getInstance("Alex Dinh",null, 0, mediumDifficultyStartingLives, 100, 0,0);
+        Player hardDifficultyPlayer = Player.getInstance("Alex Dinh", null, 0, hardDifficultyStartingLives, 100, 0,0);
 
         // Assert
         assertEquals(easyDifficultyStartingLives, easyDifficultyPlayer.getHealth());

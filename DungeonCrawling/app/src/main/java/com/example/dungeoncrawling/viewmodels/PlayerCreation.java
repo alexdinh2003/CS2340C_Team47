@@ -44,33 +44,25 @@ public class PlayerCreation extends AppCompatActivity {
         createPlayer.setOnClickListener(v -> {
             player = Player.getInstance();
             player.setScore(100);
-            int difficulty = 0;
-            int spriteNum = 0;
 
             RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyToggles);
             int checkedRadioButtonId = difficultyRadioGroup.getCheckedRadioButtonId();
 
             if (checkedRadioButtonId == R.id.radioEasy) {
-                difficulty = 1;
                 player.setHealth(5);
             } else if (checkedRadioButtonId == R.id.radioMedium) {
-                difficulty = 2;
                 player.setHealth(4);
             } else {
-                difficulty = 3;
                 player.setHealth(3);
             }
 
             RadioGroup playerSpriteGroup = findViewById(R.id.player_sprites);
             int radioButtonId = playerSpriteGroup.getCheckedRadioButtonId();
-            if (radioButtonId == R.id.playerSprite1) {
-                spriteNum = 1;
+            if (radioButtonId == R.id.char1Sprite) {
                 player.setSpriteId(0);
-            } else if (radioButtonId == R.id.playerSprite2) {
-                spriteNum = 2;
+            } else if (radioButtonId == R.id.char2Sprite) {
                 player.setSpriteId(1);
             } else {
-                spriteNum = 3;
                 player.setSpriteId(2);
             }
 
