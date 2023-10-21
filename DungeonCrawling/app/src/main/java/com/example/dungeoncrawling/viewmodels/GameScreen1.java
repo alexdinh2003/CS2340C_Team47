@@ -79,7 +79,6 @@ public class GameScreen1 extends AppCompatActivity {
                 //draw tile map
                 tilemap.draw(canvas);
 
-<<<<<<< HEAD
                 // character's position
                 characterX = 0;
                 characterY = 0;
@@ -92,20 +91,12 @@ public class GameScreen1 extends AppCompatActivity {
                 int tileX = nextCharacterX / tileSize;
                 int tileY = nextCharacterY / tileSize;
 
-                if (!tilemap.isWallTileCollision(tileY, tileX)) {
-                    // No collision with a wall, then will update the character's position
-                    characterX = nextCharacterX;
-                    characterY = nextCharacterY;
-                }
-
-
                 //unlock canvas and post drawing
-=======
                 int[] startPos = tilemap.getStartPos();
                 player.setSpriteSheet(spriteSheet);
                 player.setPositionArr(startPos);
                 player.draw(canvas);
->>>>>>> 20c2220e4d85f2f1bb7db71e62e3a02543defd08
+
                 holder.unlockCanvasAndPost(canvas);
             }
 

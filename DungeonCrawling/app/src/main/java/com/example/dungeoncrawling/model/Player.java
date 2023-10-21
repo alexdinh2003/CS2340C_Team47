@@ -13,13 +13,9 @@ public class Player {
     private int health;
     private int points;
     private static Player player;
-<<<<<<< HEAD
-    private int x, y;
-=======
+
     private Sprite sprite;
     private SpriteSheet spriteSheet;
->>>>>>> 20c2220e4d85f2f1bb7db71e62e3a02543defd08
-
 
     private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
                    int row, int col) {
@@ -108,8 +104,6 @@ public class Player {
         this.name = name;
     }
 
-<<<<<<< HEAD
-=======
     public SpriteSheet getSpriteSheet() {
         return this.spriteSheet;
     }
@@ -143,6 +137,4 @@ public class Player {
                 this.col * MapLayout.TILE_WIDTH,
                 this.row * MapLayout.TILE_HEIGHT + 256);
     }
->>>>>>> 20c2220e4d85f2f1bb7db71e62e3a02543defd08
-
 }

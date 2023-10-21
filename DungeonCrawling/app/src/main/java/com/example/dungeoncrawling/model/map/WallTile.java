@@ -29,4 +29,8 @@ class WallTile extends Tile {
     public void draw(Canvas canvas) {
         sprite.draw(canvas, mapLocationRect.left, mapLocationRect.top);
     }
+
+    public boolean isWall() {
+        return true;
+    }
 }

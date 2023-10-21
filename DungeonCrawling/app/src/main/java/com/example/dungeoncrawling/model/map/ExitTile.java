@@ -23,9 +23,4 @@ class ExitTile extends Tile {
     public void draw(Canvas canvas) {
         sprite.draw(canvas, mapLocationRect.left, mapLocationRect.top);
     }
-
-    @Override
-    public TileType getTileType() {
-        return TileType.STONE_TILE;
-    }
 }

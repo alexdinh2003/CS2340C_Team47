@@ -60,11 +60,10 @@ public class MapLayout {
                     }
                 }
             }
-<<<<<<< HEAD
+
             // Set the exit coordinates
             exitX = 1; // Set the X-coordinate of the exit
             exitY = NUM_ROWS / 2; // Set the Y-coordinate of the exit
-=======
 
             //make pits (for fun)
             layout[3][8] = 9;
@@ -83,7 +82,6 @@ public class MapLayout {
             layout[NUM_ROWS - 8][NUM_COLS - 1] = 6;
             layout[10][NUM_COLS - 1] = 6;
 
->>>>>>> 20c2220e4d85f2f1bb7db71e62e3a02543defd08
         } else if (ind == 1) {
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
@@ -100,11 +98,10 @@ public class MapLayout {
                     }
                 }
             }
-<<<<<<< HEAD
+
             // Set the exit coordinates
             exitX = NUM_COLS / 2; // Set the X-coordinate of the exit
             exitY = NUM_ROWS - 1; // Set the Y-coordinate of the exit
-=======
 
             //mark exit
             layout[14][0] = 7;
@@ -132,7 +129,6 @@ public class MapLayout {
             layout[11][0] = 5;
             layout[0][10] = 5;
 
->>>>>>> 20c2220e4d85f2f1bb7db71e62e3a02543defd08
         } else {
             for (int i = 0; i < NUM_ROWS; i++) {
                 for (int j = 0; j < NUM_COLS; j++) {
@@ -145,11 +141,10 @@ public class MapLayout {
                     }
                 }
             }
-<<<<<<< HEAD
+
             // Set the exit coordinates
             exitX = NUM_COLS - 1; // Set the X-coordinate of the exit
             exitY = NUM_ROWS / 2; // Set the Y-coordinate of the exit
-=======
 
             layout[10][5] = 0;
             layout[11][3] = 0;
@@ -200,7 +195,6 @@ public class MapLayout {
         for (int i = 1; i < NUM_ROWS - 1; i++) {
             layout[i][0] = 1;
             layout[i][NUM_COLS - 1] = 2;
->>>>>>> 20c2220e4d85f2f1bb7db71e62e3a02543defd08
         }
     }
 }

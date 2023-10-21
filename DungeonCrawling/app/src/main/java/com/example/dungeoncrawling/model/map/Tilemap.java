@@ -80,16 +80,15 @@ public class Tilemap {
         );
     }
 
-<<<<<<< HEAD
-    public boolean isWallTileCollision(int row, int col) {
+    public int[] getStartPos() {
+        return this.startPos;
+    }
+
+    public boolean isWallCollision(int row, int col) {
         // Out of bounds can be treated as walls
         if (row < 0 || row >= MapLayout.NUM_ROWS || col < 0 || col >= MapLayout.NUM_COLS) {
             return true;
         }
-        return tilemap[row][col].getTileType() == Tile.TileType.STONE_TILE;
-=======
-    public int[] getStartPos() {
-        return this.startPos;
->>>>>>> 20c2220e4d85f2f1bb7db71e62e3a02543defd08
+        return tilemap[row][col].isWall();
     }
 }
