@@ -17,7 +17,6 @@ import android.view.SurfaceHolder.Callback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.map.Tilemap;
@@ -55,6 +54,11 @@ public class GameScreen1 extends AppCompatActivity {
     // Define exitX and exitY for room transitions
     private int exitX; // Set the actual X-coordinate of the exit
     private int exitY; // Set the actual Y-coordinate of the exit
+
+    private Button left;
+    private Button right;
+    private Button up;
+    private Button down;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -124,6 +128,11 @@ public class GameScreen1 extends AppCompatActivity {
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
         timer.runTimer();
 
+        left = findViewById(R.id.left);
+        right = findViewById(R.id.right);
+        up = findViewById(R.id.up);
+        down = findViewById(R.id.down);
+
         if (roomInd == 2) {
             next.setText("Exit");
         }
@@ -189,6 +198,94 @@ public class GameScreen1 extends AppCompatActivity {
             }
             startActivity(nextScreen);
             finish();
+        });
+
+        left.setOnClickListener(v -> {
+
+            Canvas canvas = surface.getHolder().lockCanvas();
+            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+            tilemap = new Tilemap(spriteSheet, roomInd);
+            Paint paint = new Paint();
+            paint.setColor(-1);
+            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+
+            //draw tile map
+            tilemap.draw(canvas);
+
+            //unlock canvas and post drawing
+            int[] newPos = new int[] {player.getRow(), player.getCol() - 1};
+            player.setSpriteSheet(spriteSheet);
+            player.setPositionArr(newPos);
+            player.draw(canvas);
+
+            surface.getHolder().unlockCanvasAndPost(canvas);
+
+        });
+
+        right.setOnClickListener(v -> {
+
+            Canvas canvas = surface.getHolder().lockCanvas();
+            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+            tilemap = new Tilemap(spriteSheet, roomInd);
+            Paint paint = new Paint();
+            paint.setColor(-1);
+            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+
+            //draw tile map
+            tilemap.draw(canvas);
+
+            //unlock canvas and post drawing
+            int[] newPos = new int[] {player.getRow(), player.getCol() + 1};
+            player.setSpriteSheet(spriteSheet);
+            player.setPositionArr(newPos);
+            player.draw(canvas);
+
+            surface.getHolder().unlockCanvasAndPost(canvas);
+
+        });
+
+        up.setOnClickListener(v -> {
+
+            Canvas canvas = surface.getHolder().lockCanvas();
+            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+            tilemap = new Tilemap(spriteSheet, roomInd);
+            Paint paint = new Paint();
+            paint.setColor(-1);
+            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+
+            //draw tile map
+            tilemap.draw(canvas);
+
+            //unlock canvas and post drawing
+            int[] newPos = new int[] {player.getRow() - 1, player.getCol()};
+            player.setSpriteSheet(spriteSheet);
+            player.setPositionArr(newPos);
+            player.draw(canvas);
+
+            surface.getHolder().unlockCanvasAndPost(canvas);
+
+        });
+
+        down.setOnClickListener(v -> {
+
+            Canvas canvas = surface.getHolder().lockCanvas();
+            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+            tilemap = new Tilemap(spriteSheet, roomInd);
+            Paint paint = new Paint();
+            paint.setColor(-1);
+            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+
+            //draw tile map
+            tilemap.draw(canvas);
+
+            //unlock canvas and post drawing
+            int[] newPos = new int[] {player.getRow() + 1, player.getCol()};
+            player.setSpriteSheet(spriteSheet);
+            player.setPositionArr(newPos);
+            player.draw(canvas);
+
+            surface.getHolder().unlockCanvasAndPost(canvas);
+
         });
     }
 }

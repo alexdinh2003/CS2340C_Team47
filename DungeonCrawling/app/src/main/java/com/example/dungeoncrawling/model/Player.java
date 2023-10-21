@@ -126,6 +126,14 @@ public class Player {
         this.sprite = this.spriteSheet.getPlayer(this.spriteId);
     }
 
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
     public void draw(Canvas canvas) {
         if (this.spriteSheet == null) {
             System.out.println("Sorry, it looks like you never specified a "
