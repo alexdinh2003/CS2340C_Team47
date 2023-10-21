@@ -65,7 +65,7 @@ public class SpriteSheet {
         return new Sprite(this, new Rect(335, 555,
                 335 + SPRITE_WIDTH_PIXELS, 555 + SPRITE_HEIGHT_PIXELS));
     }
-
+    
     private Sprite getSpriteByIndex(int idxRow, int idxCol) {
         return new Sprite(this, new Rect(
                 idxCol * SPRITE_WIDTH_PIXELS,

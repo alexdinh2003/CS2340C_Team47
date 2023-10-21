@@ -56,5 +56,12 @@ abstract class Tile {
 
     }
 
+    public boolean isWall() {
+        return false;
+    }
+
     public abstract void draw(Canvas canvas);
 }
+
+
+

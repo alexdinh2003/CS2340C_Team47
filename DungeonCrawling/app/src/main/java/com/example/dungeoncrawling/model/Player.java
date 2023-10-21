@@ -13,9 +13,9 @@ public class Player {
     private int health;
     private int points;
     private static Player player;
+
     private Sprite sprite;
     private SpriteSheet spriteSheet;
-
 
     private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
                    int row, int col) {
@@ -137,5 +137,4 @@ public class Player {
                 this.col * MapLayout.TILE_WIDTH,
                 this.row * MapLayout.TILE_HEIGHT + 256);
     }
-
 }

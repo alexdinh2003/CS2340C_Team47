@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -18,6 +19,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
+import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
@@ -39,6 +41,20 @@ public class GameScreen1 extends AppCompatActivity {
     private Tilemap tilemap;
     private int roomInd;
     private Player player;
+    private int characterX;
+    private int characterY;
+    private int characterSpeed = 5;
+    private int tileSize = MapLayout.TILE_WIDTH;
+
+    private Player player1;
+
+    // Define the boundaries of the game world
+    private int maxX = MapLayout.NUM_COLS;
+    private int maxY = MapLayout.NUM_ROWS;
+
+    // Define exitX and exitY for room transitions
+    private int exitX; // Set the actual X-coordinate of the exit
+    private int exitY; // Set the actual Y-coordinate of the exit
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -59,12 +75,28 @@ public class GameScreen1 extends AppCompatActivity {
                 Paint paint = new Paint();
                 paint.setColor(-1);
                 canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+
+                //draw tile map
                 tilemap.draw(canvas);
 
+                // character's position
+                characterX = 0;
+                characterY = 0;
+
+                //next position of character
+                int nextCharacterX = characterX + characterSpeed;
+                int nextCharacterY = characterY;
+
+                //check for collisions with wall
+                int tileX = nextCharacterX / tileSize;
+                int tileY = nextCharacterY / tileSize;
+
+                //unlock canvas and post drawing
                 int[] startPos = tilemap.getStartPos();
                 player.setSpriteSheet(spriteSheet);
                 player.setPositionArr(startPos);
                 player.draw(canvas);
+
                 holder.unlockCanvasAndPost(canvas);
             }
 
