@@ -4,6 +4,10 @@ import android.graphics.Canvas;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
+import com.example.dungeoncrawling.model.map.Tilemap;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private String name;
@@ -16,6 +20,25 @@ public class Player {
 
     private Sprite sprite;
     private SpriteSheet spriteSheet;
+
+    private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
+    private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
+    private Tilemap tilemap;
+
+    private Player(String name, SpriteSheet spriteSheet, Tilemap tilemap, int id, int health, int points,
+                   int row, int col) {
+        this.tilemap = tilemap;
+        this.spriteId = id;
+        this.name = name;
+        this.health = health;
+        this.points = points;
+        this.row = row;
+        this.col = col;
+        this.spriteSheet = spriteSheet;
+        if (this.spriteSheet != null) {
+            createSprite();
+        }
+    }
 
     private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
                    int row, int col) {
