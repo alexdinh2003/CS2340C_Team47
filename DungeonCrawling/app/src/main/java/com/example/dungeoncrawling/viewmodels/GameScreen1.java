@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Button;
@@ -61,7 +60,6 @@ public class GameScreen1 extends AppCompatActivity {
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
-
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +87,12 @@ public class GameScreen1 extends AppCompatActivity {
 
                 //draw player at correct startPosition for this map
                 int[] startPos = tilemap.getStartPos();
-                player.setTilemap(tilemap);
                 player.setSpriteSheet(spriteSheet);
                 player.setInitalPosition(startPos);
 
                 //create wallCheck object to check for wall collisions
                 wallCollision = new WallCheck(tilemap);
-                wallCollision.subscribe(player);
+                wallCollision.subscribe(player, player.getRow(), player.getCol());
 
                 player.draw(canvas);
 
