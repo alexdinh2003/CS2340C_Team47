@@ -24,7 +24,6 @@ public class Player {
     private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
     private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
     private Tilemap tilemap;
-
     private Player(String name, SpriteSheet spriteSheet, Tilemap tilemap, int id, int health, int points,
                    int row, int col) {
         this.tilemap = tilemap;
@@ -168,4 +167,5 @@ public class Player {
                 this.col * MapLayout.TILE_WIDTH,
                 this.row * MapLayout.TILE_HEIGHT + 256);
     }
+
 }

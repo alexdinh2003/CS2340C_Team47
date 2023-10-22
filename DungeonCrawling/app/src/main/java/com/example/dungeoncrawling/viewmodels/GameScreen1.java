@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -50,15 +51,13 @@ public class GameScreen1 extends AppCompatActivity {
     private int maxX = MapLayout.NUM_COLS;
     private int maxY = MapLayout.NUM_ROWS;
 
-    // Define exitX and exitY for room transitions
-    private int exitX; // Set the actual X-coordinate of the exit
-    private int exitY; // Set the actual Y-coordinate of the exit
 
     private Button left;
     private Button right;
     private Button up;
     private Button down;
 
+    private Handler handler;
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
     @SuppressLint("SetTextI18n")
     @Override
@@ -201,6 +200,9 @@ public class GameScreen1 extends AppCompatActivity {
             finish();
         });
 
+        // Create a Handler object.
+        handler = new Handler();
+
         left.setOnClickListener(v -> {
 
             Canvas canvas = surface.getHolder().lockCanvas();
@@ -288,7 +290,9 @@ public class GameScreen1 extends AppCompatActivity {
             surface.getHolder().unlockCanvasAndPost(canvas);
 
         });
+
     }
+
 }
 
 
