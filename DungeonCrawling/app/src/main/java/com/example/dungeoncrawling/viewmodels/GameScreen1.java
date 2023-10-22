@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.model.DirectionStrategy;
+import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
@@ -56,6 +57,7 @@ public class GameScreen1 extends AppCompatActivity {
     private SurfaceView surface;
     private SpriteSheet spriteSheet;
     private Paint white;
+    private WallCheck wallCollision;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
@@ -89,7 +91,12 @@ public class GameScreen1 extends AppCompatActivity {
                 int[] startPos = tilemap.getStartPos();
                 player.setTilemap(tilemap);
                 player.setSpriteSheet(spriteSheet);
-                player.setPositionArr(startPos);
+                player.setInitalPosition(startPos);
+
+                //create wallCheck object to check for wall collisions
+                wallCollision = new WallCheck(tilemap);
+                wallCollision.subscribe(player);
+
                 player.draw(canvas);
 
                 //unlock canvas and post drawing
@@ -179,19 +186,19 @@ public class GameScreen1 extends AppCompatActivity {
         //player movement with buttons
         left.setOnClickListener(v -> {
             Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, 0);
+            movePlayer(canvas, "left");
         });
         right.setOnClickListener(v -> {
             Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, 1);
+            movePlayer(canvas, "right");
         });
         up.setOnClickListener(v -> {
             Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, 2);
+            movePlayer(canvas, "up");
         });
         down.setOnClickListener(v -> {
             Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, 3);
+            movePlayer(canvas, "down");
         });
 
     }
@@ -200,34 +207,31 @@ public class GameScreen1 extends AppCompatActivity {
         this.strategy = newStrategy;
     }
 
-    private void executeStrat() {
-        strategy.move(player);
-    }
-
-    private void movePlayer(Canvas canvas, int dirInd) {
+    private void movePlayer(Canvas canvas, String dir) {
         //draw white background of stats bar
         canvas.drawRect(new Rect(0, 0, 4000, 1000), white);
         //draw tile map
         tilemap.draw(canvas);
 
-        switch (dirInd) {
-        case 0:
-            setDirStrat(leftStrat);
+        switch (dir) {
+        case "left":
+            this.strategy = leftStrat;
             break;
-        case 1:
-            setDirStrat(rightStrat);
+        case "right":
+            this.strategy = rightStrat;
             break;
-        case 2:
-            setDirStrat(upStrat);
+        case "up":
+            this.strategy = upStrat;
             break;
-        case 3:
-            setDirStrat(downStrat);
+        case "down":
+            this.strategy = downStrat;
             break;
         default:
-            setDirStrat(leftStrat);
+            this.strategy = leftStrat;
         }
 
-        executeStrat();
+        int[] newLoc = strategy.move(player);
+        wallCollision.check(newLoc[0], newLoc[1]);
         player.draw(canvas);
         surface.getHolder().unlockCanvasAndPost(canvas);
         if (tilemap.isExit(player.getRow(), player.getCol())) {

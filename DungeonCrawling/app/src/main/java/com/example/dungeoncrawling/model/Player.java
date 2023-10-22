@@ -6,7 +6,7 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.map.Tilemap;
 
-public class Player {
+public class Player implements Subscriber {
     private String name;
     private int spriteId;
     private int row;
@@ -17,12 +17,11 @@ public class Player {
     private Sprite sprite;
     private SpriteSheet spriteSheet;
     private Tilemap tilemap;
-
     private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
     private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
 
-    private Player(String name, SpriteSheet spriteSheet, Tilemap tilemap, int id, int health, int points,
-                   int row, int col) {
+    private Player(String name, SpriteSheet spriteSheet, Tilemap tilemap, int id, int health,
+                   int points, int row, int col) {
         this.tilemap = tilemap;
         this.spriteId = id;
         this.name = name;
@@ -38,16 +37,7 @@ public class Player {
 
     private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
                    int row, int col) {
-        this.spriteId = id;
-        this.name = name;
-        this.health = health;
-        this.points = points;
-        this.row = row;
-        this.col = col;
-        this.spriteSheet = spriteSheet;
-        if (this.spriteSheet != null) {
-            createSprite();
-        }
+        this(name, spriteSheet, null, id, health, points, row, col);
     }
 
     public Player(String name, SpriteSheet spriteSheet) {
@@ -140,14 +130,12 @@ public class Player {
         return new int[]{this.row, this.col};
     }
 
-    public void setPosition(int row, int col) {
-        if (!tilemap.isWallCollision(row, col)) {
-            this.row = row;
-            this.col = col;
-        }
+    private void setPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
-    public void setPositionArr(int[] rowCol) {
+    public void setInitalPosition(int[] rowCol) {
         setPosition(rowCol[0], rowCol[1]);
     }
 
@@ -173,5 +161,10 @@ public class Player {
                 canvas,
                 this.col * MapLayout.TILE_WIDTH,
                 this.row * MapLayout.TILE_HEIGHT + 256);
+    }
+
+    @Override
+    public void update(WallCheck subject) {
+        setPosition(subject.getRow(), subject.getCol());
     }
 }
