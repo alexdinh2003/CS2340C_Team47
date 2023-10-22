@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
-import com.example.dungeoncrawling.model.map.Tilemap;
 
 public class Player implements Subscriber {
     private String name;
@@ -16,13 +15,20 @@ public class Player implements Subscriber {
     private static Player player;
     private Sprite sprite;
     private SpriteSheet spriteSheet;
-    private Tilemap tilemap;
-    private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
-    private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
 
-    private Player(String name, SpriteSheet spriteSheet, Tilemap tilemap, int id, int health,
+    /** @noinspection checkstyle:ParameterNumber */
+    /**
+     * instantiate player
+     * @param name - player name
+     * @param spriteSheet - sprite sheet to look for player sprite on
+     * @param id - sprite id
+     * @param health - how much health the player has left
+     * @param points - current score of player
+     * @param row - position on map (row)
+     * @param col - position on map (column)
+     */
+    private Player(String name, SpriteSheet spriteSheet, int id, int health,
                    int points, int row, int col) {
-        this.tilemap = tilemap;
         this.spriteId = id;
         this.name = name;
         this.health = health;
@@ -33,11 +39,6 @@ public class Player implements Subscriber {
         if (this.spriteSheet != null) {
             createSprite();
         }
-    }
-
-    private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
-                   int row, int col) {
-        this(name, spriteSheet, null, id, health, points, row, col);
     }
 
     public Player(String name, SpriteSheet spriteSheet) {
@@ -120,10 +121,6 @@ public class Player implements Subscriber {
     public void setSpriteSheet(SpriteSheet spriteSheet) {
         this.spriteSheet = spriteSheet;
         createSprite();
-    }
-
-    public void setTilemap(Tilemap tilemap) {
-        this.tilemap = tilemap;
     }
 
     public int[] getPosition() {
