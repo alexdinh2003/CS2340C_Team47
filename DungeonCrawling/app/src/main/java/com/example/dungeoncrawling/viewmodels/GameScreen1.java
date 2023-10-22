@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Button;
@@ -19,7 +20,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.model.DirectionStrategy;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
-import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
@@ -43,21 +43,6 @@ public class GameScreen1 extends AppCompatActivity {
     private Tilemap tilemap;
     private int roomInd;
     private Player player;
-    private int characterX;
-    private int characterY;
-    private int characterSpeed = 5;
-    private int tileSize = MapLayout.TILE_WIDTH;
-
-    private Player player1;
-
-    // Define the boundaries of the game world
-    private int maxX = MapLayout.NUM_COLS;
-    private int maxY = MapLayout.NUM_ROWS;
-
-    // Define exitX and exitY for room transitions
-    private int exitX; // Set the actual X-coordinate of the exit
-    private int exitY; // Set the actual Y-coordinate of the exit
-
     private Button left;
     private Button right;
     private Button up;
@@ -73,6 +58,8 @@ public class GameScreen1 extends AppCompatActivity {
     private Paint white;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
+    /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +69,7 @@ public class GameScreen1 extends AppCompatActivity {
 
         //draw map with player on top (with a canvas)
         surface = (SurfaceView) findViewById(R.id.surface);
+        surface.requestFocus();
         surface.getHolder().addCallback(new Callback() {
 
             @Override
@@ -96,22 +84,6 @@ public class GameScreen1 extends AppCompatActivity {
 
                 //draw tile map
                 tilemap.draw(canvas);
-
-                /*
-
-                // character's position
-                characterX = 0;
-                characterY = 0;
-
-                //next position of character
-                int nextCharacterX = characterX + characterSpeed;
-                int nextCharacterY = characterY;
-
-                //check for collisions with wall
-                int tileX = nextCharacterX / tileSize;
-                int tileY = nextCharacterY / tileSize;
-
-                 */
 
                 //draw player at correct startPosition for this map
                 int[] startPos = tilemap.getStartPos();

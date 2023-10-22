@@ -11,8 +11,10 @@
         android:id="@+id/surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="-70dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-88dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
     <TextView
         android:id="@+id/playerNameDisplay"
@@ -51,7 +53,7 @@
         android:layout_height="wrap_content"
         android:background="#9C27B0"
         android:padding="4dp"
-        android:text="difficulty"
+        android:text="Medium"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
