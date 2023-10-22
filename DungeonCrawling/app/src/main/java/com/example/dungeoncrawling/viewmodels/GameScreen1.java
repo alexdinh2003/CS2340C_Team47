@@ -17,6 +17,7 @@ import android.view.SurfaceHolder.Callback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.dungeoncrawling.model.DirectionStrategy;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.map.Tilemap;
@@ -25,6 +26,10 @@ import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
+import com.example.dungeoncrawling.model.Down;
+import com.example.dungeoncrawling.model.Left;
+import com.example.dungeoncrawling.model.Right;
+import com.example.dungeoncrawling.model.Up;
 import java.util.Date;
 
 public class GameScreen1 extends AppCompatActivity {
@@ -59,6 +64,8 @@ public class GameScreen1 extends AppCompatActivity {
     private Button right;
     private Button up;
     private Button down;
+
+    private DirectionStrategy strategy;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     @SuppressLint("SetTextI18n")
@@ -133,6 +140,13 @@ public class GameScreen1 extends AppCompatActivity {
         up = findViewById(R.id.up);
         down = findViewById(R.id.down);
 
+        Down downStrat = new Down();
+        Up upStrat = new Up();
+        Left leftStrat = new Left();
+        Right rightStrat = new Right();
+
+
+
         if (roomInd == 2) {
             next.setText("Exit");
         }
@@ -200,6 +214,7 @@ public class GameScreen1 extends AppCompatActivity {
             finish();
         });
 
+
         left.setOnClickListener(v -> {
 
             Canvas canvas = surface.getHolder().lockCanvas();
@@ -213,9 +228,8 @@ public class GameScreen1 extends AppCompatActivity {
             tilemap.draw(canvas);
 
             //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow(), player.getCol() - 1};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
+            setDirStrat(leftStrat);
+            executeStrat();
             player.draw(canvas);
 
             surface.getHolder().unlockCanvasAndPost(canvas);
@@ -235,14 +249,16 @@ public class GameScreen1 extends AppCompatActivity {
             tilemap.draw(canvas);
 
             //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow(), player.getCol() + 1};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
+            setDirStrat(rightStrat);
+            executeStrat();
             player.draw(canvas);
 
             surface.getHolder().unlockCanvasAndPost(canvas);
 
         });
+
+
+
 
         up.setOnClickListener(v -> {
 
@@ -257,9 +273,9 @@ public class GameScreen1 extends AppCompatActivity {
             tilemap.draw(canvas);
 
             //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow() - 1, player.getCol()};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
+
+            setDirStrat(upStrat);
+            executeStrat();
             player.draw(canvas);
 
             surface.getHolder().unlockCanvasAndPost(canvas);
@@ -279,14 +295,21 @@ public class GameScreen1 extends AppCompatActivity {
             tilemap.draw(canvas);
 
             //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow() + 1, player.getCol()};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
+            setDirStrat(downStrat);
+            executeStrat();
             player.draw(canvas);
 
             surface.getHolder().unlockCanvasAndPost(canvas);
 
         });
+
+    }
+    private void setDirStrat(DirectionStrategy newStrategy) {
+        this.strategy = newStrategy;
+    }
+
+    private void executeStrat() {
+        strategy.move(player);
     }
 }
 
