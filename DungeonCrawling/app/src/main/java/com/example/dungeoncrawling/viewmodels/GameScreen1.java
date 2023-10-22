@@ -7,6 +7,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import android.os.Bundle;
+
+import android.os.Handler;
+import android.view.KeyEvent;
+
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Button;
@@ -43,10 +47,25 @@ public class GameScreen1 extends AppCompatActivity {
     private Tilemap tilemap;
     private int roomInd;
     private Player player;
+
+    private int characterX;
+    private int characterY;
+    private int characterSpeed = 5;
+    private int tileSize = MapLayout.TILE_WIDTH;
+
+    // Define the boundaries of the game world
+    private int maxX = MapLayout.NUM_COLS;
+    private int maxY = MapLayout.NUM_ROWS;
+
+
+
     private Button left;
     private Button right;
     private Button up;
     private Button down;
+
+
+    private Handler handler;
 
     private DirectionStrategy strategy;
     private Down downStrat;
@@ -180,7 +199,30 @@ public class GameScreen1 extends AppCompatActivity {
             System.out.println("Error!");
         }
 
+
         //player movement with buttons
+        // using whatever new actionListener we have:
+        // move to next screen by checking if player is on exitTile that gives isExit() == T
+        // if so, do the nextScreen stuff below
+        next.setOnClickListener(v -> {
+            timer.stopTimer();
+            Intent nextScreen;
+            if (roomInd < 2) {
+                nextScreen = new Intent(GameScreen1.this, GameScreen1.class);
+                nextScreen.putExtra("Room Number", ++roomInd);
+            } else {
+                nextScreen = new Intent(GameScreen1.this, GameEnd.class);
+                Leaderboard leaderboard = Leaderboard.getInstance();
+                ScoreEntry scoreEntry = new ScoreEntry(new Date());
+                leaderboard.addScore(scoreEntry);
+            }
+            startActivity(nextScreen);
+            finish();
+        });
+
+        // Create a Handler object.
+        handler = new Handler();
+
         left.setOnClickListener(v -> {
             Canvas canvas = surface.getHolder().lockCanvas();
             movePlayer(canvas, "left");
@@ -199,7 +241,7 @@ public class GameScreen1 extends AppCompatActivity {
         });
 
     }
-
+  
     private void setDirStrat(DirectionStrategy newStrategy) {
         this.strategy = newStrategy;
     }

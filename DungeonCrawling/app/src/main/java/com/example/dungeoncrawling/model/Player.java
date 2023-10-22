@@ -29,6 +29,27 @@ public class Player implements Subscriber {
      */
     private Player(String name, SpriteSheet spriteSheet, int id, int health,
                    int points, int row, int col) {
+
+    private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
+    private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
+    private Tilemap tilemap;
+    private Player(String name, SpriteSheet spriteSheet, Tilemap tilemap, int id, int health, int points,
+                   int row, int col) {
+        this.tilemap = tilemap;
+        this.spriteId = id;
+        this.name = name;
+        this.health = health;
+        this.points = points;
+        this.row = row;
+        this.col = col;
+        this.spriteSheet = spriteSheet;
+        if (this.spriteSheet != null) {
+            createSprite();
+        }
+    }
+
+    private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
+                   int row, int col) {
         this.spriteId = id;
         this.name = name;
         this.health = health;
@@ -164,4 +185,5 @@ public class Player implements Subscriber {
     public void update(WallCheck subject) {
         setPosition(subject.getRow(), subject.getCol());
     }
+
 }
