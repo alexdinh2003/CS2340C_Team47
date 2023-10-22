@@ -1,7 +1,7 @@
 package com.example.dungeoncrawling.model;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.dungeoncrawling.Subscriber;
+
 public class WallCheck {
     private List<Subscriber> subscribers = new ArrayList<>();
 
