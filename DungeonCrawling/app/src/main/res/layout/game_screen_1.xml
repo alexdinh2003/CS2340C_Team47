@@ -12,9 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-88dp"
+        tools:layout_editor_absoluteY="-88dp" />
+        tools:layout_editor_absoluteY="-74dp"
         android:focusable="true"
         android:focusableInTouchMode="true" />
+
+    <Button
+        android:id="@+id/nextScreenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9C27B0"
+        android:text="Next"
+        app:cornerRadius="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/surface"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
+
 
     <TextView
         android:id="@+id/playerNameDisplay"
@@ -53,24 +70,24 @@
         android:layout_height="wrap_content"
         android:background="#9C27B0"
         android:padding="4dp"
-        android:text="Medium"
+        android:text="difficulty"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.015" />
 
     <ImageView
         android:id="@+id/health"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:src="@drawable/five_hearts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.63"
         app:layout_constraintStart_toStartOf="@+id/surface"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.015" />
@@ -102,64 +119,62 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toEndOf="@+id/timerTextView"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.895" />
 
     <Button
         android:id="@+id/left"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
         android:rotation="-90"
         app:icon="@android:drawable/arrow_up_float"
-        app:iconSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/right"
-        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintEnd_toStartOf="@+id/surface"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04"/>
+        app:layout_constraintTop_toBottomOf="@id/health"
+        app:layout_constraintVertical_bias="0.956" />
 
     <Button
         android:id="@+id/right"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
         android:rotation="-90"
         app:icon="@android:drawable/arrow_down_float"
-        app:iconSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintBottom_toBottomOf="@id/nextScreenButton"
+        app:layout_constraintEnd_toStartOf="@+id/surface"
+        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintStart_toStartOf="@id/health"
+        app:layout_constraintTop_toBottomOf="@id/health"
+        app:layout_constraintVertical_bias="0.965" />
 
     <Button
         android:id="@+id/down"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:rotation="0"
         app:icon="@android:drawable/arrow_down_float"
-        app:iconSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintBottom_toBottomOf="@id/nextScreenButton"
+        app:layout_constraintEnd_toStartOf="@+id/surface"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="@id/health"
+        app:layout_constraintTop_toBottomOf="@id/health"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/up"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:rotation="0"
         app:icon="@android:drawable/arrow_up_float"
-        app:iconSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintBottom_toBottomOf="@id/nextScreenButton"
+        app:layout_constraintEnd_toStartOf="@+id/surface"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="@id/health"
+        app:layout_constraintTop_toBottomOf="@id/health"
+        app:layout_constraintVertical_bias="0.936" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
