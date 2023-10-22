@@ -215,92 +215,93 @@ public class GameScreen1 extends AppCompatActivity {
         });
 
 
+
+
         left.setOnClickListener(v -> {
+            if (player.getCol() > 0) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
+                setDirStrat(leftStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            //unlock canvas and post drawing
-            setDirStrat(leftStrat);
-            executeStrat();
-            player.draw(canvas);
-
-            surface.getHolder().unlockCanvasAndPost(canvas);
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
 
         });
 
         right.setOnClickListener(v -> {
+            if (player.getCol() < 16) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
+                setDirStrat(rightStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            //unlock canvas and post drawing
-            setDirStrat(rightStrat);
-            executeStrat();
-            player.draw(canvas);
-
-            surface.getHolder().unlockCanvasAndPost(canvas);
-
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
         });
-
-
 
 
         up.setOnClickListener(v -> {
+            if (player.getRow() > 0) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
 
-            //unlock canvas and post drawing
+                setDirStrat(upStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            setDirStrat(upStrat);
-            executeStrat();
-            player.draw(canvas);
-
-            surface.getHolder().unlockCanvasAndPost(canvas);
-
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
         });
 
         down.setOnClickListener(v -> {
+            if (player.getRow() < 24) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
+                setDirStrat(downStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            //unlock canvas and post drawing
-            setDirStrat(downStrat);
-            executeStrat();
-            player.draw(canvas);
-
-            surface.getHolder().unlockCanvasAndPost(canvas);
-
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
         });
 
     }
@@ -311,6 +312,7 @@ public class GameScreen1 extends AppCompatActivity {
     private void executeStrat() {
         strategy.move(player);
     }
+
 }
 
 

@@ -8,8 +8,8 @@ public class MapLayout {
     private int[][] layout;
     private int[] startPos;
 
-    private int exitX; // Set the actual X-coordinate of the exit
-    private int exitY; // Set the actual Y-coordinate of the exit
+    private static int exitX; // Set the actual X-coordinate of the exit
+    private static int exitY; // Set the actual Y-coordinate of the exit
     public MapLayout(int ind) {
         if (ind == 0) {
             this.startPos = new int[]{23, NUM_COLS - 2};
@@ -196,5 +196,13 @@ public class MapLayout {
             layout[i][0] = 1;
             layout[i][NUM_COLS - 1] = 2;
         }
+    }
+
+    public static int getExitX() {
+        return exitX;
+    }
+
+    public static int getExitY() {
+        return exitY;
     }
 }
