@@ -4,12 +4,8 @@ import android.graphics.Canvas;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
-import com.example.dungeoncrawling.model.map.Tilemap;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Player {
+public class Player implements Subscriber {
     private String name;
     private int spriteId;
     private int row;
@@ -17,9 +13,22 @@ public class Player {
     private int health;
     private int points;
     private static Player player;
-
     private Sprite sprite;
     private SpriteSheet spriteSheet;
+
+    /** @noinspection checkstyle:ParameterNumber */
+    /**
+     * instantiate player
+     * @param name - player name
+     * @param spriteSheet - sprite sheet to look for player sprite on
+     * @param id - sprite id
+     * @param health - how much health the player has left
+     * @param points - current score of player
+     * @param row - position on map (row)
+     * @param col - position on map (column)
+     */
+    private Player(String name, SpriteSheet spriteSheet, int id, int health,
+                   int points, int row, int col) {
 
     private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
     private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
@@ -135,12 +144,16 @@ public class Player {
         createSprite();
     }
 
-    public void setPosition(int row, int col) {
+    public int[] getPosition() {
+        return new int[]{this.row, this.col};
+    }
+
+    private void setPosition(int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    public void setPositionArr(int[] rowCol) {
+    public void setInitalPosition(int[] rowCol) {
         setPosition(rowCol[0], rowCol[1]);
     }
 
@@ -166,6 +179,11 @@ public class Player {
                 canvas,
                 this.col * MapLayout.TILE_WIDTH,
                 this.row * MapLayout.TILE_HEIGHT + 256);
+    }
+
+    @Override
+    public void update(WallCheck subject) {
+        setPosition(subject.getRow(), subject.getCol());
     }
 
 }

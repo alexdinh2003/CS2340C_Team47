@@ -84,10 +84,20 @@ public class Tilemap {
         return this.startPos;
     }
 
+    public boolean isExit(int row, int col) {
+        if (tilemap[row][col] == null) {
+            return false;
+        }
+        return tilemap[row][col].isExit();
+    }
+
     public boolean isWallCollision(int row, int col) {
         // Out of bounds can be treated as walls
         if (row < 0 || row >= MapLayout.NUM_ROWS || col < 0 || col >= MapLayout.NUM_COLS) {
             return true;
+        }
+        if (tilemap[row][col] == null) {
+            return false;
         }
         return tilemap[row][col].isWall();
     }
