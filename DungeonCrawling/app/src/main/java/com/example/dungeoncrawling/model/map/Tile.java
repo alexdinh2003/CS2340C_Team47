@@ -60,6 +60,8 @@ abstract class Tile {
         return false;
     }
 
+    public boolean isExit() { return false; }
+
     public abstract void draw(Canvas canvas);
 }
 

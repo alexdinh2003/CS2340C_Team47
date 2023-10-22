@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
+import com.example.dungeoncrawling.model.map.Tilemap;
 
 public class Player {
     private String name;
@@ -13,9 +14,9 @@ public class Player {
     private int health;
     private int points;
     private static Player player;
-
     private Sprite sprite;
     private SpriteSheet spriteSheet;
+    private Tilemap tilemap;
 
     private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
                    int row, int col) {
@@ -113,9 +114,19 @@ public class Player {
         createSprite();
     }
 
+    public void setTilemap(Tilemap tilemap) {
+        this.tilemap = tilemap;
+    }
+
+    public int[] getPosition() {
+        return new int[]{this.row, this.col};
+    }
+
     public void setPosition(int row, int col) {
-        this.row = row;
-        this.col = col;
+        if (!tilemap.isWallCollision(row, col)) {
+            this.row = row;
+            this.col = col;
+        }
     }
 
     public void setPositionArr(int[] rowCol) {
