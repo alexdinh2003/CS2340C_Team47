@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Button;
@@ -50,8 +51,6 @@ public class GameScreen1 extends AppCompatActivity {
     private int characterSpeed = 5;
     private int tileSize = MapLayout.TILE_WIDTH;
 
-    private Player player1;
-
     // Define the boundaries of the game world
     private int maxX = MapLayout.NUM_COLS;
     private int maxY = MapLayout.NUM_ROWS;
@@ -68,6 +67,8 @@ public class GameScreen1 extends AppCompatActivity {
     private DirectionStrategy strategy;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
+    /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,8 @@ public class GameScreen1 extends AppCompatActivity {
         setContentView(R.layout.game_screen_1);
 
         SurfaceView surface = (SurfaceView) findViewById(R.id.surface);
+        surface.requestFocus();
+
         surface.getHolder().addCallback(new Callback() {
 
             @Override
