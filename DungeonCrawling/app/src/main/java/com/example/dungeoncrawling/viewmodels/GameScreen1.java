@@ -18,6 +18,7 @@ import android.view.SurfaceHolder.Callback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.dungeoncrawling.model.DirectionStrategy;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.map.Tilemap;
@@ -26,6 +27,10 @@ import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
+import com.example.dungeoncrawling.model.Down;
+import com.example.dungeoncrawling.model.Left;
+import com.example.dungeoncrawling.model.Right;
+import com.example.dungeoncrawling.model.Up;
 import java.util.Date;
 
 public class GameScreen1 extends AppCompatActivity {
@@ -59,7 +64,11 @@ public class GameScreen1 extends AppCompatActivity {
     private Button up;
     private Button down;
 
+    private DirectionStrategy strategy;
+
+    /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +143,13 @@ public class GameScreen1 extends AppCompatActivity {
         up = findViewById(R.id.up);
         down = findViewById(R.id.down);
 
+        Down downStrat = new Down();
+        Up upStrat = new Up();
+        Left leftStrat = new Left();
+        Right rightStrat = new Right();
+
+
+
         if (roomInd == 2) {
             next.setText("Exit");
         }
@@ -201,94 +217,105 @@ public class GameScreen1 extends AppCompatActivity {
             finish();
         });
 
+
+
+
         left.setOnClickListener(v -> {
+            if (player.getCol() > 0) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
+                setDirStrat(leftStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow(), player.getCol() - 1};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
-            player.draw(canvas);
-
-            surface.getHolder().unlockCanvasAndPost(canvas);
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
 
         });
 
         right.setOnClickListener(v -> {
+            if (player.getCol() < 16) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
+                setDirStrat(rightStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow(), player.getCol() + 1};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
-            player.draw(canvas);
-
-            surface.getHolder().unlockCanvasAndPost(canvas);
-
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
         });
 
+
         up.setOnClickListener(v -> {
+            if (player.getRow() > 0) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
 
-            //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow() - 1, player.getCol()};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
-            player.draw(canvas);
+                setDirStrat(upStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            surface.getHolder().unlockCanvasAndPost(canvas);
-
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
         });
 
         down.setOnClickListener(v -> {
+            if (player.getRow() < 24) {
+                Canvas canvas = surface.getHolder().lockCanvas();
+                SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
+                tilemap = new Tilemap(spriteSheet, roomInd);
+                Paint paint = new Paint();
+                paint.setColor(-1);
+                canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
 
-            Canvas canvas = surface.getHolder().lockCanvas();
-            SpriteSheet spriteSheet = new SpriteSheet(getApplicationContext());
-            tilemap = new Tilemap(spriteSheet, roomInd);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawRect(new Rect(0, 0, 4000, 1000), paint);
+                //draw tile map
+                tilemap.draw(canvas);
 
-            //draw tile map
-            tilemap.draw(canvas);
+                //unlock canvas and post drawing
+                setDirStrat(downStrat);
+                executeStrat();
+                player.draw(canvas);
 
-            //unlock canvas and post drawing
-            int[] newPos = new int[] {player.getRow() + 1, player.getCol()};
-            player.setSpriteSheet(spriteSheet);
-            player.setPositionArr(newPos);
-            player.draw(canvas);
-
-            surface.getHolder().unlockCanvasAndPost(canvas);
-
+                surface.getHolder().unlockCanvasAndPost(canvas);
+            }
         });
+
     }
+    private void setDirStrat(DirectionStrategy newStrategy) {
+        this.strategy = newStrategy;
+    }
+
+    private void executeStrat() {
+        strategy.move(player);
+    }
+
 }
 
 
