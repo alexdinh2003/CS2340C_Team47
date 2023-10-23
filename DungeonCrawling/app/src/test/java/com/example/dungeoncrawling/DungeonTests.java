@@ -3,7 +3,12 @@ package com.example.dungeoncrawling;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import com.example.dungeoncrawling.model.DirectionStrategy;
+import com.example.dungeoncrawling.model.Down;
+import com.example.dungeoncrawling.model.Left;
 import com.example.dungeoncrawling.model.Player;
+import com.example.dungeoncrawling.model.Right;
+import com.example.dungeoncrawling.model.Up;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.map.Tilemap;
 
@@ -55,4 +60,49 @@ public class DungeonTests {
         assertNotEquals(player.getRow(), tilemap.getStartPos()[0]);
         assertNotEquals(player.getCol(), tilemap.getStartPos()[1]);
     }
+
+    @Test
+    public void leftStrategyTest() {
+        Player player = Player.getInstance("name");
+        player.setInitalPosition(new int[]{0, 0});
+
+        DirectionStrategy strategy = new Left();
+        int[] newLoc = strategy.move(player);
+        assertEquals(player.getRow(), newLoc[0]);
+        assertEquals(player.getCol() - 1, newLoc[1]);
+    }
+
+    @Test
+    public void rightStrategyTest() {
+        Player player = Player.getInstance("name");
+        player.setInitalPosition(new int[]{0, 0});
+
+        DirectionStrategy strategy = new Right();
+        int[] newLoc = strategy.move(player);
+        assertEquals(player.getRow(), newLoc[0]);
+        assertEquals(player.getCol() + 1, newLoc[1]);
+    }
+
+    @Test
+    public void upStrategyTest() {
+        Player player = Player.getInstance("name");
+        player.setInitalPosition(new int[]{0, 0});
+
+        DirectionStrategy strategy = new Up();
+        int[] newLoc = strategy.move(player);
+        assertEquals(player.getRow() - 1, newLoc[0]);
+        assertEquals(player.getCol(), newLoc[1]);
+    }
+
+    @Test
+    public void downStrategyTest() {
+        Player player = Player.getInstance("name");
+        player.setInitalPosition(new int[]{0, 0});
+
+        DirectionStrategy strategy = new Down();
+        int[] newLoc = strategy.move(player);
+        assertEquals(player.getRow() + 1, newLoc[0]);
+        assertEquals(player.getCol(), newLoc[1]);
+    }
+
 }
