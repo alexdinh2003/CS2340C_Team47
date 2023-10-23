@@ -56,6 +56,8 @@ abstract class Tile {
 
     }
 
+    public static
+
     public boolean isWall() {
         return false;
     }

@@ -25,6 +25,11 @@ class WallTile extends Tile {
         }
     }
 
+    public WallTile(Rect mapLocationRect) {
+        super(mapLocationRect);
+        sprite = null;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         sprite.draw(canvas, mapLocationRect.left, mapLocationRect.top);
