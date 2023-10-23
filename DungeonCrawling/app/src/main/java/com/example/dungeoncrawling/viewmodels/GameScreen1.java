@@ -7,8 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Button;
@@ -61,14 +59,9 @@ public class GameScreen1 extends AppCompatActivity {
     private Button right;
     private Button up;
     private Button down;
-
-<<<<<<< HEAD
-    private Handler handler;
-=======
     private DirectionStrategy strategy;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
->>>>>>> 1ada99dea7772f6996846acb164454b4f36b0703
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
 
     @SuppressLint("SetTextI18n")
@@ -219,14 +212,6 @@ public class GameScreen1 extends AppCompatActivity {
             finish();
         });
 
-<<<<<<< HEAD
-        // Create a Handler object.
-        handler = new Handler();
-=======
-
-
->>>>>>> 1ada99dea7772f6996846acb164454b4f36b0703
-
         left.setOnClickListener(v -> {
             if (player.getCol() > 0) {
                 Canvas canvas = surface.getHolder().lockCanvas();
@@ -315,8 +300,7 @@ public class GameScreen1 extends AppCompatActivity {
         });
 
     }
-<<<<<<< HEAD
-=======
+
     private void setDirStrat(DirectionStrategy newStrategy) {
         this.strategy = newStrategy;
     }
@@ -324,7 +308,6 @@ public class GameScreen1 extends AppCompatActivity {
     private void executeStrat() {
         strategy.move(player);
     }
->>>>>>> 1ada99dea7772f6996846acb164454b4f36b0703
 
 }
 
