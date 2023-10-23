@@ -13,6 +13,11 @@ class PitTile extends Tile {
         sprite = spriteSheet.getPitSprite();
     }
 
+    public PitTile(Rect mapLocation) {
+        super(mapLocation);
+        sprite = null;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         sprite.draw(canvas, mapLocationRect.left, mapLocationRect.top);
