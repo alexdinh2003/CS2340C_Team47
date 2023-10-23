@@ -4,8 +4,12 @@ import android.graphics.Canvas;
 import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
+import com.example.dungeoncrawling.model.map.Tilemap;
 
-public class Player implements Subscriber {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Player {
     private String name;
     private int spriteId;
     private int row;
@@ -13,6 +17,7 @@ public class Player implements Subscriber {
     private int health;
     private int points;
     private static Player player;
+
     private Sprite sprite;
     private SpriteSheet spriteSheet;
 
@@ -28,6 +33,27 @@ public class Player implements Subscriber {
      */
     private Player(String name, SpriteSheet spriteSheet, int id, int health,
                    int points, int row, int col) {
+  
+    private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
+    private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
+    private Tilemap tilemap;
+    private Player(String name, SpriteSheet spriteSheet, Tilemap tilemap, int id, int health, int points,
+                   int row, int col) {
+        this.tilemap = tilemap;
+        this.spriteId = id;
+        this.name = name;
+        this.health = health;
+        this.points = points;
+        this.row = row;
+        this.col = col;
+        this.spriteSheet = spriteSheet;
+        if (this.spriteSheet != null) {
+            createSprite();
+        }
+    }
+
+    private Player(String name, SpriteSheet spriteSheet, int id, int health, int points,
+                   int row, int col) {
         this.spriteId = id;
         this.name = name;
         this.health = health;
@@ -122,16 +148,12 @@ public class Player implements Subscriber {
         createSprite();
     }
 
-    public int[] getPosition() {
-        return new int[]{this.row, this.col};
-    }
-
-    private void setPosition(int row, int col) {
+    public void setPosition(int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    public void setInitalPosition(int[] rowCol) {
+    public void setPositionArr(int[] rowCol) {
         setPosition(rowCol[0], rowCol[1]);
     }
 
@@ -159,8 +181,4 @@ public class Player implements Subscriber {
                 this.row * MapLayout.TILE_HEIGHT + 256);
     }
 
-    @Override
-    public void update(WallCheck subject) {
-        setPosition(subject.getRow(), subject.getCol());
-    }
 }

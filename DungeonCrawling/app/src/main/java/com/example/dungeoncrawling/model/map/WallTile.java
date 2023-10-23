@@ -11,17 +11,17 @@ class WallTile extends Tile {
     public WallTile(SpriteSheet spriteSheet, Rect mapLocationRect, int ind, boolean left) {
         super(mapLocationRect);
         switch (ind) {
-        case 0:
-            sprite = spriteSheet.getHWallSprite(left);
-            break;
-        case 1:
-            sprite = spriteSheet.getVWallSprite(left);
-            break;
-        case 2:
-            sprite = spriteSheet.getCornerWallSprite(left);
-            break;
-        default:
-            sprite = spriteSheet.getHWallSprite(false);
+            case 0:
+                sprite = spriteSheet.getHWallSprite(left);
+                break;
+            case 1:
+                sprite = spriteSheet.getVWallSprite(left);
+                break;
+            case 2:
+                sprite = spriteSheet.getCornerWallSprite(left);
+                break;
+            default:
+                sprite = spriteSheet.getHWallSprite(false);
         }
     }
 

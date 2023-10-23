@@ -31,19 +31,19 @@ abstract class Tile {
         case FILLER:
             return null;
         case V_WALL_TILE_L:
-            return new WallTile(spriteSheet, mapLocationRect, 1, true);
+            return new WallTile(spriteSheet, mapLocationRect, 1,true);
         case V_WALL_TILE_R:
-            return new WallTile(spriteSheet, mapLocationRect, 1, false);
+            return new WallTile(spriteSheet, mapLocationRect, 1,false);
         case FLOOR_TILE:
             return new FloorTile(spriteSheet, mapLocationRect);
         case H_WALL_TILE:
-            return new WallTile(spriteSheet, mapLocationRect, 0, false);
+            return new WallTile(spriteSheet, mapLocationRect, 0,false);
         case CORNER_L:
-            return new WallTile(spriteSheet, mapLocationRect, 2, true);
+            return new WallTile(spriteSheet, mapLocationRect, 2,true);
         case CORNER_R:
-            return new WallTile(spriteSheet, mapLocationRect, 2, false);
+            return new WallTile(spriteSheet, mapLocationRect, 2,false);
         case BANNER:
-            return new WallTile(spriteSheet, mapLocationRect, 0, true);
+            return new WallTile(spriteSheet, mapLocationRect, 0,true);
         case EXIT:
             return new ExitTile(spriteSheet, mapLocationRect, true);
         case PIT:
@@ -76,10 +76,6 @@ abstract class Tile {
 
 
     public boolean isWall() {
-        return false;
-    }
-
-    public boolean isExit() {
         return false;
     }
 
