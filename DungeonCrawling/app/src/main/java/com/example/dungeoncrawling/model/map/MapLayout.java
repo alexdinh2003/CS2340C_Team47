@@ -21,6 +21,11 @@ public class MapLayout {
         initializeLayout(ind);
     }
 
+    public MapLayout(int[][] customLayout, int[] startPos) {
+        this.layout = customLayout;
+        this.startPos = startPos;
+    }
+
     public int[][] getLayout() {
         return layout;
     }
@@ -196,13 +201,5 @@ public class MapLayout {
             layout[i][0] = 1;
             layout[i][NUM_COLS - 1] = 2;
         }
-    }
-
-    public static int getExitX() {
-        return exitX;
-    }
-
-    public static int getExitY() {
-        return exitY;
     }
 }

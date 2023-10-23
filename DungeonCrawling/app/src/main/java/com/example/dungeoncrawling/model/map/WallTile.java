@@ -25,8 +25,8 @@ class WallTile extends Tile {
         }
     }
 
-    public WallTile(Rect mapLocationRect) {
-        super(mapLocationRect);
+    public WallTile(Rect mapLocation) {
+        super(mapLocation);
         sprite = null;
     }
 

@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import com.example.dungeoncrawling.model.Player;
-public class PlayerMovementTest {
+public class SpriteSheetTest {
 
     @Test
     public void correctSprite() {

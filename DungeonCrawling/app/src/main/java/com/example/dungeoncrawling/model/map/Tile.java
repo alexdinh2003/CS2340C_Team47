@@ -23,7 +23,7 @@ abstract class Tile {
             BANNER,
             EXIT,
             PIT,
-            ENTER,
+            ENTER
     }
 
     public static Tile getTile(int idxTileType, SpriteSheet spriteSheet, Rect mapLocationRect) {
@@ -56,7 +56,23 @@ abstract class Tile {
 
     }
 
-    public static
+    public static Tile getTile(int idxTileType, Rect mapLocationRect) {
+        switch (TileType.values()[idxTileType]) {
+            case FILLER:
+                return null;
+            case FLOOR_TILE:
+                return new FloorTile(mapLocationRect);
+            case EXIT:
+                return new ExitTile(mapLocationRect, true);
+            case PIT:
+                return new PitTile(mapLocationRect);
+            case ENTER:
+                return new ExitTile(mapLocationRect, false);
+            default:
+                return new WallTile(mapLocationRect);
+        }
+
+    }
 
     public boolean isWall() {
         return false;
