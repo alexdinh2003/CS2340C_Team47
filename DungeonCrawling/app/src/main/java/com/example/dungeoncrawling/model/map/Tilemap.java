@@ -10,8 +10,10 @@ public class Tilemap {
 
     private final MapLayout mapLayout;
     private Tile[][] tilemap;
+    private Tile[][] basetiles;
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
+    private int[] startPos;
 
     public Tilemap(SpriteSheet spriteSheet, int ind) {
         mapLayout = new MapLayout(ind);
@@ -21,14 +23,23 @@ public class Tilemap {
 
     private void initializeTilemap(int ind) {
         int[][] layout = mapLayout.getLayout();
+        this.startPos = mapLayout.getStartPos();
+        basetiles = new Tile[MapLayout.NUM_ROWS][MapLayout.NUM_COLS];
         tilemap = new Tile[MapLayout.NUM_ROWS][MapLayout.NUM_COLS];
         for (int iRow = 0; iRow < MapLayout.NUM_ROWS; iRow++) {
             for (int iCol = 0; iCol < MapLayout.NUM_COLS; iCol++) {
-                tilemap[iRow][iCol] = Tile.getTile(
-                        layout[iRow][iCol],
+                basetiles[iRow][iCol] = Tile.getTile(
+                        3,
                         spriteSheet,
-                        getRectByIndex(iRow, iCol)
-                );
+                        getRectByIndex(iRow, iCol));
+                if (layout[iRow][iCol] == 0) {
+                    tilemap[iRow][iCol] = null;
+                } else {
+                    tilemap[iRow][iCol] = Tile.getTile(
+                            layout[iRow][iCol],
+                            spriteSheet,
+                            getRectByIndex(iRow, iCol));
+                }
             }
         }
 
@@ -43,7 +54,10 @@ public class Tilemap {
 
         for (int iRow = 0; iRow < MapLayout.NUM_ROWS; iRow++) {
             for (int iCol = 0; iCol < MapLayout.NUM_COLS; iCol++) {
-                tilemap[iRow][iCol].draw(mapCanvas);
+                basetiles[iRow][iCol].draw(mapCanvas);
+                if (tilemap[iRow][iCol] != null) {
+                    tilemap[iRow][iCol].draw(mapCanvas);
+                }
             }
         }
 
@@ -64,5 +78,27 @@ public class Tilemap {
                 0, 256,
                 null
         );
+    }
+
+    public int[] getStartPos() {
+        return this.startPos;
+    }
+
+    public boolean isExit(int row, int col) {
+        if (tilemap[row][col] == null) {
+            return false;
+        }
+        return tilemap[row][col].isExit();
+    }
+
+    public boolean isWallCollision(int row, int col) {
+        // Out of bounds can be treated as walls
+        if (row < 0 || row >= MapLayout.NUM_ROWS || col < 0 || col >= MapLayout.NUM_COLS) {
+            return true;
+        }
+        if (tilemap[row][col] == null) {
+            return false;
+        }
+        return tilemap[row][col].isWall();
     }
 }

@@ -1,47 +1,78 @@
 package com.example.dungeoncrawling.model;
 
-import android.graphics.Rect;
+import android.graphics.Canvas;
+import com.example.dungeoncrawling.model.graphics.Sprite;
+import com.example.dungeoncrawling.model.graphics.SpriteSheet;
+import com.example.dungeoncrawling.model.map.MapLayout;
 
-public class Player {
+public class Player implements Subscriber {
     private String name;
     private int spriteId;
-    private Rect mapLocation;
+    private int row;
+    private int col;
     private int health;
     private int points;
     private static Player player;
+    private Sprite sprite;
+    private SpriteSheet spriteSheet;
 
-    private Player(String name, int id, int health, int points, Rect mapLocation) {
+    /** @noinspection checkstyle:ParameterNumber */
+    /**
+     * instantiate player
+     * @param name - player name
+     * @param spriteSheet - sprite sheet to look for player sprite on
+     * @param id - sprite id
+     * @param health - how much health the player has left
+     * @param points - current score of player
+     * @param row - position on map (row)
+     * @param col - position on map (column)
+     */
+    private Player(String name, SpriteSheet spriteSheet, int id, int health,
+                   int points, int row, int col) {
         this.spriteId = id;
         this.name = name;
-        this.mapLocation = mapLocation;
         this.health = health;
         this.points = points;
+        this.row = row;
+        this.col = col;
+        this.spriteSheet = spriteSheet;
+        if (this.spriteSheet != null) {
+            createSprite();
+        }
     }
 
-    private Player(String name) {
-        this(name, 0, 5, 100, new Rect(0, 0,
-                64, 64));
+    public Player(String name, SpriteSheet spriteSheet) {
+        this(name, spriteSheet, 0, 5, 100, 0, 0);
     }
 
-    private Player() {
-        this("n/a", 0, 5, 100, new Rect(0, 0,
-                64, 64));
+    public Player(String name) {
+        this(name, null, 0, 5, 100, 0, 0);
+    }
+
+    public Player() {
+        this("n/a", null, 0, 5, 100, 0, 0);
     }
 
     public static Player getInstance() {
-        return getInstance("n/a", 0, 5, 100,
-                new Rect(0, 0, 64, 64));
+        return getInstance("n/a", null, 0, 5, 100, 0, 0);
     }
 
     public static Player getInstance(String name) {
-        return getInstance(name, 0, 5, 100,
-                new Rect(0, 0, 64, 64));
+        return getInstance(name, null, 0, 5, 100, 0, 0);
     }
 
-    public static Player getInstance(String name, int id, int health, int points,
-                                     Rect mapLocation) {
+    public static Player getInstance(SpriteSheet spriteSheet) {
+        return getInstance("n/a", spriteSheet, 0, 5, 100, 0, 0);
+    }
+
+    public static Player getInstance(String name, SpriteSheet spriteSheet) {
+        return getInstance(name, spriteSheet, 0, 5, 100, 0, 0);
+    }
+
+    public static Player getInstance(String name, SpriteSheet spriteSheet, int id, int health,
+                                     int points, int row, int col) {
         if (player == null) {
-            player = new Player(name, id, health, points, mapLocation);
+            player = new Player(name, spriteSheet, id, health, points, row, col);
         }
         return player;
     }
@@ -50,7 +81,11 @@ public class Player {
         return points;
     }
     public void setScore(int score) {
-        this.points = score;
+        if (score < 0) {
+            this.points = 0;
+        } else {
+            this.points = score;
+        }
     }
 
     public int getHealth() {
@@ -66,6 +101,9 @@ public class Player {
     }
     public void setSpriteId(int id) {
         this.spriteId = id;
+        if (this.spriteSheet != null) {
+            createSprite();
+        }
     }
 
     public String getName() {
@@ -76,4 +114,54 @@ public class Player {
         this.name = name;
     }
 
+    public SpriteSheet getSpriteSheet() {
+        return this.spriteSheet;
+    }
+
+    public void setSpriteSheet(SpriteSheet spriteSheet) {
+        this.spriteSheet = spriteSheet;
+        createSprite();
+    }
+
+    public int[] getPosition() {
+        return new int[]{this.row, this.col};
+    }
+
+    private void setPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
+
+    public void setInitalPosition(int[] rowCol) {
+        setPosition(rowCol[0], rowCol[1]);
+    }
+
+    private void createSprite() {
+        this.sprite = this.spriteSheet.getPlayer(this.spriteId);
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void draw(Canvas canvas) {
+        if (this.spriteSheet == null) {
+            System.out.println("Sorry, it looks like you never specified a "
+                    + "sprite sheet for the player.");
+            return;
+        }
+        sprite.draw(
+                canvas,
+                this.col * MapLayout.TILE_WIDTH,
+                this.row * MapLayout.TILE_HEIGHT + 256);
+    }
+
+    @Override
+    public void update(WallCheck subject) {
+        setPosition(subject.getRow(), subject.getCol());
+    }
 }

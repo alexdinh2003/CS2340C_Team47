@@ -47,6 +47,10 @@ public class Timer {
         this(startTime, timerTextView, null);
     }
 
+    public Timer() {
+        this.player = Player.getInstance();
+    }
+
     public boolean runTimer() {
         return this.timerHandler.postDelayed(this.timerRunnable, 0);
     }
