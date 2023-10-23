@@ -16,7 +16,6 @@ public class Player implements Subscriber {
     private Sprite sprite;
     private SpriteSheet spriteSheet;
 
-    /** @noinspection checkstyle:ParameterNumber */
     /**
      * instantiate player
      * @param name - player name
