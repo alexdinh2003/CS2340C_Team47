@@ -13,6 +13,11 @@ class FloorTile extends Tile {
         sprite = spriteSheet.getFloorSprite();
     }
 
+    public FloorTile(Rect mapLocation) {
+        super(mapLocation);
+        sprite = null;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         sprite.draw(canvas, mapLocationRect.left, mapLocationRect.top);

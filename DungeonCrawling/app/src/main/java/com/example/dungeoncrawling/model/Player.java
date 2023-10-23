@@ -21,6 +21,19 @@ public class Player {
     private Sprite sprite;
     private SpriteSheet spriteSheet;
 
+    /**
+     * instantiate player
+     * @param name - player name
+     * @param spriteSheet - sprite sheet to look for player sprite on
+     * @param id - sprite id
+     * @param health - how much health the player has left
+     * @param points - current score of player
+     * @param row - position on map (row)
+     * @param col - position on map (column)
+     */
+    private Player(String name, SpriteSheet spriteSheet, int id, int health,
+                   int points, int row, int col) {
+  
     private static final int maxX = MapLayout.NUM_COLS; // Replace with your actual values
     private static final int maxY = MapLayout.NUM_ROWS; // Replace with your actual values
     private Tilemap tilemap;

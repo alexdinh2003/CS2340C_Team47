@@ -21,6 +21,12 @@ public class Tilemap {
         initializeTilemap(ind);
     }
 
+    public Tilemap(int[][] layout, int[] start) {
+        mapLayout = new MapLayout(layout, start);
+        spriteSheet = null;
+        initializeTilemap();
+    }
+
     private void initializeTilemap(int ind) {
         int[][] layout = mapLayout.getLayout();
         this.startPos = mapLayout.getStartPos();
@@ -61,6 +67,27 @@ public class Tilemap {
             }
         }
 
+    }
+
+    private void initializeTilemap() {
+        int[][] layout = mapLayout.getLayout();
+        this.startPos = mapLayout.getStartPos();
+        basetiles = new Tile[MapLayout.NUM_ROWS][MapLayout.NUM_COLS];
+        tilemap = new Tile[MapLayout.NUM_ROWS][MapLayout.NUM_COLS];
+        for (int iRow = 0; iRow < layout.length; iRow++) {
+            for (int iCol = 0; iCol < layout[iRow].length; iCol++) {
+                basetiles[iRow][iCol] = Tile.getTile(
+                        3,
+                        getRectByIndex(iRow, iCol));
+                if (layout[iRow][iCol] == 0) {
+                    tilemap[iRow][iCol] = null;
+                } else {
+                    tilemap[iRow][iCol] = Tile.getTile(
+                            layout[iRow][iCol],
+                            getRectByIndex(iRow, iCol));
+                }
+            }
+        }
     }
 
     private Rect getRectByIndex(int idxRow, int idxCol) {

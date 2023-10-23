@@ -15,6 +15,12 @@ class ExitTile extends Tile {
         this.exit = exit;
     }
 
+    public ExitTile(Rect mapLocation, boolean exit) {
+        super(mapLocation);
+        sprite = null;
+        this.exit = exit;
+    }
+
     public boolean isExit() {
         return this.exit;
     }
