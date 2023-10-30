@@ -88,5 +88,20 @@ public class SpriteSheet {
         }
 
     }
+
+    //need to fix the position of the enemy
+    public Sprite getEnemy(int id) {
+        if (id == 0) {
+            return new Sprite(this, new Rect(528, 50,
+                    595, 105));
+        } else if (id == 1) {
+            return new Sprite(this, new Rect(595, 560,
+                    650, 618));
+        } else {
+            return new Sprite(this, new Rect(595, 820,
+                    658, 875));
+        }
+
+    }
 }
 
