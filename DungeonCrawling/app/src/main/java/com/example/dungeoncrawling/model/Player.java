@@ -8,8 +8,8 @@ import com.example.dungeoncrawling.model.map.MapLayout;
 public class Player implements Subscriber {
     private String name;
     private int spriteId;
-    private int row;
-    private int col;
+    public int row;
+    public int col;
     private int health;
     private int points;
     private static Player player;
