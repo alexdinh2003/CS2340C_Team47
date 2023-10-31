@@ -62,7 +62,9 @@ public class Enemy implements Subscriber2,EnemyMovement {
         setPosition(rowCol[0], rowCol[1]);
     }
 
-   public void createSprite(){}
+    private void createSprite() {
+        this.sprite = this.spriteSheet.getEnemy(0);
+    }
 
     public int getRow() {
         return row;
