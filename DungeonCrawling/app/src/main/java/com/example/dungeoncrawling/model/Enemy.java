@@ -6,87 +6,38 @@ import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
-public class Enemy implements Subscriber2 {
-    private String name;
-    private int spriteId;
+public class Enemy implements Subscriber2,EnemyMovement {
     public int row;
     public int col;
-    private int health;
     private static Enemy enemy;
     private Sprite sprite;
     private SpriteSheet spriteSheet;
 
-    private Enemy(String name, SpriteSheet spriteSheet, int id, int health, int row, int col) {
-        this.spriteId = id;
-        this.name = name;
-        this.health = health;
+    private Enemy(int row, int col, SpriteSheet spriteSheet) {
         this.row = row;
         this.col = col;
         this.spriteSheet = spriteSheet;
-        if (this.spriteSheet != null) {
-            createSprite();
-        }
+        createSprite();
     }
 
-    public Enemy(String name, SpriteSheet spriteSheet) {
-        this(name, spriteSheet, 0, 5, 0, 0);
-    }
-
-    public Enemy(String name) {
-        this(name, null, 0, 5, 0, 0);
+    public Enemy(SpriteSheet spriteSheet) {
+        this(0, 0, spriteSheet);
     }
 
     public Enemy() {
-        this("n/a", null, 0, 5, 0, 0);
-    }
-
-    public static Enemy getInstance() {
-        return getInstance("n/a", null, 0, 5, 0, 0);
-    }
-
-    public static Enemy getInstance(String name) {
-        return getInstance(name, null, 0, 5, 0, 0);
+        this(0, 0, null);
     }
 
     public static Enemy getInstance(SpriteSheet spriteSheet) {
-        return getInstance("n/a", spriteSheet, 0, 5, 0, 0);
+        return getInstance(0,0,spriteSheet);
     }
 
-    public static Enemy getInstance(String name, SpriteSheet spriteSheet) {
-        return getInstance(name, spriteSheet, 0, 5, 0, 0);
-    }
 
-    public static Enemy getInstance(String name, SpriteSheet spriteSheet, int id, int health,
-                                    int row, int col) {
+    public static Enemy getInstance(int row, int col, SpriteSheet spriteSheet) {
         if (enemy == null) {
-            enemy = new Enemy(name, spriteSheet, id, health, row, col);
+            enemy = new Enemy(row, col, spriteSheet);
         }
         return enemy;
-    }
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public int getSpriteId() {
-        return this.spriteId;
-    }
-    public void setSpriteId(int id) {
-        this.spriteId = id;
-        if (this.spriteSheet != null) {
-            createSprite();
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public SpriteSheet getSpriteSheet() {
@@ -112,7 +63,7 @@ public class Enemy implements Subscriber2 {
     }
 
     private void createSprite() {
-        this.sprite = this.spriteSheet.getEnemy(this.spriteId);
+        this.sprite = this.spriteSheet.getEnemy(0);
     }
 
     public int getRow() {
