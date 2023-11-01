@@ -40,23 +40,19 @@ public class GameScreen1 extends AppCompatActivity {
     private ImageView health;
     private Timer timer;
     private TextView scoreText;
-    private Tilemap tilemap;
     private int roomInd;
     private Player player;
     private Button left;
     private Button right;
     private Button up;
     private Button down;
-
-    private DirectionStrategy strategy;
     private Down downStrat;
     private Up upStrat;
     private Left leftStrat;
     private Right rightStrat;
     private SurfaceView surface;
     private SpriteSheet spriteSheet;
-    private Paint white;
-    private WallCheck wallCollision;
+    private GameMap map;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
@@ -67,47 +63,14 @@ public class GameScreen1 extends AppCompatActivity {
         //show top bar (from xml file)
         setContentView(R.layout.game_screen_1);
 
-        //draw map with player on top (with a canvas)
+        roomInd = getIntent().getIntExtra("Room Number", 0);
+        spriteSheet = new SpriteSheet(getApplicationContext());
+
+        //draw map and player (access through GameMap map)
         surface = (SurfaceView) findViewById(R.id.surface);
         surface.requestFocus();
-        surface.getHolder().addCallback(new Callback() {
-
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                // Do some drawing when surface is ready
-                Canvas canvas = holder.lockCanvas();
-                spriteSheet = new SpriteSheet(getApplicationContext());
-                tilemap = new Tilemap(spriteSheet, roomInd);
-                white = new Paint();
-                white.setColor(-1);
-                canvas.drawRect(new Rect(0, 0, 4000, 1000), white);
-
-                //draw tile map
-                tilemap.draw(canvas);
-
-                //draw player at correct startPosition for this map
-                int[] startPos = tilemap.getStartPos();
-                player.setSpriteSheet(spriteSheet);
-                player.setInitalPosition(startPos);
-
-                //create wallCheck object to check for wall collisions
-                wallCollision = new WallCheck(tilemap);
-                wallCollision.subscribe(player, player.getRow(), player.getCol());
-
-                player.draw(canvas);
-
-                //unlock canvas and post drawing
-                holder.unlockCanvasAndPost(canvas);
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
-        });
+        map = new GameMap(surface.getHolder(), spriteSheet, roomInd);
+        surface.getHolder().addCallback(map);
 
         //create all buttons/text fields/image views in top bar
         playerName = findViewById(R.id.playerNameDisplay);
@@ -117,8 +80,8 @@ public class GameScreen1 extends AppCompatActivity {
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
         player = Player.getInstance();
-        roomInd = getIntent().getIntExtra("Room Number", 0);
         playerName.setText(player.getName());
+
         //buttons for movement
         left = findViewById(R.id.left);
         right = findViewById(R.id.right);
@@ -182,56 +145,45 @@ public class GameScreen1 extends AppCompatActivity {
 
         //player movement with buttons
         left.setOnClickListener(v -> {
-            Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, "left");
+            movePlayer("left");
+            map.render();
         });
         right.setOnClickListener(v -> {
-            Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, "right");
+            movePlayer("right");
+            map.render();
         });
         up.setOnClickListener(v -> {
-            Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, "up");
+            movePlayer("up");
+            map.render();
         });
         down.setOnClickListener(v -> {
-            Canvas canvas = surface.getHolder().lockCanvas();
-            movePlayer(canvas, "down");
+            movePlayer("down");
+            map.render();
         });
 
     }
 
-    private void setDirStrat(DirectionStrategy newStrategy) {
-        this.strategy = newStrategy;
-    }
-
-    private void movePlayer(Canvas canvas, String dir) {
-        //draw white background of stats bar
-        canvas.drawRect(new Rect(0, 0, 4000, 1000), white);
-        //draw tile map
-        tilemap.draw(canvas);
+    private void movePlayer(String dir) {
+        boolean change = false;
 
         switch (dir) {
         case "left":
-            this.strategy = leftStrat;
+            change = map.update(leftStrat);
             break;
         case "right":
-            this.strategy = rightStrat;
+            change = map.update(rightStrat);
             break;
         case "up":
-            this.strategy = upStrat;
+            change = map.update(upStrat);
             break;
         case "down":
-            this.strategy = downStrat;
+            change = map.update(downStrat);
             break;
         default:
-            this.strategy = leftStrat;
+            change = map.update(leftStrat);
         }
 
-        int[] newLoc = strategy.move(player);
-        wallCollision.check(newLoc[0], newLoc[1]);
-        player.draw(canvas);
-        surface.getHolder().unlockCanvasAndPost(canvas);
-        if (tilemap.isExit(player.getRow(), player.getCol())) {
+        if (change) {
             changeScreen();
         }
     }
