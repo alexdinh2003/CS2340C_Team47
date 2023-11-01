@@ -1,26 +1,19 @@
 package com.example.dungeoncrawling.viewmodels;
 
 import android.annotation.SuppressLint;
-import android.graphics.Canvas;
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.Rect;
+
 
 import android.os.Bundle;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.SurfaceHolder.Callback;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.dungeoncrawling.model.DirectionStrategy;
-import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
-import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.Player;
