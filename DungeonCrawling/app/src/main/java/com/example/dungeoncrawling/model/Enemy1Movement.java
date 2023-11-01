@@ -1,6 +1,6 @@
 package com.example.dungeoncrawling.model;
 
-public class Enemy1Movement implements EnemyMovement{
+public class Enemy1Movement implements EnemyMovement {
     @Override
     //however you want this enemy to move
     public int[] move(Enemy e) {

@@ -6,9 +6,9 @@ import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
-public class Enemy implements Subscriber2,EnemyMovement {
-    public int row;
-    public int col;
+public class Enemy implements Subscriber2, EnemyMovement {
+    private int row;
+    private int col;
     private static Enemy enemy;
     private Sprite sprite;
     private SpriteSheet spriteSheet;
@@ -29,7 +29,7 @@ public class Enemy implements Subscriber2,EnemyMovement {
     }
 
     public static Enemy getInstance(SpriteSheet spriteSheet) {
-        return getInstance(0,0,spriteSheet);
+        return getInstance(0, 0, spriteSheet);
     }
 
 
@@ -86,7 +86,7 @@ public class Enemy implements Subscriber2,EnemyMovement {
                 this.row * MapLayout.TILE_HEIGHT + 256);
     }
     @Override
-    public void update2(Enemy_Player_Collision subject) {
+    public void update2(EnemyPlayerCollision subject) {
         setPosition(subject.getRow(), subject.getCol());
     }
 
