@@ -2,7 +2,6 @@ package com.example.dungeoncrawling.viewmodels;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.widget.Button;
