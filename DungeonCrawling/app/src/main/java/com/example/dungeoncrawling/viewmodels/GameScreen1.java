@@ -3,7 +3,6 @@ package com.example.dungeoncrawling.viewmodels;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 
-
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.widget.Button;
@@ -13,16 +12,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
+import com.example.dungeoncrawling.model.DirectionStrategy;
 import com.example.dungeoncrawling.model.Down;
 import com.example.dungeoncrawling.model.Left;
 import com.example.dungeoncrawling.model.Right;
 import com.example.dungeoncrawling.model.Up;
+import com.example.dungeoncrawling.model.map.Tilemap;
+
 import java.util.Date;
 
 public class GameScreen1 extends AppCompatActivity {
@@ -39,12 +42,15 @@ public class GameScreen1 extends AppCompatActivity {
     private Button right;
     private Button up;
     private Button down;
+    private DirectionStrategy strategy;
     private Down downStrat;
     private Up upStrat;
     private Left leftStrat;
     private Right rightStrat;
+    private Tilemap tilemap;
     private SurfaceView surface;
     private SpriteSheet spriteSheet;
+    private WallCheck wallCheck;
     private GameMap map;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
@@ -90,6 +96,10 @@ public class GameScreen1 extends AppCompatActivity {
         upStrat = new Up();
         leftStrat = new Left();
         rightStrat = new Right();
+
+        tilemap = new Tilemap(spriteSheet, roomInd);
+        wallCheck = new WallCheck(tilemap);
+        wallCheck.subscribe(player, player.getRow(), player.getCol());
 
         //make sure health in top bar is in correct size/location
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
@@ -157,26 +167,32 @@ public class GameScreen1 extends AppCompatActivity {
     }
 
     private void movePlayer(String dir) {
-        boolean change = false;
-
         switch (dir) {
         case "left":
-            change = map.update(leftStrat);
+            strategy = leftStrat;
+            //change = map.update(leftStrat);
             break;
         case "right":
-            change = map.update(rightStrat);
+            strategy = rightStrat;
+            //change = map.update(rightStrat);
             break;
         case "up":
-            change = map.update(upStrat);
+            strategy = upStrat;
+            //change = map.update(upStrat);
             break;
         case "down":
-            change = map.update(downStrat);
+            strategy = downStrat;
+            //change = map.update(downStrat);
             break;
         default:
-            change = map.update(leftStrat);
+            strategy = leftStrat;
+            //change = map.update(leftStrat);
         }
 
-        if (change) {
+        int[] newLoc = strategy.move(this.player);
+        wallCheck.check(newLoc[0], newLoc[1]);
+
+        if (tilemap.isExit(this.player.getRow(), this.player.getCol())) {
             changeScreen();
         }
     }
