@@ -31,6 +31,7 @@ import com.example.dungeoncrawling.model.Left;
 import com.example.dungeoncrawling.model.Right;
 import com.example.dungeoncrawling.model.Up;
 import java.util.Date;
+import com.example.dungeoncrawling.model.FactoryPattern;
 
 public class GameScreen1 extends AppCompatActivity {
     private TextView playerName;
@@ -89,6 +90,9 @@ public class GameScreen1 extends AppCompatActivity {
                 int[] startPos = tilemap.getStartPos();
                 player.setSpriteSheet(spriteSheet);
                 player.setInitalPosition(startPos);
+
+                //draw enemy - causes blank screen
+                //FactoryPattern factory = new FactoryPattern("enemy1", canvas);
 
                 //create wallCheck object to check for wall collisions
                 wallCollision = new WallCheck(tilemap);

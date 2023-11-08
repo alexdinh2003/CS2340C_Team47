@@ -90,6 +90,7 @@ public class SpriteSheet {
     }
 
     //need to fix the position of the enemy
+    //screen goes white when this is used make enemy sprite
     public Sprite getEnemy(int id) {
         if (id == 0) {
             return new Sprite(this, new Rect(528, 50,
