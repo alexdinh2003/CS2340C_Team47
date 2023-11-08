@@ -6,6 +6,7 @@ import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
+
 public interface Enemy {
 
         public SpriteSheet getSpriteSheet();
@@ -13,8 +14,6 @@ public interface Enemy {
         public void setSpriteSheet(SpriteSheet spriteSheet);
 
         public int[] getPosition();
-
-        public void setPosition(int row, int col);
 
         public void setInitalPosition(int[] rowCol);
 
@@ -25,6 +24,8 @@ public interface Enemy {
         public int getCol();
 
         //add method for movement
+
+        public void setPosition(int row, int col);
 
         public void draw(Canvas canvas);
 }

@@ -5,13 +5,13 @@ import com.example.dungeoncrawling.model.map.Tilemap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Enemy_Player_Collision  {
+public class EnemyPlayerCollision {
     private List<EnemySubscriber> subscribers = new ArrayList<>();
     private Tilemap tilemap;
     private int row;
     private int col;
 
-    public Enemy_Player_Collision(Tilemap tilemap) {
+    public EnemyPlayerCollision(Tilemap tilemap) {
         this.tilemap = tilemap;
     }
 

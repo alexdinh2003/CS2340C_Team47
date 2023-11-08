@@ -66,7 +66,7 @@ public class Enemy1 implements Enemy,EnemySubscriber {
                 this.row * MapLayout.TILE_HEIGHT + 256);
     }
     @Override
-    public void update2(Enemy_Player_Collision subject) {
+    public void update2(EnemyPlayerCollision subject) {
         setPosition(subject.getRow(), subject.getCol());
     }
 
