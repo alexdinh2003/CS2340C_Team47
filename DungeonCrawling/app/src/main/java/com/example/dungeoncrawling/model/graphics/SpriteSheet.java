@@ -88,7 +88,7 @@ public class SpriteSheet {
         }
 
     }
-
+    
     public Sprite getEnemy(int id) {
         if (id == 0) {
             return new Sprite(this, new Rect(1570, 725,
