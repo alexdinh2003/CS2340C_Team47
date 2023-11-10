@@ -116,7 +116,7 @@ public class Player implements Subscriber {
         return new int[]{this.row, this.col};
     }
 
-    private void setPosition(int row, int col) {
+    public void setPosition(int row, int col) {
         this.row = row;
         this.col = col;
     }
