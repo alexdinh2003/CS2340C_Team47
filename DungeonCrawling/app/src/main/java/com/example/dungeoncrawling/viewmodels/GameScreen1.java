@@ -2,11 +2,13 @@ package com.example.dungeoncrawling.viewmodels;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Canvas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,6 +28,7 @@ import com.example.dungeoncrawling.model.Up;
 import com.example.dungeoncrawling.model.map.Tilemap;
 
 import java.util.Date;
+import com.example.dungeoncrawling.model.FactoryPattern;
 
 public class GameScreen1 extends AppCompatActivity {
     private TextView playerName;
@@ -69,6 +72,9 @@ public class GameScreen1 extends AppCompatActivity {
         surface.requestFocus();
         map = new GameMap(surface.getHolder(), spriteSheet, roomInd);
         surface.getHolder().addCallback(map);
+
+        //draw enemy - causes blank screen
+        //FactoryPattern factory = new FactoryPattern("enemy1", canvas);
 
         //create all buttons/text fields/image views in top bar
         playerName = findViewById(R.id.playerNameDisplay);

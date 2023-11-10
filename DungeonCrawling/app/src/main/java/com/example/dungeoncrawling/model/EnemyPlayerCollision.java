@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnemyPlayerCollision {
-    private List<Subscriber2> subscribers = new ArrayList<>();
+    private List<EnemySubscriber> subscribers = new ArrayList<>();
     private Tilemap tilemap;
     private int row;
     private int col;
@@ -24,7 +24,7 @@ public class EnemyPlayerCollision {
         notifySubscribers();
     }
 
-    public void subscribe(Subscriber2 subscriber, int row, int col) {
+    public void subscribe(EnemySubscriber subscriber, int row, int col) {
         subscribers.add(subscriber);
         this.row = row;
         this.col = col;
@@ -41,7 +41,7 @@ public class EnemyPlayerCollision {
         return col;
     }
     protected void notifySubscribers() {
-        for (Subscriber2 subscriber : subscribers) {
+        for (EnemySubscriber subscriber : subscribers) {
             subscriber.update2(this);
         }
     }
