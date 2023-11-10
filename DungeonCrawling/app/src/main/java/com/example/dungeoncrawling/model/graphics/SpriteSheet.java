@@ -88,5 +88,21 @@ public class SpriteSheet {
         }
 
     }
+    
+    public Sprite getEnemy(int id) {
+        if (id == 0) {
+            return new Sprite(this, new Rect(1570, 725,
+                    1615, 780));
+        } else if (id == 1) {
+            return new Sprite(this, new Rect(1570, 630,
+                    1615, 685));
+        } else if (id == 2) {
+            return new Sprite(this, new Rect(1425, 440,
+                    1487, 490));
+        } else {
+            return new Sprite(this, new Rect(1630, 345,
+                    1670, 395));
+        }
+    }
 }
 
