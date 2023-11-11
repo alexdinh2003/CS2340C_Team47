@@ -8,8 +8,14 @@ public class EnemyFactory {
         }
         if (enemyType.equalsIgnoreCase("enemy1")) {
             return new Enemy1();
+        } else if (enemyType.equalsIgnoreCase("enemy2")) {
+            return new Enemy2();
+        } else if (enemyType.equalsIgnoreCase("enemy3")) {
+            return new Enemy3();
+        } else if (enemyType.equalsIgnoreCase("enemy4")) {
+            return new Enemy4();
         }
-        // add if else for each enemy type
+
         return null;
     }
 }

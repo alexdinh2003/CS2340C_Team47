@@ -16,6 +16,7 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.map.MapLayout;
+import com.example.dungeoncrawling.model.FactoryPattern;
 
 public class GameMap implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
@@ -27,6 +28,8 @@ public class GameMap implements SurfaceHolder.Callback {
     private Square sq;
     private TextView difficulty;
     private ImageView health;
+    private FactoryPattern factoryPattern1;
+    private FactoryPattern factoryPattern2;
 
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd) {
         this.holder = holder;
@@ -44,6 +47,19 @@ public class GameMap implements SurfaceHolder.Callback {
         this.gameLoop = new GameLoop(this);
 
         this.sq = new Square(1, 1);
+        /*
+        switch (roomInd) {
+            case 0:
+                factoryPattern1 = new FactoryPattern("enemy1");
+                factoryPattern2 = new FactoryPattern("enemy2");
+            case 1:
+                factoryPattern1 = new FactoryPattern("enemy2");
+                factoryPattern2 = new FactoryPattern("enemy3");
+            case 2:
+                factoryPattern1 = new FactoryPattern("enemy3");
+                factoryPattern2 = new FactoryPattern("enemy4");
+        }
+        */
     }
 
     public void render() {
@@ -53,6 +69,8 @@ public class GameMap implements SurfaceHolder.Callback {
             this.tilemap.draw(c);
             this.player.draw(c);
             this.sq.draw(c);
+            //this.factoryPattern1.draw(c);
+            //this.factoryPattern2.draw(c);
             this.holder.unlockCanvasAndPost(c);
         }
     }
