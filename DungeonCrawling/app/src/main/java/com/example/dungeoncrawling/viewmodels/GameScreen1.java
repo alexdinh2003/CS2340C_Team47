@@ -107,6 +107,7 @@ public class GameScreen1 extends AppCompatActivity {
         wallCheck.subscribe(player, player.getRow(), player.getCol());
 
         //make sure health in top bar is in correct size/location
+        //move to GameMap class
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
                 health.getLayoutParams();
         switch (player.getHealth()) {

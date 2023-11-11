@@ -4,9 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.SurfaceHolder;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
@@ -21,6 +25,8 @@ public class GameMap implements SurfaceHolder.Callback {
     private WallCheck wallCheck;
     private GameLoop gameLoop;
     private Square sq;
+    private TextView difficulty;
+    private ImageView health;
 
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd) {
         this.holder = holder;
