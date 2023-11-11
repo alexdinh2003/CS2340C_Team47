@@ -36,7 +36,13 @@ public class GameEnd extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.end_screen);
+
+        if (playerLost()) {
+            setContentView(R.layout.game_over_screen);
+        } else {
+            setContentView(R.layout.end_screen);
+        }
+
 
         // Initialize views
         leaderboardListView = findViewById(R.id.leaderboardListView);
@@ -69,6 +75,10 @@ public class GameEnd extends AppCompatActivity {
             startActivity(createPlayer);
             finish();
         });
+    }
+
+    private boolean playerLost() {
+        //
     }
 
 }
