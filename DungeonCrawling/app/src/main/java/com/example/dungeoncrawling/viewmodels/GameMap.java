@@ -1,5 +1,7 @@
 package com.example.dungeoncrawling.viewmodels;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.dungeoncrawling.model.Leaderboard;
+import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.graphics.HP;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
@@ -15,6 +19,8 @@ import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.map.MapLayout;
 import com.example.dungeoncrawling.model.FactoryPattern;
+
+import java.util.Date;
 
 public class GameMap implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
@@ -24,13 +30,14 @@ public class GameMap implements SurfaceHolder.Callback {
     private WallCheck wallCheck;
     private GameLoop gameLoop;
     private Square sq;
-    private TextView difficulty;
     private HP health;
+    private Context context;
     private FactoryPattern factoryPattern1;
     private FactoryPattern factoryPattern2;
 
-    public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd) {
+    public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd, Context context) {
         this.holder = holder;
+        this.context = context;
         this.tilemap = new Tilemap(spriteSheet, roomInd);
         this.white = new Paint();
         this.white.setColor(-1);
@@ -67,6 +74,11 @@ public class GameMap implements SurfaceHolder.Callback {
     }
 
     public void render() {
+        if (player.getHealth() == 0) {
+            Intent end = new Intent(context, GameEnd.class);
+            end.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(end);
+        }
         Canvas c = this.holder.lockCanvas();
         if (c != null) {
             c.drawRect(new Rect(0, 0, 4000, 1000), white);

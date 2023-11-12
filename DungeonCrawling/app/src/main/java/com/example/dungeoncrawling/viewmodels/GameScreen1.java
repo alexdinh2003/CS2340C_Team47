@@ -38,7 +38,6 @@ public class GameScreen1 extends AppCompatActivity {
     private TextView difficulty;
     private TextView timerText;
     private ImageView sprite;
-    private ImageView health;
     private Timer timer;
     private TextView scoreText;
     private int roomInd;
@@ -76,7 +75,7 @@ public class GameScreen1 extends AppCompatActivity {
         //draw map and player (access through GameMap map)
         surface = (SurfaceView) findViewById(R.id.surface);
         surface.requestFocus();
-        map = new GameMap(surface.getHolder(), spriteSheet, roomInd);
+        map = new GameMap(surface.getHolder(), spriteSheet, roomInd, getApplicationContext());
         surface.getHolder().addCallback(map);
 
         //draw enemy - causes blank screen
