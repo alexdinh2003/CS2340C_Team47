@@ -6,26 +6,72 @@ import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
+public abstract class Enemy {
+    private int row;
+    private int col;
+    private SpriteSheet spriteSheet;
+    protected Sprite sprite;
 
-public interface Enemy {
+    public Enemy(int row, int col, SpriteSheet spriteSheet) {
+        this.row = row;
+        this.col = col;
+        this.spriteSheet = spriteSheet;
+        createSprite();
+    }
 
-        public SpriteSheet getSpriteSheet();
+    public Enemy(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 
-        public void setSpriteSheet(SpriteSheet spriteSheet);
+    abstract void createSprite();
 
-        public int[] getPosition();
+    public SpriteSheet getSpriteSheet() {
+        return this.spriteSheet;
+    }
 
-        public void setInitalPosition(int[] rowCol);
+    public void setSpriteSheet(SpriteSheet spriteSheet) {
+        this.spriteSheet = spriteSheet;
+        createSprite();
+    }
 
-        public void createSprite();
+    public int[] getPosition() {
+        return new int[]{this.row, this.col};
+    }
 
-        public int getRow();
+    public void setPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 
-        public int getCol();
+    public void setInitialPosition(int[] rowCol) {
+        setPosition(rowCol[0], rowCol[1]);
+    }
 
-        //add method for movement
+    public int getRow() {
+        return row;
+    }
 
-        public void setPosition(int row, int col);
+    public int getCol() {
+        return col;
+    }
 
-        public void draw(Canvas canvas);
+    //add method for this enemy's unique movement
+
+    public void draw(Canvas canvas) {
+        if (this.spriteSheet == null) {
+            System.out.println("Sorry, it looks like you never specified a "
+                    + "sprite sheet for the enemy.");
+            return;
+        }
+        sprite.draw(
+                canvas,
+                this.col * MapLayout.TILE_WIDTH,
+                this.row * MapLayout.TILE_HEIGHT + 256);
+    }
+
+    public void update(EnemyPlayerCollision subject) {
+        setPosition(subject.getRow(), subject.getCol());
+    }
+
 }

@@ -13,7 +13,6 @@ import android.graphics.Canvas;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.dungeoncrawling.model.Enemy1;
 import com.example.dungeoncrawling.model.EnemyPlayerCollision;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.HP;
@@ -31,7 +30,6 @@ import com.example.dungeoncrawling.model.Up;
 import com.example.dungeoncrawling.model.map.Tilemap;
 
 import java.util.Date;
-import com.example.dungeoncrawling.model.FactoryPattern;
 
 public class GameScreen1 extends AppCompatActivity {
     private TextView playerName;
@@ -43,7 +41,6 @@ public class GameScreen1 extends AppCompatActivity {
     private TextView scoreText;
     private int roomInd;
     private Player player;
-    private Enemy1 enemy1;
     private Button left;
     private Button right;
     private Button up;

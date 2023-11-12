@@ -1,19 +1,22 @@
 package com.example.dungeoncrawling.model;
 import com.example.dungeoncrawling.model.Enemy;
 import com.example.dungeoncrawling.model.Enemy1;
+import com.example.dungeoncrawling.model.graphics.SpriteSheet;
+
 public class EnemyFactory {
-    public Enemy getEnemy(String enemyType) {
+
+    public static Enemy getEnemy(String enemyType, int row, int col) {
         if (enemyType == null) {
             return null;
         }
         if (enemyType.equalsIgnoreCase("enemy1")) {
-            return new Enemy1();
+            return new Enemy1(row, col);
         } else if (enemyType.equalsIgnoreCase("enemy2")) {
-            return new Enemy2();
+            return new Enemy2(row, col);
         } else if (enemyType.equalsIgnoreCase("enemy3")) {
-            return new Enemy3();
+            return new Enemy3(row, col);
         } else if (enemyType.equalsIgnoreCase("enemy4")) {
-            return new Enemy4();
+            return new Enemy4(row, col);
         }
 
         return null;
