@@ -42,7 +42,7 @@ public class EnemyPlayerCollision {
     }
     protected void notifySubscribers() {
         for (EnemySubscriber subscriber : subscribers) {
-            subscriber.update2(this);
+            subscriber.update(this);
         }
     }
 }

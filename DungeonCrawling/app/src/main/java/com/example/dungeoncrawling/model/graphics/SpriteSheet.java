@@ -97,8 +97,8 @@ public class SpriteSheet {
             return new Sprite(this, new Rect(1570, 630,
                     1615, 685));
         } else if (id == 2) {
-            return new Sprite(this, new Rect(1425, 440,
-                    1487, 490));
+            return new Sprite(this, new Rect(1682, 440,
+                    1743, 490));
         } else {
             return new Sprite(this, new Rect(1630, 345,
                     1670, 395));

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.dungeoncrawling.model.Enemy;
+import com.example.dungeoncrawling.model.EnemyFactory;
 import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.graphics.HP;
@@ -18,7 +20,6 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.map.MapLayout;
-import com.example.dungeoncrawling.model.FactoryPattern;
 
 import java.util.Date;
 
@@ -30,10 +31,10 @@ public class GameMap implements SurfaceHolder.Callback {
     private WallCheck wallCheck;
     private GameLoop gameLoop;
     private Square sq;
+    private Enemy enemy1;
+    private Enemy enemy2;
     private HP health;
     private Context context;
-    private FactoryPattern factoryPattern1;
-    private FactoryPattern factoryPattern2;
 
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd, Context context) {
         this.holder = holder;
@@ -55,22 +56,24 @@ public class GameMap implements SurfaceHolder.Callback {
         this.gameLoop = new GameLoop(this);
 
         this.sq = new Square(1, 1);
-/*
         switch (roomInd) {
             case 0:
-                factoryPattern1 = new FactoryPattern("enemy1");
-                factoryPattern2 = new FactoryPattern("enemy2");
+                enemy1 = EnemyFactory.getEnemy("enemy1",2, 5);
+                enemy2 = EnemyFactory.getEnemy("enemy2",20, 3);
+                break;
             case 1:
-                factoryPattern1 = new FactoryPattern("enemy2");
-                factoryPattern2 = new FactoryPattern("enemy3");
+                enemy1 = EnemyFactory.getEnemy("enemy2",10, 14);
+                enemy2 = EnemyFactory.getEnemy("enemy3",15, 3);
+                break;
             case 2:
-                factoryPattern1 = new FactoryPattern("enemy3");
-                factoryPattern2 = new FactoryPattern("enemy4");
+                enemy1 = EnemyFactory.getEnemy("enemy3",3, 3);
+                enemy2 = EnemyFactory.getEnemy("enemy4",15, 7);
+                break;
         }
-        factoryPattern1.setSpriteSheet(spriteSheet);
-        factoryPattern2.setSpriteSheet(spriteSheet);
-
- */
+        enemy1.setSpriteSheet(spriteSheet);
+        enemy2.setSpriteSheet(spriteSheet);
+        System.out.println("1: (" + enemy1.getRow() + ", " + enemy1.getCol() + ")");
+        System.out.println("2: (" + enemy2.getRow() + ", " + enemy2.getCol() + ")");
     }
 
     public void render() {
@@ -85,15 +88,15 @@ public class GameMap implements SurfaceHolder.Callback {
             this.health.draw(c, player.getHealth());
             this.tilemap.draw(c);
             this.player.draw(c);
-            this.sq.draw(c);
-            //factoryPattern1.draw(c);
-            //factoryPattern2.draw(c);
+            //this.sq.draw(c);
+            enemy1.draw(c);
+            enemy2.draw(c);
             this.holder.unlockCanvasAndPost(c);
         }
     }
 
     public void update() {
-        this.sq.move();
+        //this.sq.move();
     }
 
     @Override
