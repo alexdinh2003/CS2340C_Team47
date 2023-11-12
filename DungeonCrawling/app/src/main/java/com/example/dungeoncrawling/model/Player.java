@@ -84,6 +84,9 @@ public class Player implements Subscriber {
     public void setHealth(int health) {
         this.health = health;
     }
+    public void loseHealth(int amountLost) {
+        this.health -= amountLost;
+    }
 
     public int getSpriteId() {
         return this.spriteId;

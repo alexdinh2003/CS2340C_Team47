@@ -36,6 +36,7 @@ public class GameEnd extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.end_screen);
 
 //        if (playerLost()) {
 //            setContentView(R.layout.game_over_screen);
