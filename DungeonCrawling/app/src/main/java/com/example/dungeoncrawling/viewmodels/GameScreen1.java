@@ -36,7 +36,6 @@ public class GameScreen1 extends AppCompatActivity {
     private TextView difficulty;
     private TextView timerText;
     private ImageView sprite;
-    private ImageView health;
     private Timer timer;
     private TextView scoreText;
     private int roomInd;
@@ -73,7 +72,7 @@ public class GameScreen1 extends AppCompatActivity {
         //draw map and player (access through GameMap map)
         surface = (SurfaceView) findViewById(R.id.surface);
         surface.requestFocus();
-        map = new GameMap(surface.getHolder(), spriteSheet, roomInd);
+        map = new GameMap(surface.getHolder(), spriteSheet, roomInd, getApplicationContext());
         surface.getHolder().addCallback(map);
 
         //draw enemy - causes blank screen
@@ -83,11 +82,11 @@ public class GameScreen1 extends AppCompatActivity {
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
         sprite = findViewById(R.id.sprite);
-        health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
         player = Player.getInstance();
         playerName.setText(player.getName());
+        hp = HP.getInstance();
 
         //buttons for movement
         left = findViewById(R.id.left);
@@ -119,29 +118,15 @@ public class GameScreen1 extends AppCompatActivity {
 
         //make sure health in top bar is in correct size/location
         //move to GameMap class
-        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
-                health.getLayoutParams();
-        switch (player.getHealth()) {
-        case 5:
+        switch (hp.getDifficulty()) {
+        case 1:
             difficulty.setText("Easy");
-            params.horizontalBias = 0.33f;
-            health.setLayoutParams(params);
-            health.setImageResource(R.drawable.five_hearts);
-            health.getLayoutParams().width = 300;
             break;
-        case 4:
+        case 2:
             difficulty.setText("Medium");
-            params.horizontalBias = 0.3f;
-            health.setLayoutParams(params);
-            health.setImageResource(R.drawable.four_hearts);
-            health.getLayoutParams().width = 250;
             break;
         case 3:
             difficulty.setText("Hard");
-            params.horizontalBias = 0.4f;
-            health.setLayoutParams(params);
-            health.setImageResource(R.drawable.three_hearts);
-            health.getLayoutParams().width = 200;
             break;
         default:
             System.out.println("Error!");

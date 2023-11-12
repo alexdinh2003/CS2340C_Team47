@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.UsernameValidator;
+import com.example.dungeoncrawling.model.graphics.HP;
 
 public class PlayerCreation extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class PlayerCreation extends AppCompatActivity {
     private ImageButton sprite1;
     private ImageButton sprite2;
     private ImageButton sprite3;
-
+    private HP health;
     private Player player;
     private UsernameValidator usernameValidator; // Initialize the validator
 
@@ -40,6 +41,7 @@ public class PlayerCreation extends AppCompatActivity {
 
         // Initialize the username validator
         usernameValidator = new UsernameValidator();
+        health = HP.getInstance();
 
         createPlayer.setOnClickListener(v -> {
             player = Player.getInstance();
@@ -49,11 +51,14 @@ public class PlayerCreation extends AppCompatActivity {
             int checkedRadioButtonId = difficultyRadioGroup.getCheckedRadioButtonId();
 
             if (checkedRadioButtonId == R.id.radioEasy) {
-                player.setHealth(5);
+                player.setHealth(10);
+                health.setDifficulty(1);
             } else if (checkedRadioButtonId == R.id.radioMedium) {
-                player.setHealth(4);
+                player.setHealth(8);
+                health.setDifficulty(2);
             } else {
-                player.setHealth(3);
+                player.setHealth(6);
+                health.setDifficulty(3);
             }
 
             RadioGroup playerSpriteGroup = findViewById(R.id.player_sprites);
