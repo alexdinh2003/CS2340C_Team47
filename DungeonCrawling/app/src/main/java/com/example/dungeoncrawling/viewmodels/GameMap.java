@@ -54,21 +54,21 @@ public class GameMap implements SurfaceHolder.Callback {
 
         this.sq = new Square(1, 1);
         switch (roomInd) {
-        case 0:
-            enemy1 = EnemyFactory.getEnemy("enemy1", 2, 5);
-            enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
-            break;
-        case 1:
-            enemy1 = EnemyFactory.getEnemy("enemy2", 10, 14);
-            enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
-            break;
-        case 2:
-            enemy1 = EnemyFactory.getEnemy("enemy3", 3, 3);
-            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
-            break;
-        default:
-            enemy1 = EnemyFactory.getEnemy("enemy3", 3, 3);
-            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
+
+            case 0:
+                enemy1 = EnemyFactory.getEnemy("enemy1",2, 5);
+                enemy2 = EnemyFactory.getEnemy("enemy2",20, 3);
+                break;
+            case 1:
+                enemy1 = EnemyFactory.getEnemy("enemy2",10, 11);
+                enemy2 = EnemyFactory.getEnemy("enemy3",15, 3);
+                break;
+            case 2:
+                enemy1 = EnemyFactory.getEnemy("enemy3",1, 5);
+                enemy2 = EnemyFactory.getEnemy("enemy4",15, 7);
+                break;
+
+       
         }
         enemy1.setSpriteSheet(spriteSheet);
         enemy2.setSpriteSheet(spriteSheet);
@@ -98,7 +98,8 @@ public class GameMap implements SurfaceHolder.Callback {
     }
 
     public void update() {
-        //this.sq.move();
+        enemy1.move();
+        enemy2.move();
     }
 
     @Override

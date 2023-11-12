@@ -3,7 +3,8 @@ package com.example.dungeoncrawling.model;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
 public class Enemy2 extends Enemy implements EnemySubscriber {
-
+    private int moveCount = 0;
+    private boolean moveRight = true;
     public Enemy2(int row, int col, SpriteSheet spriteSheet) {
         super(row, col, spriteSheet);
     }
@@ -17,6 +18,17 @@ public class Enemy2 extends Enemy implements EnemySubscriber {
     }
 
     public void move() {
-        //change position in some way every 1/2 sec
+        if (moveCount > 4) {
+            moveCount = 0;
+            moveRight = !moveRight;
+        }
+        if (moveRight) {
+            setPosition(getRow(), getCol() + 1);
+        } else {
+            setPosition(getRow(), getCol() - 1);
+
+        }
+        moveCount += 1;
+
     }
 }
