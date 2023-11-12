@@ -1,10 +1,6 @@
 package com.example.dungeoncrawling.model;
 
-import android.graphics.Canvas;
-
-import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
-import com.example.dungeoncrawling.model.map.MapLayout;
 
 public class Enemy4 extends Enemy implements EnemySubscriber {
     private String dir = "down";
@@ -59,6 +55,8 @@ public class Enemy4 extends Enemy implements EnemySubscriber {
 
     @Override
     public void update(EnemyPlayerCollision subject) {
-
+        if (subject.getRow() == this.getRow() && subject.getCol() == this.getCol()) {
+            getPlayer().loseHealth(2);
+        }
     }
 }

@@ -1,12 +1,9 @@
 package com.example.dungeoncrawling.model.graphics;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.graphics.Canvas;
 
-import com.example.dungeoncrawling.R;
-import com.example.dungeoncrawling.model.map.MapLayout;
+import com.example.dungeoncrawling.viewmodels.GameEnd;
 
 public class HP {
     private static final int HEART_WIDTH = 64;
@@ -17,6 +14,8 @@ public class HP {
     private Sprite emptyHeart;
     private SpriteSheet spriteSheet;
     private int maxHearts;
+    private Context context;
+
 
     private HP(SpriteSheet spriteSheet, int difficulty) {
         setSpriteSheet(spriteSheet);
@@ -25,6 +24,10 @@ public class HP {
 
     private HP(int difficulty) {
         setDifficulty(difficulty);
+    }
+
+    private HP(Context context) {
+        this.context = context;
     }
 
     public static HP getInstance(SpriteSheet spriteSheet, int difficulty) {
@@ -54,38 +57,47 @@ public class HP {
 
     public void setDifficulty(int difficulty) {
         switch (difficulty) {
-            case 1: // Easy
-                maxHearts = 5;
-                start = 230;
-                break;
-            case 2: // Medium
-                maxHearts = 4;
-                start = 250;
-                break;
-            case 3: // Hard
-                maxHearts = 3;
-                start = 350;
-                break;
-            default:
-                maxHearts = 0;
-                start = 0;
+        case 1: // Easy
+            maxHearts = 5;
+            start = 230;
+            break;
+        case 2: // Medium
+            maxHearts = 4;
+            start = 250;
+            break;
+        case 3: // Hard
+            maxHearts = 3;
+            start = 350;
+            break;
+        default:
+            maxHearts = 0;
+            start = 0;
         }
     }
 
     public int getDifficulty() {
         switch (maxHearts) {
-            case 5: // Easy
-                return 1;
-            case 4: // Medium
-                return 2;
-            case 3: // Hard
-                return 3;
-            default:
-                return 0;
+        case 5: // Easy
+            return 1;
+        case 4: // Medium
+            return 2;
+        case 3: // Hard
+            return 3;
+        default:
+            return 0;
         }
     }
 
     public void draw(Canvas canvas, int currentHealth) {
+
+        if (currentHealth <= 0) {
+            // Display the Game Over screen when health is 0
+            Intent gameOverIntent = new Intent(context, GameEnd.class);
+            gameOverIntent.putExtra("GameOver", true);
+            context.startActivity(gameOverIntent);
+            return;
+        }
+
         if (this.spriteSheet == null) {
             System.out.println("Sorry, it looks like you never specified a "
                     + "sprite sheet for the health.");

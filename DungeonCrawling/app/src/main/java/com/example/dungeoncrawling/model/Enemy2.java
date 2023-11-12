@@ -1,10 +1,6 @@
 package com.example.dungeoncrawling.model;
 
-import android.graphics.Canvas;
-
-import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
-import com.example.dungeoncrawling.model.map.MapLayout;
 
 public class Enemy2 extends Enemy implements EnemySubscriber {
     private int moveCount = 0;
@@ -33,12 +29,6 @@ public class Enemy2 extends Enemy implements EnemySubscriber {
 
         }
         moveCount += 1;
-
-    }
-
-
-    @Override
-    public void update(EnemyPlayerCollision subject) {
 
     }
 }

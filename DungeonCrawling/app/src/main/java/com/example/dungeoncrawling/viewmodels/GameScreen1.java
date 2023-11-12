@@ -8,10 +8,8 @@ import android.view.SurfaceView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.graphics.Canvas;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dungeoncrawling.model.EnemyPlayerCollision;
 import com.example.dungeoncrawling.model.WallCheck;
@@ -75,9 +73,6 @@ public class GameScreen1 extends AppCompatActivity {
         map = new GameMap(surface.getHolder(), spriteSheet, roomInd, getApplicationContext());
         surface.getHolder().addCallback(map);
 
-        //draw enemy - causes blank screen
-        //FactoryPattern factory = new FactoryPattern("enemy1", canvas);
-
         //create all buttons/text fields/image views in top bar
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
@@ -108,16 +103,9 @@ public class GameScreen1 extends AppCompatActivity {
         wallCheck = new WallCheck(tilemap);
         wallCheck.subscribe(player, player.getRow(), player.getCol());
 
-        // Instantiate Enemy1 before subscribing to enemyPlayerCollision
-        //enemy1 = new Enemy1();
-        //notify the enemy player collision
-        //enemyPlayerCollision.subscribe(enemy1, player.getRow(), player.getCol());
+        enemyPlayerCollision = EnemyPlayerCollision.getInstance();
 
-        // Instantiate the HP class with the correct difficulty
-        //hp = new HP(this, getDifficulty());
-
-        //make sure health in top bar is in correct size/location
-        //move to GameMap class
+        //make sure difficulty is correctly displayed
         switch (hp.getDifficulty()) {
         case 1:
             difficulty.setText("Easy");
@@ -132,7 +120,6 @@ public class GameScreen1 extends AppCompatActivity {
             System.out.println("Error!");
 
         }
-
 
         //show correct sprite icon in top bar
         switch (player.getSpriteId()) {
@@ -173,40 +160,34 @@ public class GameScreen1 extends AppCompatActivity {
         switch (dir) {
         case "left":
             strategy = leftStrat;
-            //change = map.update(leftStrat);
             break;
         case "right":
             strategy = rightStrat;
-            //change = map.update(rightStrat);
             break;
         case "up":
             strategy = upStrat;
-            //change = map.update(upStrat);
             break;
         case "down":
             strategy = downStrat;
-            //change = map.update(downStrat);
             break;
         default:
             strategy = leftStrat;
-            //change = map.update(leftStrat);
         }
 
         int[] newLoc = strategy.move(this.player);
         wallCheck.check(newLoc[0], newLoc[1]);
+        enemyPlayerCollision.check(player.getRow(), player.getCol());
 
         if (tilemap.isExit(this.player.getRow(), this.player.getCol())) {
             changeScreen();
         }
-
-        //enemyPlayerCollision.check(newLoc[0], newLoc[1]);
-
-
     }
 
     private void changeScreen() {
         timer.stopTimer();
         Intent nextScreen;
+        enemyPlayerCollision.unsubscribe();
+        enemyPlayerCollision.unsubscribe();
         if (roomInd < 2) {
             nextScreen = new Intent(GameScreen1.this, GameScreen1.class);
             nextScreen.putExtra("Room Number", ++roomInd);
@@ -218,10 +199,6 @@ public class GameScreen1 extends AppCompatActivity {
         }
         startActivity(nextScreen);
         finish();
-    }
-
-    private void drawHearts(Canvas canvas) {
-        hp.draw(canvas, player.getHealth());
     }
 }
 

@@ -36,14 +36,15 @@ public class GameEnd extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.end_screen);
 
-//        if (playerLost()) {
-//            setContentView(R.layout.game_over_screen);
-//        } else {
-//            setContentView(R.layout.end_screen);
-//        }
+        boolean isGameOver = getIntent().getBooleanExtra("GameOver", false);
 
+        if (isGameOver) {
+            setContentView(R.layout.game_over_screen);
+            // Handle the Game Over screen initialization here
+        } else {
+            setContentView(R.layout.end_screen);
+        }
 
         // Initialize views
         leaderboardListView = findViewById(R.id.leaderboardListView);
@@ -77,10 +78,6 @@ public class GameEnd extends AppCompatActivity {
             finish();
         });
     }
-
-//    private boolean playerLost() {
-//        //
-//    }
 
 }
 
