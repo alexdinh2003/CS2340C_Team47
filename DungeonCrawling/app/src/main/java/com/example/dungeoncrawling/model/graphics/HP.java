@@ -1,6 +1,9 @@
 package com.example.dungeoncrawling.model.graphics;
-
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
+
+import com.example.dungeoncrawling.viewmodels.GameEnd;
 
 public class HP {
     private static final int HEART_WIDTH = 64;
@@ -11,6 +14,8 @@ public class HP {
     private Sprite emptyHeart;
     private SpriteSheet spriteSheet;
     private int maxHearts;
+    private Context context;
+
 
     private HP(SpriteSheet spriteSheet, int difficulty) {
         setSpriteSheet(spriteSheet);
@@ -19,6 +24,10 @@ public class HP {
 
     private HP(int difficulty) {
         setDifficulty(difficulty);
+    }
+
+    private HP(Context context) {
+        this.context = context;
     }
 
     public static HP getInstance(SpriteSheet spriteSheet, int difficulty) {
@@ -80,6 +89,15 @@ public class HP {
     }
 
     public void draw(Canvas canvas, int currentHealth) {
+
+        if (currentHealth <= 0) {
+            // Display the Game Over screen when health is 0
+            Intent gameOverIntent = new Intent(context, GameEnd.class);
+            gameOverIntent.putExtra("GameOver", true);
+            context.startActivity(gameOverIntent);
+            return;
+        }
+
         if (this.spriteSheet == null) {
             System.out.println("Sorry, it looks like you never specified a "
                     + "sprite sheet for the health.");
