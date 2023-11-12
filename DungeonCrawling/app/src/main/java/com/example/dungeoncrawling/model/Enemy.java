@@ -24,7 +24,7 @@ public abstract class Enemy {
         this.col = col;
     }
 
-    abstract void createSprite();
+    public abstract void createSprite();
 
     public SpriteSheet getSpriteSheet() {
         return this.spriteSheet;
@@ -56,7 +56,7 @@ public abstract class Enemy {
         return col;
     }
 
-    //add method for this enemy's unique movement
+    public abstract void move();
 
     public void draw(Canvas canvas) {
         if (this.spriteSheet == null) {

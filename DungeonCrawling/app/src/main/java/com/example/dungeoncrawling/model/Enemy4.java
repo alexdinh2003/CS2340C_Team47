@@ -20,6 +20,10 @@ public class Enemy4 extends Enemy implements EnemySubscriber {
         this.sprite = this.getSpriteSheet().getEnemy(3);
     }
 
+    public void move() {
+        //change position in some way every 1/2 sec
+    }
+
     @Override
     public void update(EnemyPlayerCollision subject) {
 
