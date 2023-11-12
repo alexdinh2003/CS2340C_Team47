@@ -13,12 +13,16 @@ public class FactoryPattern {
         this.canvas = canvas;
         EnemyFactory enemyFactory = new EnemyFactory();
         enemy = enemyFactory.getEnemy(type);
-        enemy.draw(canvas);
+        enemy.createSprite();
+
     }
     public FactoryPattern(String type) {
         this(type, null);
     }
     public void draw(Canvas canvas) {
-        this.enemy.draw(canvas);
+        enemy.draw(canvas);
+    }
+    public void setSpriteSheet(SpriteSheet spriteSheet) {
+        enemy.setSpriteSheet(spriteSheet);
     }
 }

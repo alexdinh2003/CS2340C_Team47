@@ -47,7 +47,7 @@ public class GameMap implements SurfaceHolder.Callback {
         this.gameLoop = new GameLoop(this);
 
         this.sq = new Square(1, 1);
-        /*
+/*
         switch (roomInd) {
             case 0:
                 factoryPattern1 = new FactoryPattern("enemy1");
@@ -59,7 +59,10 @@ public class GameMap implements SurfaceHolder.Callback {
                 factoryPattern1 = new FactoryPattern("enemy3");
                 factoryPattern2 = new FactoryPattern("enemy4");
         }
-        */
+        factoryPattern1.setSpriteSheet(spriteSheet);
+        factoryPattern2.setSpriteSheet(spriteSheet);
+
+ */
     }
 
     public void render() {
@@ -69,8 +72,8 @@ public class GameMap implements SurfaceHolder.Callback {
             this.tilemap.draw(c);
             this.player.draw(c);
             this.sq.draw(c);
-            //this.factoryPattern1.draw(c);
-            //this.factoryPattern2.draw(c);
+            //factoryPattern1.draw(c);
+            //factoryPattern2.draw(c);
             this.holder.unlockCanvasAndPost(c);
         }
     }

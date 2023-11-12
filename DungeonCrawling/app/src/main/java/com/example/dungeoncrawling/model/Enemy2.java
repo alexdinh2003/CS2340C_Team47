@@ -17,11 +17,11 @@ public class Enemy2 implements Enemy,EnemySubscriber {
         this.spriteSheet = spriteSheet;
         createSprite();
     }
-    public Enemy2() {this(50,50,null);}
+    public Enemy2() {this(10,10,null);}
 
     public void createSprite() {
         //add specific sprite id for this enemy
-        this.sprite = this.spriteSheet.getPlayer(1);
+        this.sprite = this.spriteSheet.getEnemy(1);
     }
     public SpriteSheet getSpriteSheet() {
         return this.spriteSheet;
