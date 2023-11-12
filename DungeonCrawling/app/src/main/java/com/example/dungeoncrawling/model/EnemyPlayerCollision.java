@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EnemyPlayerCollision {
     private List<EnemySubscriber> subscribers = new ArrayList<>();
-    private Tilemap tilemap;
+    private Tilemap tilemap;    // for enemy dont need this
     private int row;
     private int col;
 

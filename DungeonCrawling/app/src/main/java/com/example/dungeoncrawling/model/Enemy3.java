@@ -1,26 +1,27 @@
 package com.example.dungeoncrawling.model;
+
 import android.graphics.Canvas;
 
-import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.graphics.Sprite;
+import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
-public class Enemy1 implements Enemy,EnemySubscriber {
+public class Enemy3 implements Enemy,EnemySubscriber{
     int row;
     int col;
     SpriteSheet spriteSheet;
     Sprite sprite;
-    public Enemy1 (int row, int col, SpriteSheet spriteSheet) {
+    public Enemy3 (int row, int col, SpriteSheet spriteSheet) {
         this.row = row;
         this.col = col;
         this.spriteSheet = spriteSheet;
         createSprite();
     }
-    public Enemy1() {this(15,15,null);}
+    public Enemy3() {this(15,15,null);}
 
     public void createSprite() {
         //add specific sprite id for this enemy
-        this.sprite = this.spriteSheet.getEnemy(0);
+        this.sprite = this.spriteSheet.getEnemy(2);
     }
     public SpriteSheet getSpriteSheet() {
         return this.spriteSheet;
@@ -69,5 +70,4 @@ public class Enemy1 implements Enemy,EnemySubscriber {
     public void update2(EnemyPlayerCollision subject) {
         setPosition(subject.getRow(), subject.getCol());
     }
-
 }

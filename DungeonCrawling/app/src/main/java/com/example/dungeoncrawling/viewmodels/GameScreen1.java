@@ -13,7 +13,10 @@ import android.graphics.Canvas;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.dungeoncrawling.model.Enemy1;
+import com.example.dungeoncrawling.model.EnemyPlayerCollision;
 import com.example.dungeoncrawling.model.WallCheck;
+import com.example.dungeoncrawling.model.graphics.HP;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.R;
 import com.example.dungeoncrawling.model.Leaderboard;
@@ -40,6 +43,7 @@ public class GameScreen1 extends AppCompatActivity {
     private TextView scoreText;
     private int roomInd;
     private Player player;
+    private Enemy1 enemy1;
     private Button left;
     private Button right;
     private Button up;
@@ -54,6 +58,8 @@ public class GameScreen1 extends AppCompatActivity {
     private SpriteSheet spriteSheet;
     private WallCheck wallCheck;
     private GameMap map;
+    private EnemyPlayerCollision enemyPlayerCollision;
+    private HP hp;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
@@ -106,6 +112,14 @@ public class GameScreen1 extends AppCompatActivity {
         wallCheck = new WallCheck(tilemap);
         wallCheck.subscribe(player, player.getRow(), player.getCol());
 
+        // Instantiate Enemy1 before subscribing to enemyPlayerCollision
+        //enemy1 = new Enemy1();
+        //notify the enemy player collision
+        //enemyPlayerCollision.subscribe(enemy1, player.getRow(), player.getCol());
+
+        // Instantiate the HP class with the correct difficulty
+        //hp = new HP(this, getDifficulty());
+
         //make sure health in top bar is in correct size/location
         //move to GameMap class
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
@@ -136,6 +150,7 @@ public class GameScreen1 extends AppCompatActivity {
             System.out.println("Error!");
 
         }
+
 
         //show correct sprite icon in top bar
         switch (player.getSpriteId()) {
@@ -201,6 +216,10 @@ public class GameScreen1 extends AppCompatActivity {
         if (tilemap.isExit(this.player.getRow(), this.player.getCol())) {
             changeScreen();
         }
+
+        //enemyPlayerCollision.check(newLoc[0], newLoc[1]);
+
+
     }
 
     private void changeScreen() {
@@ -219,6 +238,9 @@ public class GameScreen1 extends AppCompatActivity {
         finish();
     }
 
+    private void drawHearts(Canvas canvas) {
+        hp.draw(canvas, player.getHealth());
+    }
 }
 
 
