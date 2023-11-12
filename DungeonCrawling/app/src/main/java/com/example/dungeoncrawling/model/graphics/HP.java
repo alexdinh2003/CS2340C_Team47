@@ -6,60 +6,120 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
 import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.map.MapLayout;
 
 public class HP {
-    private Bitmap fullHeart;
-    private Bitmap halfHeart;
-    private Bitmap emptyHeart;
+    private static final int HEART_WIDTH = 64;
+    private static int start;
+    private static HP hp;
+    private Sprite fullHeart;
+    private Sprite halfHeart;
+    private Sprite emptyHeart;
+    private SpriteSheet spriteSheet;
     private int maxHearts;
 
-    public HP(Context context, int difficulty) {
-        // Load heart images based on difficulty
+    private HP(SpriteSheet spriteSheet, int difficulty) {
+        setSpriteSheet(spriteSheet);
+        setDifficulty(difficulty);
+    }
+
+    private HP(int difficulty) {
+        setDifficulty(difficulty);
+    }
+
+    public static HP getInstance(SpriteSheet spriteSheet, int difficulty) {
+        if (hp == null) {
+            hp = new HP(spriteSheet, difficulty);
+        }
+        return hp;
+    }
+
+    public static HP getInstance(int difficulty) {
+        if (hp == null) {
+            hp = new HP(difficulty);
+        }
+        return hp;
+    }
+
+    public static HP getInstance() {
+        return getInstance(0);
+    }
+
+    public void setSpriteSheet(SpriteSheet spriteSheet) {
+        this.spriteSheet = spriteSheet;
+        fullHeart = spriteSheet.getFullHeart();
+        halfHeart = spriteSheet.getHalfHeart();
+        emptyHeart = spriteSheet.getEmptyHeart();
+    }
+
+    public void setDifficulty(int difficulty) {
         switch (difficulty) {
             case 1: // Easy
-                fullHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.five_hearts);
-                //halfHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.half_heart_easy);
-                //emptyHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.empty_heart_easy);
                 maxHearts = 5;
+                start = 230;
                 break;
             case 2: // Medium
-                fullHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.four_hearts);
-                //halfHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.half_heart_medium);
-                //emptyHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.empty_heart_medium);
                 maxHearts = 4;
+                start = 250;
                 break;
             case 3: // Hard
-                fullHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.three_hearts);
-                //halfHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.half_heart_hard);
-                //emptyHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.empty_heart_hard);
                 maxHearts = 3;
+                start = 350;
                 break;
             default:
-                // Default to easy
-                fullHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.one_heart);
-                //halfHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.half_heart_easy);
-                //emptyHeart = BitmapFactory.decodeResource(context.getResources(), R.drawable.empty_heart_easy);
-                maxHearts = 5;
+                maxHearts = 0;
+                start = 0;
+        }
+    }
+
+    public int getDifficulty() {
+        switch (maxHearts) {
+            case 5: // Easy
+                return 1;
+            case 4: // Medium
+                return 2;
+            case 3: // Hard
+                return 3;
+            default:
+                return 0;
         }
     }
 
     public void draw(Canvas canvas, int currentHealth) {
-        int remainingHearts = Math.max(0, currentHealth / 2);
+        if (this.spriteSheet == null) {
+            System.out.println("Sorry, it looks like you never specified a "
+                    + "sprite sheet for the health.");
+            return;
+        }
+
+        int fullHearts = (int) (currentHealth / 2);
 
         // Draw full hearts
-        for (int i = 0; i < remainingHearts; i++) {
-            canvas.drawBitmap(fullHeart, i * fullHeart.getWidth(), 0, null);
+        for (int i = 0; i < fullHearts; i++) {
+            fullHeart.draw(
+                    canvas,
+                    start + i * HEART_WIDTH,
+                    40);
+            //canvas.drawBitmap(fullHeart, i * fullHeart.getWidth(), 0, null);
         }
 
         // Draw half hearts (if any)
         if (currentHealth % 2 == 1) {
-            canvas.drawBitmap(halfHeart, remainingHearts * fullHeart.getWidth(), 0, null);
-            remainingHearts++;
+            halfHeart.draw(
+                    canvas,
+                    start + fullHearts * HEART_WIDTH,
+                    40);
+            //canvas.drawBitmap(halfHeart, remainingHearts * fullHeart.getWidth(), 0, null);
+            fullHearts++;
         }
 
         // Draw empty hearts for remaining slots
-        for (int i = remainingHearts; i < maxHearts; i++) {
-            canvas.drawBitmap(emptyHeart, i * fullHeart.getWidth(), 0, null);
+        for (int i = fullHearts; i < maxHearts; i++) {
+            emptyHeart.draw(
+                    canvas,
+                    start + i * HEART_WIDTH,
+                    40);
+            //canvas.drawBitmap(emptyHeart, i * fullHeart.getWidth(), 0, null);
         }
     }
 }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.dungeoncrawling.R;
+import com.example.dungeoncrawling.model.graphics.HP;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
@@ -27,7 +27,7 @@ public class GameMap implements SurfaceHolder.Callback {
     private GameLoop gameLoop;
     private Square sq;
     private TextView difficulty;
-    private ImageView health;
+    private HP health;
     private FactoryPattern factoryPattern1;
     private FactoryPattern factoryPattern2;
 
@@ -43,6 +43,9 @@ public class GameMap implements SurfaceHolder.Callback {
 
         this.wallCheck = new WallCheck(this.tilemap);
         this.wallCheck.subscribe(this.player, this.player.getRow(), this.player.getCol());
+
+        this.health = HP.getInstance();
+        this.health.setSpriteSheet(spriteSheet);
 
         this.gameLoop = new GameLoop(this);
 
@@ -69,6 +72,7 @@ public class GameMap implements SurfaceHolder.Callback {
         Canvas c = this.holder.lockCanvas();
         if (c != null) {
             c.drawRect(new Rect(0, 0, 4000, 1000), white);
+            this.health.draw(c, player.getHealth());
             this.tilemap.draw(c);
             this.player.draw(c);
             this.sq.draw(c);

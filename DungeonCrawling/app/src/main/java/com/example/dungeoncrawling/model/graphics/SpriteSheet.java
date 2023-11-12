@@ -104,5 +104,17 @@ public class SpriteSheet {
                     1670, 395));
         }
     }
+
+    public Sprite getFullHeart() {
+        return new Sprite(this, new Rect(1855,1984,1919,2048));
+    }
+
+    public Sprite getHalfHeart() {
+        return new Sprite(this, new Rect(1919,1984,1983,2048));
+    }
+
+    public Sprite getEmptyHeart() {
+        return new Sprite(this, new Rect(1983,1984,2048,2048));
+    }
 }
 

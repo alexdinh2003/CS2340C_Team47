@@ -86,11 +86,11 @@ public class GameScreen1 extends AppCompatActivity {
         playerName = findViewById(R.id.playerNameDisplay);
         difficulty = findViewById(R.id.difficultyDisplay);
         sprite = findViewById(R.id.sprite);
-        health = findViewById(R.id.health);
         timerText = findViewById(R.id.timerTextView);
         scoreText = findViewById(R.id.scoreTextView);
         player = Player.getInstance();
         playerName.setText(player.getName());
+        hp = HP.getInstance();
 
         //buttons for movement
         left = findViewById(R.id.left);
@@ -122,29 +122,15 @@ public class GameScreen1 extends AppCompatActivity {
 
         //make sure health in top bar is in correct size/location
         //move to GameMap class
-        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)
-                health.getLayoutParams();
-        switch (player.getHealth()) {
-        case 5:
+        switch (hp.getDifficulty()) {
+        case 1:
             difficulty.setText("Easy");
-            params.horizontalBias = 0.33f;
-            health.setLayoutParams(params);
-            health.setImageResource(R.drawable.five_hearts);
-            health.getLayoutParams().width = 300;
             break;
-        case 4:
+        case 2:
             difficulty.setText("Medium");
-            params.horizontalBias = 0.3f;
-            health.setLayoutParams(params);
-            health.setImageResource(R.drawable.four_hearts);
-            health.getLayoutParams().width = 250;
             break;
         case 3:
             difficulty.setText("Hard");
-            params.horizontalBias = 0.4f;
-            health.setLayoutParams(params);
-            health.setImageResource(R.drawable.three_hearts);
-            health.getLayoutParams().width = 200;
             break;
         default:
             System.out.println("Error!");
