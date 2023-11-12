@@ -1,7 +1,4 @@
 package com.example.dungeoncrawling.model;
-import com.example.dungeoncrawling.model.Enemy;
-import com.example.dungeoncrawling.model.Enemy1;
-import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
 public class EnemyFactory {
 

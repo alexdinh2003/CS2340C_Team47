@@ -1,10 +1,6 @@
 package com.example.dungeoncrawling.model;
 
-import android.graphics.Canvas;
-
-import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
-import com.example.dungeoncrawling.model.map.MapLayout;
 
 public class Enemy3 extends Enemy implements EnemySubscriber {
 
@@ -22,10 +18,5 @@ public class Enemy3 extends Enemy implements EnemySubscriber {
 
     public void move() {
         //change position in some way every 1/2 sec
-    }
-
-    @Override
-    public void update(EnemyPlayerCollision subject) {
-
     }
 }

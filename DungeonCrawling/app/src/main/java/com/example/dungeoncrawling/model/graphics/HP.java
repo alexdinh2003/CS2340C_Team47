@@ -1,12 +1,6 @@
 package com.example.dungeoncrawling.model.graphics;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-
-import com.example.dungeoncrawling.R;
-import com.example.dungeoncrawling.model.map.MapLayout;
 
 public class HP {
     private static final int HEART_WIDTH = 64;
@@ -54,34 +48,34 @@ public class HP {
 
     public void setDifficulty(int difficulty) {
         switch (difficulty) {
-            case 1: // Easy
-                maxHearts = 5;
-                start = 230;
-                break;
-            case 2: // Medium
-                maxHearts = 4;
-                start = 250;
-                break;
-            case 3: // Hard
-                maxHearts = 3;
-                start = 350;
-                break;
-            default:
-                maxHearts = 0;
-                start = 0;
+        case 1: // Easy
+            maxHearts = 5;
+            start = 230;
+            break;
+        case 2: // Medium
+            maxHearts = 4;
+            start = 250;
+            break;
+        case 3: // Hard
+            maxHearts = 3;
+            start = 350;
+            break;
+        default:
+            maxHearts = 0;
+            start = 0;
         }
     }
 
     public int getDifficulty() {
         switch (maxHearts) {
-            case 5: // Easy
-                return 1;
-            case 4: // Medium
-                return 2;
-            case 3: // Hard
-                return 3;
-            default:
-                return 0;
+        case 5: // Easy
+            return 1;
+        case 4: // Medium
+            return 2;
+        case 3: // Hard
+            return 3;
+        default:
+            return 0;
         }
     }
 

@@ -38,13 +38,6 @@ public class GameEnd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_screen);
 
-//        if (playerLost()) {
-//            setContentView(R.layout.game_over_screen);
-//        } else {
-//            setContentView(R.layout.end_screen);
-//        }
-
-
         // Initialize views
         leaderboardListView = findViewById(R.id.leaderboardListView);
         mostRecentAttemptTextView = findViewById(R.id.mostRecentAttemptTextView);
@@ -77,10 +70,6 @@ public class GameEnd extends AppCompatActivity {
             finish();
         });
     }
-
-//    private boolean playerLost() {
-//        //
-//    }
 
 }
 

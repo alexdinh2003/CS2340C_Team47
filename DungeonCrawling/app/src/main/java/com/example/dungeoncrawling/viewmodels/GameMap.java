@@ -6,22 +6,18 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.SurfaceHolder;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.dungeoncrawling.model.Enemy;
 import com.example.dungeoncrawling.model.EnemyFactory;
-import com.example.dungeoncrawling.model.Leaderboard;
-import com.example.dungeoncrawling.model.ScoreEntry;
+import com.example.dungeoncrawling.model.EnemyPlayerCollision;
 import com.example.dungeoncrawling.model.graphics.HP;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.map.MapLayout;
-
-import java.util.Date;
 
 public class GameMap implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
@@ -35,6 +31,7 @@ public class GameMap implements SurfaceHolder.Callback {
     private Enemy enemy2;
     private HP health;
     private Context context;
+    private EnemyPlayerCollision enemyPlayerCollision;
 
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd, Context context) {
         this.holder = holder;
@@ -57,23 +54,28 @@ public class GameMap implements SurfaceHolder.Callback {
 
         this.sq = new Square(1, 1);
         switch (roomInd) {
-            case 0:
-                enemy1 = EnemyFactory.getEnemy("enemy1",2, 5);
-                enemy2 = EnemyFactory.getEnemy("enemy2",20, 3);
-                break;
-            case 1:
-                enemy1 = EnemyFactory.getEnemy("enemy2",10, 14);
-                enemy2 = EnemyFactory.getEnemy("enemy3",15, 3);
-                break;
-            case 2:
-                enemy1 = EnemyFactory.getEnemy("enemy3",3, 3);
-                enemy2 = EnemyFactory.getEnemy("enemy4",15, 7);
-                break;
+        case 0:
+            enemy1 = EnemyFactory.getEnemy("enemy1", 2, 5);
+            enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
+            break;
+        case 1:
+            enemy1 = EnemyFactory.getEnemy("enemy2", 10, 14);
+            enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
+            break;
+        case 2:
+            enemy1 = EnemyFactory.getEnemy("enemy3", 3, 3);
+            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
+            break;
+        default:
+            enemy1 = EnemyFactory.getEnemy("enemy3", 3, 3);
+            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
         }
         enemy1.setSpriteSheet(spriteSheet);
         enemy2.setSpriteSheet(spriteSheet);
-        System.out.println("1: (" + enemy1.getRow() + ", " + enemy1.getCol() + ")");
-        System.out.println("2: (" + enemy2.getRow() + ", " + enemy2.getCol() + ")");
+
+        this.enemyPlayerCollision = EnemyPlayerCollision.getInstance();
+        this.enemyPlayerCollision.subscribe(enemy1);
+        this.enemyPlayerCollision.subscribe(enemy2);
     }
 
     public void render() {
@@ -145,7 +147,7 @@ class Square {
     public void draw(Canvas c) {
         int x = this.col * MapLayout.TILE_WIDTH;
         int y = this.row * MapLayout.TILE_HEIGHT + 256;
-        c.drawRect(new Rect(x, y, x+MapLayout.TILE_WIDTH, y+MapLayout.TILE_HEIGHT), this.white);
+        c.drawRect(new Rect(x, y, x + MapLayout.TILE_WIDTH, y + MapLayout.TILE_HEIGHT), this.white);
     }
 
 }
