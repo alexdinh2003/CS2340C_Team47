@@ -6,22 +6,25 @@ import com.example.dungeoncrawling.model.graphics.Sprite;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
-public abstract class Enemy {
+public abstract class Enemy implements EnemySubscriber {
     private int row;
     private int col;
     private SpriteSheet spriteSheet;
+    private Player player;
     protected Sprite sprite;
 
     public Enemy(int row, int col, SpriteSheet spriteSheet) {
         this.row = row;
         this.col = col;
         this.spriteSheet = spriteSheet;
+        this.player = Player.getInstance();
         createSprite();
     }
 
     public Enemy(int row, int col) {
         this.row = row;
         this.col = col;
+        this.player = Player.getInstance();
     }
 
     public abstract void createSprite();
@@ -56,6 +59,10 @@ public abstract class Enemy {
         return col;
     }
 
+    public Player getPlayer() {
+        return this.player;
+    }
+
     public abstract void move();
 
     public void draw(Canvas canvas) {
@@ -71,7 +78,9 @@ public abstract class Enemy {
     }
 
     public void update(EnemyPlayerCollision subject) {
-        setPosition(subject.getRow(), subject.getCol());
+        if (subject.getRow() == this.row && subject.getCol() == this.col) {
+            player.loseHealth(1);
+        }
     }
 
 }
