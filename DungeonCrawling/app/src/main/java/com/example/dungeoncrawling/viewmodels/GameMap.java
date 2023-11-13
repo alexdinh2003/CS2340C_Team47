@@ -71,7 +71,7 @@ public class GameMap implements SurfaceHolder.Callback {
         enemy1.setSpriteSheet(spriteSheet);
         enemy2.setSpriteSheet(spriteSheet);
 
-        this.enemyPlayerCollision = EnemyPlayerCollision.getInstance();
+        this.enemyPlayerCollision = new EnemyPlayerCollision(player.getRow(), player.getCol());
         this.enemyPlayerCollision.removeAll();
         this.enemyPlayerCollision.subscribe(enemy1);
         this.enemyPlayerCollision.subscribe(enemy2);
