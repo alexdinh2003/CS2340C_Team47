@@ -52,7 +52,6 @@ public class GameScreen1 extends AppCompatActivity {
     private SpriteSheet spriteSheet;
     private WallCheck wallCheck;
     private GameMap map;
-    //private EnemyPlayerCollision enemyPlayerCollision;
     private HP hp;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
@@ -102,8 +101,6 @@ public class GameScreen1 extends AppCompatActivity {
         tilemap = new Tilemap(spriteSheet, roomInd);
         wallCheck = new WallCheck(tilemap);
         wallCheck.subscribe(player, player.getRow(), player.getCol());
-
-        //enemyPlayerCollision = EnemyPlayerCollision.getInstance();
 
         //make sure difficulty is correctly displayed
         switch (hp.getDifficulty()) {
@@ -176,7 +173,6 @@ public class GameScreen1 extends AppCompatActivity {
 
         int[] newLoc = strategy.move(this.player);
         wallCheck.check(newLoc[0], newLoc[1]);
-        //enemyPlayerCollision.check(player.getRow(), player.getCol());
 
         if (tilemap.isExit(this.player.getRow(), this.player.getCol())) {
             changeScreen();
@@ -186,7 +182,6 @@ public class GameScreen1 extends AppCompatActivity {
     private void changeScreen() {
         timer.stopTimer();
         Intent nextScreen;
-        //enemyPlayerCollision.removeAll();
         if (roomInd < 2) {
             nextScreen = new Intent(GameScreen1.this, GameScreen1.class);
             nextScreen.putExtra("Room Number", ++roomInd);
