@@ -1,5 +1,6 @@
 package com.example.dungeoncrawling;
 
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -58,5 +59,25 @@ public class EnemyMovementTests {
         assertTrue(startX != endX);
         assertTrue(startY == endY);
     }
+    @Test
+    public void EnemyGetRowTest() {
+        Enemy enemy4 = EnemyFactory.getEnemy("enemy1",2, 5);
+        assertEquals(enemy4.getCol(), 5);
+    }
+
+    @Test
+    public void EnemyGetColTest() {
+        Enemy enemy4 = EnemyFactory.getEnemy("enemy1",2, 5);
+        assertEquals(enemy4.getRow(), 2);
+    }
+    @Test
+    public void EnemySetPositionTest() {
+        Enemy enemy4 = EnemyFactory.getEnemy("enemy1",2, 5);
+        enemy4.setPosition(10, 11);
+        assertEquals(enemy4.getCol(), 11);
+        assertEquals(enemy4.getRow(), 10);
+    }
+
+
 
 }
