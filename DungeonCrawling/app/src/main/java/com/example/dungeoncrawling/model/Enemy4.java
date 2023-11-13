@@ -18,37 +18,42 @@ public class Enemy4 extends Enemy implements EnemySubscriber {
         this.sprite = this.getSpriteSheet().getEnemy(3);
     }
 
+    /** @noinspection checkstyle:FallThrough*/
     public void move() {
         //change position in some way every 1/2 secif (moveCount > 7) {
         if (moveCount > 5) {
             switch (dir) {
-                case "right":
-                    dir = "down";
-                    break;
-                case "down":
-                    dir = "left";
-                    break;
-                case "left":
-                    dir = "up";
-                    break;
-                case "up":
-                    dir = "right";
+            case "right":
+                dir = "down";
+                break;
+            case "down":
+                dir = "left";
+                break;
+            case "left":
+                dir = "up";
+                break;
+            default:
+                //case "up":
+                dir = "right";
+                break;
             }
+
             moveCount = 0;
         }
         switch (dir) {
-            case "right":
-                setPosition(getRow(), getCol() + 1);
-                break;
-            case "down":
-                setPosition(getRow() + 1, getCol());
-                break;
-            case "left":
-                setPosition(getRow(), getCol() - 1);
-                break;
-            case "up":
-                setPosition(getRow() - 1, getCol());
-                break;
+        case "right":
+            setPosition(getRow(), getCol() + 1);
+            break;
+        case "down":
+            setPosition(getRow() + 1, getCol());
+            break;
+        case "left":
+            setPosition(getRow(), getCol() - 1);
+            break;
+        default:
+            //case "up":
+            setPosition(getRow() - 1, getCol());
+            break;
         }
         moveCount++;
     }

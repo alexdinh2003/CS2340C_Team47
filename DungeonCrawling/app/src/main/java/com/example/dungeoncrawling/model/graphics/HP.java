@@ -1,9 +1,6 @@
 package com.example.dungeoncrawling.model.graphics;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
-
-import com.example.dungeoncrawling.viewmodels.GameEnd;
 
 public class HP {
     private static final int HEART_WIDTH = 64;

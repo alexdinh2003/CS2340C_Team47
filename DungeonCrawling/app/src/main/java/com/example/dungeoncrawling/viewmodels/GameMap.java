@@ -53,19 +53,20 @@ public class GameMap implements SurfaceHolder.Callback {
 
         switch (roomInd) {
 
-            case 0:
-                enemy1 = EnemyFactory.getEnemy("enemy1",2, 5);
-                enemy2 = EnemyFactory.getEnemy("enemy2",20, 3);
-                break;
-            case 1:
-                enemy1 = EnemyFactory.getEnemy("enemy2",10, 11);
-                enemy2 = EnemyFactory.getEnemy("enemy3",15, 3);
-                break;
-            case 2:
-                enemy1 = EnemyFactory.getEnemy("enemy3",1, 5);
-                enemy2 = EnemyFactory.getEnemy("enemy4",15, 7);
-                break;
-
+        case 0:
+            enemy1 = EnemyFactory.getEnemy("enemy1", 2, 5);
+            enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
+            break;
+        case 1:
+            enemy1 = EnemyFactory.getEnemy("enemy2", 10, 11);
+            enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
+            break;
+        case 2:
+            enemy1 = EnemyFactory.getEnemy("enemy3", 1, 5);
+            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
+            break;
+        default:
+            System.out.println("Error");
        
         }
         enemy1.setSpriteSheet(spriteSheet);
