@@ -7,16 +7,10 @@ public class EnemyPlayerCollision {
     private List<EnemySubscriber> subscribers = new ArrayList<>();
     private int row;
     private int col;
-    private static EnemyPlayerCollision coll;
 
-    private EnemyPlayerCollision() {
-    }
-
-    public static EnemyPlayerCollision getInstance() {
-        if (coll == null) {
-            coll = new EnemyPlayerCollision();
-        }
-        return coll;
+    public EnemyPlayerCollision(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
     public void check(int newRow, int newCol) {

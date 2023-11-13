@@ -50,6 +50,10 @@ public class Player implements Subscriber {
         return getInstance(name, null, 0, 5, 100, 0, 0);
     }
 
+    public static Player getInstance(String name, int health, int row, int col) {
+        return getInstance(name, null, 0, health, 100, row, col);
+    }
+
     public static Player getInstance(SpriteSheet spriteSheet) {
         return getInstance("n/a", spriteSheet, 0, 5, 100, 0, 0);
     }

@@ -16,7 +16,7 @@ import org.junit.Test;
 
 public class DungeonTests {
 
-    public Tilemap createTilemap() {
+    public static Tilemap createTilemap() {
         int[][] map = new int[][] {
                 {1, 1, 1, 1, 1, 1},
                 {1, 0, 1, 0, 0, 8},
