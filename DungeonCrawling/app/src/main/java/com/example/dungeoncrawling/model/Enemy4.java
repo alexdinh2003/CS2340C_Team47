@@ -52,11 +52,4 @@ public class Enemy4 extends Enemy implements EnemySubscriber {
         }
         moveCount++;
     }
-
-    @Override
-    public void update(EnemyPlayerCollision subject) {
-        if (subject.getRow() == this.getRow() && subject.getCol() == this.getCol()) {
-            getPlayer().loseHealth(2);
-        }
-    }
 }

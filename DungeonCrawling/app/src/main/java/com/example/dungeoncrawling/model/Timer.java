@@ -21,6 +21,7 @@ public class Timer {
         this.timerTextView = timerTextView;
         this.scoreText = scoreText;
         this.player = Player.getInstance();
+        this.scoreText.setText(Integer.toString(player.getScore()));
 
         this.timerHandler = new Handler();
         this.timerRunnable = new Runnable() {
@@ -33,8 +34,10 @@ public class Timer {
                 //currScore = 100;
                 if (scoreText != null) {
                     scoreText.setText(Integer.toString(player.getScore()));
-                    int score = player.getScore();
-                    player.setScore(--score);
+                    score = player.getScore();
+                    if (seconds % 5 == 0) {
+                        player.setScore(--score);
+                    }
                 }
                 timerTextView.setText(String.format("%d:%02d", minutes, seconds));
 

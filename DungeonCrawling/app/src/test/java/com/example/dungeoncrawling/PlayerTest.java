@@ -65,7 +65,7 @@ public class PlayerTest {
         int health = player.getHealth();
 
         // Assert
-        assertEquals(100, health);
+        assertEquals(100.0, health);
 
         // Arrange
         Player player2 = new Player();
