@@ -4,6 +4,7 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
 public class Enemy4 extends Enemy implements EnemySubscriber {
     private String dir = "down";
+    private static final double SPEED = 1;
     private int moveCount = 0;
 
     public Enemy4(int row, int col, SpriteSheet spriteSheet) {
