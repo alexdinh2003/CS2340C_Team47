@@ -86,6 +86,7 @@ public class Player implements Subscriber {
     }
     public void loseHealth(int amountLost) {
         this.health -= amountLost;
+        this.points -= (amountLost * 5);
     }
 
     public int getSpriteId() {

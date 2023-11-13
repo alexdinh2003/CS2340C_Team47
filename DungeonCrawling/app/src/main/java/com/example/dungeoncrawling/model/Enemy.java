@@ -3,6 +3,7 @@ package com.example.dungeoncrawling.model;
 import android.graphics.Canvas;
 
 import com.example.dungeoncrawling.model.graphics.Sprite;
+import com.example.dungeoncrawling.model.graphics.HP;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
@@ -11,6 +12,7 @@ public abstract class Enemy implements EnemySubscriber {
     private int col;
     private SpriteSheet spriteSheet;
     private Player player;
+    private HP health;
     protected Sprite sprite;
 
     public Enemy(int row, int col, SpriteSheet spriteSheet) {
@@ -18,6 +20,7 @@ public abstract class Enemy implements EnemySubscriber {
         this.col = col;
         this.spriteSheet = spriteSheet;
         this.player = Player.getInstance();
+        this.health = HP.getInstance();
         createSprite();
     }
 
@@ -25,6 +28,7 @@ public abstract class Enemy implements EnemySubscriber {
         this.row = row;
         this.col = col;
         this.player = Player.getInstance();
+        this.health = HP.getInstance();
     }
 
     public abstract void createSprite();
@@ -79,7 +83,7 @@ public abstract class Enemy implements EnemySubscriber {
 
     public void update(EnemyPlayerCollision subject) {
         if (subject.getRow() == this.row && subject.getCol() == this.col) {
-            player.loseHealth(1);
+            player.loseHealth(1 * health.getDifficulty());
         }
     }
 

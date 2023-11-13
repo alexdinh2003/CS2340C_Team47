@@ -38,6 +38,10 @@ public class EnemyPlayerCollision {
         }
     }
 
+    public void removeAll() {
+        subscribers = new ArrayList<EnemySubscriber>();
+    }
+
     public int getRow() {
         return row;
     }
@@ -45,6 +49,11 @@ public class EnemyPlayerCollision {
     public int getCol() {
         return col;
     }
+
+    public List<EnemySubscriber> getSubscribers() {
+        return subscribers;
+    }
+
     protected void notifySubscribers() {
         for (EnemySubscriber subscriber : subscribers) {
             subscriber.update(this);

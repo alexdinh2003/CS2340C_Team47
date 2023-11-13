@@ -89,15 +89,6 @@ public class HP {
     }
 
     public void draw(Canvas canvas, int currentHealth) {
-
-        if (currentHealth <= 0) {
-            // Display the Game Over screen when health is 0
-            Intent gameOverIntent = new Intent(context, GameEnd.class);
-            gameOverIntent.putExtra("GameOver", true);
-            context.startActivity(gameOverIntent);
-            return;
-        }
-
         if (this.spriteSheet == null) {
             System.out.println("Sorry, it looks like you never specified a "
                     + "sprite sheet for the health.");

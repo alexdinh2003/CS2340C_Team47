@@ -17,7 +17,6 @@ import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.Player;
-import com.example.dungeoncrawling.model.map.MapLayout;
 
 public class GameMap implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
@@ -26,12 +25,12 @@ public class GameMap implements SurfaceHolder.Callback {
     private Player player;
     private WallCheck wallCheck;
     private GameLoop gameLoop;
-    private Square sq;
     private Enemy enemy1;
     private Enemy enemy2;
     private HP health;
     private Context context;
     private EnemyPlayerCollision enemyPlayerCollision;
+    private static int round;
 
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd, Context context) {
         this.holder = holder;
@@ -52,7 +51,6 @@ public class GameMap implements SurfaceHolder.Callback {
 
         this.gameLoop = new GameLoop(this);
 
-        this.sq = new Square(1, 1);
         switch (roomInd) {
 
             case 0:
@@ -74,15 +72,15 @@ public class GameMap implements SurfaceHolder.Callback {
         enemy2.setSpriteSheet(spriteSheet);
 
         this.enemyPlayerCollision = EnemyPlayerCollision.getInstance();
+        this.enemyPlayerCollision.removeAll();
         this.enemyPlayerCollision.subscribe(enemy1);
         this.enemyPlayerCollision.subscribe(enemy2);
+        System.out.println(this.enemyPlayerCollision.getSubscribers().size());
     }
 
     public void render() {
         if (player.getHealth() == 0) {
-            Intent end = new Intent(context, GameEnd.class);
-            end.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(end);
+            gameOver();
         }
         Canvas c = this.holder.lockCanvas();
         if (c != null) {
@@ -90,7 +88,6 @@ public class GameMap implements SurfaceHolder.Callback {
             this.health.draw(c, player.getHealth());
             this.tilemap.draw(c);
             this.player.draw(c);
-            //this.sq.draw(c);
             enemy1.draw(c);
             enemy2.draw(c);
             this.holder.unlockCanvasAndPost(c);
@@ -100,6 +97,16 @@ public class GameMap implements SurfaceHolder.Callback {
     public void update() {
         enemy1.move();
         enemy2.move();
+        enemyPlayerCollision.check(player.getRow(), player.getCol());
+    }
+
+    public void gameOver() {
+        Intent gameOverIntent = new Intent(context, GameEnd.class);
+        gameOverIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        gameOverIntent.putExtra("GameOver", true);
+        enemyPlayerCollision.removeAll();
+        context.startActivity(gameOverIntent);
+        this.gameLoop.endGameLoop();
     }
 
     @Override
@@ -117,38 +124,4 @@ public class GameMap implements SurfaceHolder.Callback {
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
 
     }
-}
-
-class Square {
-    private int row;
-    private int col;
-    private int xDir = 1, yDir = 1;
-    private int width = 64;
-    private Paint white;
-
-    public Square(int row, int col) {
-        this.row = row;
-        this.col = col;
-        this.white = new Paint();
-        this.white.setColor(-1);
-    }
-
-    public void move() {
-        this.row += xDir;
-        if (this.row >= MapLayout.NUM_ROWS - 1 || this.row < 0) {
-            xDir *= -1;
-        }
-
-        this.col += yDir;
-        if (this.col >= MapLayout.NUM_COLS - 1 || this.col < 0) {
-            yDir *= -1;
-        }
-    }
-
-    public void draw(Canvas c) {
-        int x = this.col * MapLayout.TILE_WIDTH;
-        int y = this.row * MapLayout.TILE_HEIGHT + 256;
-        c.drawRect(new Rect(x, y, x + MapLayout.TILE_WIDTH, y + MapLayout.TILE_HEIGHT), this.white);
-    }
-
 }
