@@ -15,6 +15,8 @@ public class Timer {
     private int score;
     private Player player;
 
+    private boolean isPaused = false;
+
 
     public Timer(long startTime, TextView timerTextView, TextView scoreText) {
         this.startTime = startTime;
@@ -90,6 +92,7 @@ public class Timer {
     public void setScore(int score) {
         player.setScore(score);
     }
+
 }
 
 
