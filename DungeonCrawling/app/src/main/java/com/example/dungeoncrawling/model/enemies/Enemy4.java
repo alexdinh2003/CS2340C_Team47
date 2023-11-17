@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling.model;
+package com.example.dungeoncrawling.model.enemies;
 
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 

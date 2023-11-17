@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling.model;
+package com.example.dungeoncrawling.model.powerups;
 
 import android.graphics.Canvas;
 

@@ -9,19 +9,22 @@ import android.view.SurfaceHolder;
 
 import androidx.annotation.NonNull;
 
-import com.example.dungeoncrawling.model.DefaultPowerUp;
-import com.example.dungeoncrawling.model.Enemy;
-import com.example.dungeoncrawling.model.EnemyFactory;
-import com.example.dungeoncrawling.model.EnemyPlayerCollision;
-import com.example.dungeoncrawling.model.HealthPowerUp;
-import com.example.dungeoncrawling.model.InvincibilityPowerUp;
-import com.example.dungeoncrawling.model.PowerUp;
-import com.example.dungeoncrawling.model.SpeedPowerUp;
+import com.example.dungeoncrawling.model.powerups.DefaultPowerUp;
+import com.example.dungeoncrawling.model.enemies.Enemy;
+import com.example.dungeoncrawling.model.enemies.EnemyFactory;
+import com.example.dungeoncrawling.model.enemies.EnemyPlayerCollision;
+import com.example.dungeoncrawling.model.powerups.HealthPowerUp;
+import com.example.dungeoncrawling.model.powerups.InvincibilityPowerUp;
+import com.example.dungeoncrawling.model.powerups.PowerUp;
+import com.example.dungeoncrawling.model.powerups.PowerUpCheck;
+import com.example.dungeoncrawling.model.powerups.SpeedPowerUp;
 import com.example.dungeoncrawling.model.graphics.HP;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.Player;
+
+import java.util.List;
 
 public class GameMap implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
@@ -36,6 +39,7 @@ public class GameMap implements SurfaceHolder.Callback {
     private Context context;
     private EnemyPlayerCollision enemyPlayerCollision;
     private PowerUp[] powerUps;
+    private PowerUpCheck powerUpCheck;
 
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd, Context context) {
         this.holder = holder;
@@ -71,8 +75,10 @@ public class GameMap implements SurfaceHolder.Callback {
             c.drawRect(new Rect(0, 0, 4000, 1000), white);
             this.health.draw(c, player.getHealth());
             this.tilemap.draw(c);
-            powerUps[0].draw(c);
-            powerUps[1].draw(c);
+            List<PowerUp> powerUpsLeft = powerUpCheck.getSubscribers();
+            for (PowerUp power : powerUpsLeft) {
+                power.draw(c);
+            }
             this.player.draw(c);
             enemy1.draw(c);
             enemy2.draw(c);
@@ -144,6 +150,11 @@ public class GameMap implements SurfaceHolder.Callback {
         this.enemyPlayerCollision.removeAll();
         this.enemyPlayerCollision.subscribe(enemy1);
         this.enemyPlayerCollision.subscribe(enemy2);
+
+        this.powerUpCheck = PowerUpCheck.getInstance(player.getPosition());
+        this.powerUpCheck.unsubscribeAll();
+        this.powerUpCheck.subscribe(powerUps[0]);
+        this.powerUpCheck.subscribe(powerUps[1]);
     }
 
     @Override

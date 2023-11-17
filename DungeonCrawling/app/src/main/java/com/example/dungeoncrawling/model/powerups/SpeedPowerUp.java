@@ -1,4 +1,4 @@
-package com.example.dungeoncrawling.model;
+package com.example.dungeoncrawling.model.powerups;
 
 import android.graphics.Canvas;
 
@@ -12,7 +12,7 @@ public class SpeedPowerUp extends PowerUpDecorator {
 
     @Override
     public void powerUp() {
-        //give the player speed, just have to change it here
+        System.out.println("Zoom!!!");
     }
 
     public void draw(Canvas c) {

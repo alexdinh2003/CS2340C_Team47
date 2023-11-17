@@ -3,18 +3,12 @@ package com.example.dungeoncrawling;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-import com.example.dungeoncrawling.model.DirectionStrategy;
-import com.example.dungeoncrawling.model.Down;
-import com.example.dungeoncrawling.model.Enemy;
-import com.example.dungeoncrawling.model.EnemyFactory;
-import com.example.dungeoncrawling.model.EnemyPlayerCollision;
-import com.example.dungeoncrawling.model.Left;
+import com.example.dungeoncrawling.model.enemies.Enemy;
+import com.example.dungeoncrawling.model.enemies.EnemyFactory;
+import com.example.dungeoncrawling.model.enemies.EnemyPlayerCollision;
 import com.example.dungeoncrawling.model.Player;
-import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.HP;
-import com.example.dungeoncrawling.model.map.Tilemap;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

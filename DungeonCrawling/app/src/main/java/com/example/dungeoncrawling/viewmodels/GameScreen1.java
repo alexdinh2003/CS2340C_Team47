@@ -25,6 +25,7 @@ import com.example.dungeoncrawling.model.Left;
 import com.example.dungeoncrawling.model.Right;
 import com.example.dungeoncrawling.model.Up;
 import com.example.dungeoncrawling.model.map.Tilemap;
+import com.example.dungeoncrawling.model.powerups.PowerUpCheck;
 
 import java.util.Date;
 
@@ -52,6 +53,7 @@ public class GameScreen1 extends AppCompatActivity {
     private WallCheck wallCheck;
     private GameMap map;
     private HP hp;
+    private PowerUpCheck powerUpCheck;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
@@ -100,6 +102,8 @@ public class GameScreen1 extends AppCompatActivity {
         tilemap = new Tilemap(spriteSheet, roomInd);
         wallCheck = new WallCheck(tilemap);
         wallCheck.subscribe(player, player.getRow(), player.getCol());
+
+        powerUpCheck = PowerUpCheck.getInstance(player.getPosition());
 
         //make sure difficulty is correctly displayed
         switch (hp.getDifficulty()) {
@@ -172,6 +176,7 @@ public class GameScreen1 extends AppCompatActivity {
 
         int[] newLoc = strategy.move(this.player);
         wallCheck.check(newLoc[0], newLoc[1]);
+        powerUpCheck.check(player.getPosition());
 
         if (tilemap.isExit(this.player.getRow(), this.player.getCol())) {
             changeScreen();
