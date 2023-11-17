@@ -5,9 +5,7 @@ import android.content.Intent;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +27,7 @@ import com.example.dungeoncrawling.model.Left;
 import com.example.dungeoncrawling.model.Right;
 import com.example.dungeoncrawling.model.Up;
 import com.example.dungeoncrawling.model.map.Tilemap;
+import com.example.dungeoncrawling.model.powerups.PowerUpCheck;
 
 import java.util.Date;
 
@@ -56,8 +55,9 @@ public class GameScreen1 extends AppCompatActivity {
     private WallCheck wallCheck;
     private GameMap map;
     private HP hp;
+    private PowerUpCheck powerUpCheck;
 
-    MediaPlayer player1;
+    private MediaPlayer player1;
     private Button stopMusic;
     private Button startMusic;
 
@@ -112,6 +112,8 @@ public class GameScreen1 extends AppCompatActivity {
         //stop music
         stopMusic = findViewById(R.id.soundButton);
         startMusic = findViewById(R.id.startMusic);
+        powerUpCheck = PowerUpCheck.getInstance(player.getPosition());
+
 
         //make sure difficulty is correctly displayed
         switch (hp.getDifficulty()) {
@@ -191,6 +193,7 @@ public class GameScreen1 extends AppCompatActivity {
 
         int[] newLoc = strategy.move(this.player);
         wallCheck.check(newLoc[0], newLoc[1]);
+        powerUpCheck.check(player.getPosition());
 
         if (tilemap.isExit(this.player.getRow(), this.player.getCol())) {
             changeScreen();
