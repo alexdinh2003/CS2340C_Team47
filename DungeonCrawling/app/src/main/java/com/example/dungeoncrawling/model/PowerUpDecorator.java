@@ -13,8 +13,10 @@ public class PowerUpDecorator implements PowerUp {
     protected int row;
     protected int col;
 
-    public PowerUpDecorator(PowerUp power) {
+    public PowerUpDecorator(PowerUp power, int row, int col) {
         this.wrappee = power;
+        this.row = row;
+        this.col = col;
     }
 
     public PowerUpDecorator(PowerUp power, SpriteSheet spriteSheet, int row, int col) {
@@ -22,6 +24,13 @@ public class PowerUpDecorator implements PowerUp {
         this.col = col;
         this.wrappee = power;
         this.spriteSheet = spriteSheet;
+        if (this.spriteSheet != null) {
+            createSprite();
+        }
+    }
+
+    public void createSprite() {
+        this.sprite = spriteSheet.getInvinciblePotion();
     }
 
     @Override

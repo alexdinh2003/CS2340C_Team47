@@ -7,33 +7,17 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
 public class TimeStopPowerUp extends PowerUpDecorator {
-    public TimeStopPowerUp(PowerUp power) {
-        super(power);
+    public TimeStopPowerUp(PowerUp power, int row, int col) {
+        super(power, row, col);
     }
 
     public TimeStopPowerUp(PowerUp power, SpriteSheet spriteSheet, int row, int col) {
         super(power, spriteSheet, row, col);
-        if (this.spriteSheet != null) {
-            createSprite();
-        }
-    }
-
-    private void createSprite() {
-        this.sprite = this.spriteSheet.getTimeStopPotion();
     }
 
     @Override
-    public void draw(Canvas c) {
-        if (spriteSheet == null) {
-            System.out.println("Sorry, it looks like you never specified a "
-                    + "sprite sheet for the powerup.");
-            return;
-        }
-
-        sprite.draw(
-                c,
-                this.col * MapLayout.TILE_WIDTH,
-                this.row * MapLayout.TILE_HEIGHT + 256);
+    public void createSprite() {
+        this.sprite = this.spriteSheet.getTimeStopPotion();
     }
 
     @Override
