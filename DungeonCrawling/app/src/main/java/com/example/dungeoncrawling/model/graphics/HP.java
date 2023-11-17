@@ -85,6 +85,10 @@ public class HP {
         }
     }
 
+    public int getMaxHearts() {
+        return maxHearts;
+    }
+
     public void draw(Canvas canvas, int currentHealth) {
         if (this.spriteSheet == null) {
             System.out.println("Sorry, it looks like you never specified a "
