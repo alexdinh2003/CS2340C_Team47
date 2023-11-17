@@ -2,8 +2,13 @@ package com.example.dungeoncrawling.model;
 
 import android.graphics.Canvas;
 
+import com.example.dungeoncrawling.model.graphics.Sprite;
+import com.example.dungeoncrawling.model.graphics.SpriteSheet;
+
 public interface PowerUp {
 
-    void draw(Canvas c);
     void powerUp();
+    SpriteSheet getSpriteSheet();
+    void draw(Canvas c);
+    int[] getPos();
 }

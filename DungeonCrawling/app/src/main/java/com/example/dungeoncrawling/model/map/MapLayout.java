@@ -7,16 +7,29 @@ public class MapLayout {
     public static final int NUM_COLS = 17;
     private int[][] layout;
     private int[] startPos;
+    private int[][] powerUpPos;
 
     private static int exitX; // Set the actual X-coordinate of the exit
     private static int exitY; // Set the actual Y-coordinate of the exit
     public MapLayout(int ind) {
         if (ind == 0) {
             this.startPos = new int[]{23, NUM_COLS - 2};
+            this.powerUpPos = new int[][] {
+                    {NUM_ROWS - 2, 1},
+                    {12, NUM_COLS - 4}
+            };
         } else if (ind == 1) {
             this.startPos = new int[]{24, 1};
+            this.powerUpPos = new int[][] {
+                    {5, 1},
+                    {13, 5}
+            };
         } else {
             this.startPos = new int[]{1, 1};
+            this.powerUpPos = new int[][] {
+                    {3, NUM_COLS - 4},
+                    {NUM_ROWS - 5, 5}
+            };
         }
         initializeLayout(ind);
     }
@@ -32,6 +45,10 @@ public class MapLayout {
 
     public int[] getStartPos() {
         return this.startPos;
+    }
+
+    public int[][] getPowerUpPos() {
+        return this.powerUpPos;
     }
 
     private void initializeLayout(int ind) {

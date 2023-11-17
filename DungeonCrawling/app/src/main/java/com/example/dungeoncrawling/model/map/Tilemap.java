@@ -14,6 +14,7 @@ public class Tilemap {
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
     private int[] startPos;
+    private int[][] powerUpPos;
 
     public Tilemap(SpriteSheet spriteSheet, int ind) {
         mapLayout = new MapLayout(ind);
@@ -30,6 +31,7 @@ public class Tilemap {
     private void initializeTilemap(int ind) {
         int[][] layout = mapLayout.getLayout();
         this.startPos = mapLayout.getStartPos();
+        this.powerUpPos = mapLayout.getPowerUpPos();
         basetiles = new Tile[MapLayout.NUM_ROWS][MapLayout.NUM_COLS];
         tilemap = new Tile[MapLayout.NUM_ROWS][MapLayout.NUM_COLS];
         for (int iRow = 0; iRow < MapLayout.NUM_ROWS; iRow++) {
@@ -109,6 +111,10 @@ public class Tilemap {
 
     public int[] getStartPos() {
         return this.startPos;
+    }
+
+    public int[][] getPowerUpPos() {
+        return this.powerUpPos;
     }
 
     public boolean isExit(int row, int col) {

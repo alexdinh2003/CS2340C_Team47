@@ -9,9 +9,14 @@ import android.view.SurfaceHolder;
 
 import androidx.annotation.NonNull;
 
+import com.example.dungeoncrawling.model.DefaultPowerUp;
 import com.example.dungeoncrawling.model.Enemy;
 import com.example.dungeoncrawling.model.EnemyFactory;
 import com.example.dungeoncrawling.model.EnemyPlayerCollision;
+import com.example.dungeoncrawling.model.HealthPowerUp;
+import com.example.dungeoncrawling.model.InvincibilityPowerUp;
+import com.example.dungeoncrawling.model.PowerUp;
+import com.example.dungeoncrawling.model.SpeedPowerUp;
 import com.example.dungeoncrawling.model.graphics.HP;
 import com.example.dungeoncrawling.model.WallCheck;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
@@ -30,7 +35,7 @@ public class GameMap implements SurfaceHolder.Callback {
     private HP health;
     private Context context;
     private EnemyPlayerCollision enemyPlayerCollision;
-    private static int round;
+    private PowerUp[] powerUps;
 
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd, Context context) {
         this.holder = holder;
@@ -43,40 +48,18 @@ public class GameMap implements SurfaceHolder.Callback {
         this.player.setSpriteSheet(spriteSheet);
         this.player.setInitalPosition(this.tilemap.getStartPos());
 
-        this.wallCheck = new WallCheck(this.tilemap);
-        this.wallCheck.subscribe(this.player, this.player.getRow(), this.player.getCol());
-
         this.health = HP.getInstance();
         this.health.setSpriteSheet(spriteSheet);
 
-        this.gameLoop = new GameLoop(this);
+        createPowerUps(roomInd, spriteSheet);
 
-        switch (roomInd) {
-
-        case 0:
-            enemy1 = EnemyFactory.getEnemy("enemy1", 2, 5);
-            enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
-            break;
-        case 1:
-            enemy1 = EnemyFactory.getEnemy("enemy2", 10, 11);
-            enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
-            break;
-        case 2:
-            enemy1 = EnemyFactory.getEnemy("enemy3", 1, 5);
-            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
-            break;
-        default:
-            System.out.println("Error");
-       
-        }
+        createEnemies(roomInd);
         enemy1.setSpriteSheet(spriteSheet);
         enemy2.setSpriteSheet(spriteSheet);
 
-        this.enemyPlayerCollision = new EnemyPlayerCollision(player.getRow(), player.getCol());
-        this.enemyPlayerCollision.removeAll();
-        this.enemyPlayerCollision.subscribe(enemy1);
-        this.enemyPlayerCollision.subscribe(enemy2);
-        System.out.println(this.enemyPlayerCollision.getSubscribers().size());
+        collisionSetUp();
+
+        this.gameLoop = new GameLoop(this);
     }
 
     public void render() {
@@ -88,6 +71,8 @@ public class GameMap implements SurfaceHolder.Callback {
             c.drawRect(new Rect(0, 0, 4000, 1000), white);
             this.health.draw(c, player.getHealth());
             this.tilemap.draw(c);
+            powerUps[0].draw(c);
+            powerUps[1].draw(c);
             this.player.draw(c);
             enemy1.draw(c);
             enemy2.draw(c);
@@ -108,6 +93,57 @@ public class GameMap implements SurfaceHolder.Callback {
         enemyPlayerCollision.removeAll();
         context.startActivity(gameOverIntent);
         this.gameLoop.endGameLoop();
+    }
+
+    public void createEnemies(int room) {
+        switch (room) {
+        case 0:
+            enemy1 = EnemyFactory.getEnemy("enemy1", 2, 5);
+            enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
+            break;
+        case 1:
+            enemy1 = EnemyFactory.getEnemy("enemy2", 10, 11);
+            enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
+            break;
+        case 2:
+            enemy1 = EnemyFactory.getEnemy("enemy3", 1, 5);
+            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
+            break;
+        default:
+            System.out.println("Error");
+        }
+    }
+
+    public void createPowerUps(int room, SpriteSheet spriteSheet) {
+        this.powerUps = new PowerUp[2];
+
+        PowerUp defaultPower = new DefaultPowerUp(spriteSheet, this.tilemap.getPowerUpPos()[0]);
+        PowerUp defaultPower2 = new DefaultPowerUp(spriteSheet, this.tilemap.getPowerUpPos()[1]);
+
+        switch(room) {
+        case 0:
+            powerUps[0] = new HealthPowerUp(defaultPower);
+            powerUps[1] = new InvincibilityPowerUp(defaultPower2);
+            break;
+        case 1:
+            powerUps[0] = new InvincibilityPowerUp(defaultPower);
+            powerUps[1] = new SpeedPowerUp(defaultPower2);
+            break;
+        default:
+            powerUps[0] = new HealthPowerUp(defaultPower);
+            powerUps[1] = new SpeedPowerUp(defaultPower2);
+        }
+
+    }
+
+    public void collisionSetUp() {
+        this.wallCheck = new WallCheck(this.tilemap);
+        this.wallCheck.subscribe(this.player, this.player.getRow(), this.player.getCol());
+
+        this.enemyPlayerCollision = new EnemyPlayerCollision(player.getRow(), player.getCol());
+        this.enemyPlayerCollision.removeAll();
+        this.enemyPlayerCollision.subscribe(enemy1);
+        this.enemyPlayerCollision.subscribe(enemy2);
     }
 
     @Override
