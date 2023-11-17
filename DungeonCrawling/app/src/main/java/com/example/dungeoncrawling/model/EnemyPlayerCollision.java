@@ -26,7 +26,7 @@ public class EnemyPlayerCollision {
         subscribers.remove(subscriber);
     }
 
-    public void unsubscribe() {
+    public void unsubscribeAll() {
         if (subscribers.size() > 0) {
             subscribers.remove(subscribers.size() - 1);
         }

@@ -14,6 +14,7 @@ public abstract class Enemy implements EnemySubscriber {
     private Player player;
     private HP health;
     protected Sprite sprite;
+    private int speed;
 
     public Enemy(int row, int col, SpriteSheet spriteSheet) {
         this.row = row;

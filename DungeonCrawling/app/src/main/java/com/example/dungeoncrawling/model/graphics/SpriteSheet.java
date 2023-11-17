@@ -106,15 +106,30 @@ public class SpriteSheet {
     }
 
     public Sprite getFullHeart() {
-        return new Sprite(this, new Rect(1855, 1984, 1919, 2048));
+        //return new Sprite(this, new Rect(1855, 1984, 1919, 2048));
+        return new Sprite(this, new Rect(1103, 1453, 1167, 1517));
     }
 
     public Sprite getHalfHeart() {
-        return new Sprite(this, new Rect(1919, 1984, 1983, 2048));
+        //return new Sprite(this, new Rect(1919, 1984, 1983, 2048));
+        return new Sprite(this, new Rect(1166, 1453, 1230, 1517));
     }
 
     public Sprite getEmptyHeart() {
-        return new Sprite(this, new Rect(1983, 1984, 2048, 2048));
+        //return new Sprite(this, new Rect(1983, 1984, 2048, 2048));
+        return new Sprite(this, new Rect(1231, 1453, 1295, 1517));
+    }
+
+    public Sprite getInvinciblePotion() {
+        return new Sprite(this, new Rect(1168, 1325, 1232, 1389));
+    }
+
+    public Sprite getHealthPotion() {
+        return new Sprite(this, new Rect(1233, 1325, 1297, 1389));
+    }
+
+    public Sprite getTimeStopPotion() {
+        return new Sprite(this, new Rect(1298, 1325, 1362, 1389));
     }
 }
 

@@ -4,14 +4,18 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 
 public class Enemy1 extends Enemy implements EnemySubscriber {
     private int moveCount = 0;
+    private static final double SPEED = 0.25;
+    private double partialYPos;
     private boolean moveRight = true;
 
     public Enemy1(int row, int col, SpriteSheet spriteSheet) {
         super(row, col, spriteSheet);
+        partialYPos = row;
     }
 
     public Enemy1(int row, int col) {
         super(row, col);
+        partialYPos = row;
     }
 
     public void createSprite() {
@@ -20,14 +24,16 @@ public class Enemy1 extends Enemy implements EnemySubscriber {
 
     public void move() {
         //change position in some way every 1/2 sec
-        if (moveCount > 6) {
+        if (moveCount > 24) {
             moveCount = 0;
             moveRight = !moveRight;
         }
         if (moveRight) {
-            setPosition(getRow() + 1, getCol());
+            partialYPos += SPEED;
+            setPosition((int) partialYPos, getCol());
         } else {
-            setPosition(getRow() - 1, getCol());
+            partialYPos -= SPEED;
+            setPosition((int) partialYPos, getCol());
         }
         moveCount += 1;
     }
