@@ -3,12 +3,12 @@ package com.example.dungeoncrawling;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import com.example.dungeoncrawling.model.Enemy;
-import com.example.dungeoncrawling.model.EnemyFactory;
-import com.example.dungeoncrawling.model.Enemy1;
-import com.example.dungeoncrawling.model.Enemy2;
-import com.example.dungeoncrawling.model.Enemy3;
-import com.example.dungeoncrawling.model.Enemy4;
+import com.example.dungeoncrawling.model.enemies.Enemy;
+import com.example.dungeoncrawling.model.enemies.EnemyFactory;
+import com.example.dungeoncrawling.model.enemies.Enemy1;
+import com.example.dungeoncrawling.model.enemies.Enemy2;
+import com.example.dungeoncrawling.model.enemies.Enemy3;
+import com.example.dungeoncrawling.model.enemies.Enemy4;
 public class EnemyFactoryTest {
 
     @Test
