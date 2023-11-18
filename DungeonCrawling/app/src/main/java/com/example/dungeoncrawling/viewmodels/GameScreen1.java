@@ -3,11 +3,13 @@ package com.example.dungeoncrawling.viewmodels;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,6 +56,10 @@ public class GameScreen1 extends AppCompatActivity {
     private GameMap map;
     private HP hp;
     private PowerUpCheck powerUpCheck;
+
+    private MediaPlayer player1;
+    private Button stopMusic;
+    private Button startMusic;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
@@ -103,7 +109,11 @@ public class GameScreen1 extends AppCompatActivity {
         wallCheck = new WallCheck(tilemap);
         wallCheck.subscribe(player, player.getRow(), player.getCol());
 
+        //stop music
+        stopMusic = findViewById(R.id.soundButton);
+        startMusic = findViewById(R.id.startMusic);
         powerUpCheck = PowerUpCheck.getInstance(player.getPosition());
+
 
         //make sure difficulty is correctly displayed
         switch (hp.getDifficulty()) {
@@ -154,6 +164,13 @@ public class GameScreen1 extends AppCompatActivity {
             map.render();
         });
 
+        stopMusic.setOnClickListener(v -> {
+            stopPlayer();
+        });
+
+        startMusic.setOnClickListener(v -> {
+            play();
+        });
     }
 
     private void movePlayer(String dir) {
@@ -197,6 +214,32 @@ public class GameScreen1 extends AppCompatActivity {
         }
         startActivity(nextScreen);
         finish();
+    }
+
+    public void play() {
+        if (player1 == null) {
+            player1 = MediaPlayer.create(this, R.raw.song2);
+            player1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+
+        player1.start();
+    }
+
+    public void stop() {
+        stopPlayer();
+    }
+
+    private void stopPlayer() {
+        if (player1 != null) {
+            player1.release();
+            player1 = null;
+            Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT);
+        }
     }
 }
 

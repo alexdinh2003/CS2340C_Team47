@@ -126,7 +126,7 @@ public class GameMap implements SurfaceHolder.Callback {
         PowerUp defaultPower = new DefaultPowerUp(spriteSheet, this.tilemap.getPowerUpPos()[0]);
         PowerUp defaultPower2 = new DefaultPowerUp(spriteSheet, this.tilemap.getPowerUpPos()[1]);
 
-        switch(room) {
+        switch (room) {
         case 0:
             powerUps[0] = new HealthPowerUp(defaultPower);
             powerUps[1] = new InvincibilityPowerUp(defaultPower2);
