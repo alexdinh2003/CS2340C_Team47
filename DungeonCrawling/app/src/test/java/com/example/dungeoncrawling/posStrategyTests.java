@@ -2,12 +2,12 @@ package com.example.dungeoncrawling;
 
 import org.junit.Test;
 
-import com.example.dungeoncrawling.model.DirectionStrategy;
+import com.example.dungeoncrawling.model.playermove.DirectionStrategy;
 import com.example.dungeoncrawling.model.Player;
-import com.example.dungeoncrawling.model.Down;
-import com.example.dungeoncrawling.model.Left;
-import com.example.dungeoncrawling.model.Right;
-import com.example.dungeoncrawling.model.Up;
+import com.example.dungeoncrawling.model.playermove.Down;
+import com.example.dungeoncrawling.model.playermove.Left;
+import com.example.dungeoncrawling.model.playermove.Right;
+import com.example.dungeoncrawling.model.playermove.Up;
 import com.example.dungeoncrawling.model.map.MapLayout;
 
 import java.util.Arrays;
