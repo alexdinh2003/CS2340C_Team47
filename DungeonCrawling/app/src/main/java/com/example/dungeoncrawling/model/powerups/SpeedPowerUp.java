@@ -10,9 +10,9 @@ public class SpeedPowerUp extends PowerUpDecorator {
 
     private long startTime;
     private boolean active = false;
-    private final static int SPEED = 2;
+    private static final int SPEED = 2;
     private Player p;
-    private final static int EFFECT_TIME = 10 * 1000;
+    private static final int EFFECT_TIME = 10 * 1000;
 
     public SpeedPowerUp(PowerUp power) {
         super(power);
@@ -21,9 +21,8 @@ public class SpeedPowerUp extends PowerUpDecorator {
 
     @Override
     public void powerUp() {
-        System.out.println("Zoom!!!");
         // if the power up has just activated, store start time & set player speed to 3
-        if (this.active == false) {
+        if (!this.active) {
             this.active = true;
             this.startTime = System.currentTimeMillis();
             p.setSpeed(SPEED);
@@ -33,10 +32,7 @@ public class SpeedPowerUp extends PowerUpDecorator {
         if (System.currentTimeMillis() - startTime >= EFFECT_TIME) {
             this.active = false;
             p.setSpeed(1);
-            return;
         }
-
-        System.out.println("Player speed: " + p.getSpeed());
     }
 
     @Override

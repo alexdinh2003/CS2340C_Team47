@@ -11,7 +11,7 @@ public class InvincibilityPowerUp extends PowerUpDecorator {
     private boolean active = false;
     private int health;
     private Player p;
-    private final static int EFFECT_TIME = 30 * 1000;
+    private static final int EFFECT_TIME = 30 * 1000;
     public InvincibilityPowerUp(PowerUp power) {
         super(power);
         p = Player.getInstance();
@@ -19,9 +19,8 @@ public class InvincibilityPowerUp extends PowerUpDecorator {
 
     @Override
     public void powerUp() {
-        System.out.println("Invincible!");
         // if the power up has just activated, store start time & current health
-        if (this.active == false) {
+        if (!this.active) {
             this.active = true;
             this.startTime = System.currentTimeMillis();
             this.health = p.getHealth();
@@ -38,7 +37,6 @@ public class InvincibilityPowerUp extends PowerUpDecorator {
         if (p.getHealth() < health) {
             p.setHealth(health);
         }
-        System.out.println("Player health: " + p.getHealth());
     }
 
     public void draw(Canvas c) {
