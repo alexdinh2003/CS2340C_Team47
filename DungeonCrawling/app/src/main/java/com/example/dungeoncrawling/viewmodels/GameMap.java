@@ -73,8 +73,8 @@ public class GameMap implements SurfaceHolder.Callback {
         Canvas c = this.holder.lockCanvas();
         if (c != null) {
             c.drawRect(new Rect(0, 0, 4000, 1000), white);
-            this.health.draw(c, player.getHealth());
             this.tilemap.draw(c);
+            this.health.draw(c, player.getHealth());
             List<PowerUp> powerUpsLeft = powerUpCheck.getSubscribers();
             for (PowerUp power : powerUpsLeft) {
                 power.draw(c);
@@ -90,6 +90,7 @@ public class GameMap implements SurfaceHolder.Callback {
         enemy1.move();
         enemy2.move();
         enemyPlayerCollision.check(player.getRow(), player.getCol());
+        powerUpCheck.check(player.getPosition());
     }
 
     public void gameOver() {
@@ -147,7 +148,6 @@ public class GameMap implements SurfaceHolder.Callback {
         this.wallCheck.subscribe(this.player, this.player.getRow(), this.player.getCol());
 
         this.enemyPlayerCollision = new EnemyPlayerCollision(player.getRow(), player.getCol());
-        this.enemyPlayerCollision.removeAll();
         this.enemyPlayerCollision.subscribe(enemy1);
         this.enemyPlayerCollision.subscribe(enemy2);
 

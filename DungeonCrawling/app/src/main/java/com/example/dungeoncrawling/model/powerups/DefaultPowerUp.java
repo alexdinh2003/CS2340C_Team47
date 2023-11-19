@@ -33,6 +33,11 @@ public class DefaultPowerUp implements PowerUp {
     }
 
     @Override
+    public boolean isActive() {
+        return false;
+    }
+
+    @Override
     public void draw(Canvas c) {
         if (this.spriteSheet == null) {
             System.out.println("Sorry, it looks like you never specified a "

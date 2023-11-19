@@ -11,4 +11,5 @@ public interface PowerUp {
     SpriteSheet getSpriteSheet();
     void draw(Canvas c);
     int[] getPos();
+    boolean isActive();
 }

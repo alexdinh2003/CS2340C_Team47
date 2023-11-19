@@ -21,11 +21,11 @@ import com.example.dungeoncrawling.model.Leaderboard;
 import com.example.dungeoncrawling.model.Player;
 import com.example.dungeoncrawling.model.ScoreEntry;
 import com.example.dungeoncrawling.model.Timer;
-import com.example.dungeoncrawling.model.DirectionStrategy;
-import com.example.dungeoncrawling.model.Down;
-import com.example.dungeoncrawling.model.Left;
-import com.example.dungeoncrawling.model.Right;
-import com.example.dungeoncrawling.model.Up;
+import com.example.dungeoncrawling.model.playermove.DirectionStrategy;
+import com.example.dungeoncrawling.model.playermove.Down;
+import com.example.dungeoncrawling.model.playermove.Left;
+import com.example.dungeoncrawling.model.playermove.Right;
+import com.example.dungeoncrawling.model.playermove.Up;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.powerups.PowerUpCheck;
 
@@ -56,7 +56,6 @@ public class GameScreen1 extends AppCompatActivity {
     private GameMap map;
     private HP hp;
     private PowerUpCheck powerUpCheck;
-
     private MediaPlayer player1;
     private Button stopMusic;
     private Button startMusic;
@@ -182,8 +181,11 @@ public class GameScreen1 extends AppCompatActivity {
             strategy = leftStrat;
         }
 
-        int[] newLoc = strategy.move(this.player);
-        wallCheck.check(newLoc[0], newLoc[1]);
+        for (int i = 0; i < player.getSpeed(); i++) {
+            int[] newLoc = strategy.move(this.player);
+            wallCheck.check(newLoc[0], newLoc[1]);
+        }
+
         powerUpCheck.check(player.getPosition());
 
         if (tilemap.isExit(this.player.getRow(), this.player.getCol())) {
