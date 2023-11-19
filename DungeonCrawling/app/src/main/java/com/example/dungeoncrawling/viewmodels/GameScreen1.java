@@ -57,8 +57,6 @@ public class GameScreen1 extends AppCompatActivity {
     private HP hp;
     private PowerUpCheck powerUpCheck;
     private MediaPlayer player1;
-    private Button stopMusic;
-    private Button startMusic;
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
