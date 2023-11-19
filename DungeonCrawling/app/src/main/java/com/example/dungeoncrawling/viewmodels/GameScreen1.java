@@ -109,9 +109,6 @@ public class GameScreen1 extends AppCompatActivity {
         wallCheck = new WallCheck(tilemap);
         wallCheck.subscribe(player, player.getRow(), player.getCol());
 
-        //stop music
-        stopMusic = findViewById(R.id.soundButton);
-        startMusic = findViewById(R.id.startMusic);
         powerUpCheck = PowerUpCheck.getInstance(player.getPosition());
 
 
@@ -164,13 +161,7 @@ public class GameScreen1 extends AppCompatActivity {
             map.render();
         });
 
-        stopMusic.setOnClickListener(v -> {
-            stopPlayer();
-        });
-
-        startMusic.setOnClickListener(v -> {
-            play();
-        });
+        play();
     }
 
     private void movePlayer(String dir) {
