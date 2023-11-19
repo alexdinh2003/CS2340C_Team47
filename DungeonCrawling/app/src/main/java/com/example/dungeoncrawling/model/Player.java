@@ -15,6 +15,7 @@ public class Player implements Subscriber {
     private static Player player;
     private Sprite sprite;
     private SpriteSheet spriteSheet;
+    private int speed = 1;
 
     private Player(String name, SpriteSheet spriteSheet, int id, int health,
                    int points, int row, int col) {
@@ -160,5 +161,13 @@ public class Player implements Subscriber {
     @Override
     public void update(WallCheck subject) {
         setPosition(subject.getRow(), subject.getCol());
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }

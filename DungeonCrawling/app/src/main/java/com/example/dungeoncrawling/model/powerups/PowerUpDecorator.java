@@ -27,6 +27,11 @@ public class PowerUpDecorator implements PowerUp {
     }
 
     @Override
+    public boolean isActive() {
+        return false;
+    }
+
+    @Override
     public void draw(Canvas c) {
         this.wrappee.draw(c);
     }

@@ -34,8 +34,11 @@ public class PowerUpCheck {
     }
 
     public void unsubscribeAll() {
-        if (subscribers.size() > 0) {
-            subscribers.remove(subscribers.size() - 1);
+        for (int i = 0; i < subscribers.size(); i++) {
+            if (!subscribers.get(i).isActive()) {
+                subscribers.remove(i);
+                i--;
+            }
         }
     }
 
@@ -55,8 +58,18 @@ public class PowerUpCheck {
         for (int i = 0; i < subscribers.size(); i++) {
             if (Arrays.equals(subscribers.get(i).getPos(), pos)) {
                 subscribers.get(i).powerUp();
-                subscribers.remove(i);
-                i--;
+                if (subscribers.get(i) instanceof HealthPowerUp) {
+                    subscribers.remove(i);
+                    i--;
+                    continue;
+                }
+            }
+            if (subscribers.get(i).isActive()) {
+                subscribers.get(i).powerUp();
+                if (!subscribers.get(i).isActive()) {
+                    subscribers.remove(i);
+                    i--;
+                }
             }
         }
     }
