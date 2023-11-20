@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,10 +58,15 @@ public class GameScreen1 extends AppCompatActivity {
     private HP hp;
     private PowerUpCheck powerUpCheck;
     private MediaPlayer player1;
+  
+    private Button stopMusic;
+    private Button startMusic;
+    private Button attack;
+
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +97,9 @@ public class GameScreen1 extends AppCompatActivity {
         right = findViewById(R.id.right);
         up = findViewById(R.id.up);
         down = findViewById(R.id.down);
+
+        //button for attack
+        attack = findViewById(R.id.attack);
 
         //run/restart timer
         timer = new Timer(System.currentTimeMillis(), timerText, scoreText);
@@ -159,6 +168,20 @@ public class GameScreen1 extends AppCompatActivity {
         });
 
         play();
+
+        stopMusic.setOnClickListener(v -> {
+            stopPlayer();
+        });
+
+        startMusic.setOnClickListener(v -> {
+            play();
+        });
+
+        //player attack
+        attack.setOnClickListener(v -> {
+            int[] pos = player.getPosition();
+            map.playerAttack(pos);
+        });
     }
 
     private void movePlayer(String dir) {
