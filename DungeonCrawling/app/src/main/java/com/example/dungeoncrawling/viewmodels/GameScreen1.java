@@ -58,9 +58,11 @@ public class GameScreen1 extends AppCompatActivity {
     private HP hp;
     private PowerUpCheck powerUpCheck;
     private MediaPlayer player1;
+  
     private Button stopMusic;
     private Button startMusic;
     private Button attack;
+
 
     /** @noinspection checkstyle:MissingSwitchDefault*/
     /** @noinspection checkstyle:MissingSwitchDefault, checkstyle:MethodLength */
@@ -113,9 +115,6 @@ public class GameScreen1 extends AppCompatActivity {
         wallCheck = new WallCheck(tilemap);
         wallCheck.subscribe(player, player.getRow(), player.getCol());
 
-        //stop music
-        stopMusic = findViewById(R.id.soundButton);
-        startMusic = findViewById(R.id.startMusic);
         powerUpCheck = PowerUpCheck.getInstance(player.getPosition());
 
 
@@ -167,6 +166,8 @@ public class GameScreen1 extends AppCompatActivity {
             movePlayer("down");
             map.render();
         });
+
+        play();
 
         stopMusic.setOnClickListener(v -> {
             stopPlayer();

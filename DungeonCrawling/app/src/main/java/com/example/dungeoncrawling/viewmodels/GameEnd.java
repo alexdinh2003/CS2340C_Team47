@@ -2,12 +2,14 @@ package com.example.dungeoncrawling.viewmodels;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +33,7 @@ public class GameEnd extends AppCompatActivity {
     private ListView leaderboardListView;
     private TextView mostRecentAttemptTextView;
 
-
+    private MediaPlayer player1;
     @SuppressLint("SetTextI18n")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,35 @@ public class GameEnd extends AppCompatActivity {
             startActivity(createPlayer);
             finish();
         });
+
+        play2();
     }
 
+    //winning game
+    public void play2() {
+        if (player1 == null) {
+            player1 = MediaPlayer.create(this, R.raw.song4);
+            player1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+
+        player1.start();
+    }
+
+    public void stop() {
+        stopPlayer();
+    }
+
+    private void stopPlayer() {
+        if (player1 != null) {
+            player1.release();
+            player1 = null;
+            Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT);
+        }
+    }
 }
 

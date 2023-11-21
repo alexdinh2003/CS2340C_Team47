@@ -183,5 +183,4 @@
         app:layout_constraintBottom_toTopOf="@+id/scoreTextView"
         tools:layout_editor_absoluteX="219dp" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
