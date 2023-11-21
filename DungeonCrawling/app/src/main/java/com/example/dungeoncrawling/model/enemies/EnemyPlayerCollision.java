@@ -14,10 +14,11 @@ public class EnemyPlayerCollision {
     private int col;
     private MediaPlayer collisionSound; // New field for MediaPlayer
 
-    public EnemyPlayerCollision(Context context, int row, int col) {
+    public EnemyPlayerCollision(int row, int col) {
         this.row = row;
         this.col = col;
-        collisionSound = MediaPlayer.create(context, R.raw.collision_sound); // Initialize with your collision sound
+        // Initialize with your collision sound
+        //collisionSound = MediaPlayer.create(context, R.raw.collision_sound);
     }
 
     public void check(int newRow, int newCol) {

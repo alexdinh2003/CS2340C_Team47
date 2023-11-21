@@ -1,5 +1,6 @@
 package com.example.dungeoncrawling.views;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button start;
     private Button exit;
+    private Button howToPlay;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         start = findViewById(R.id.startButton);
         exit = findViewById(R.id.exitButton);
+        howToPlay = findViewById(R.id.howToPlayButton);
 
         start.setOnClickListener(v -> {
             Intent createPlayer = new Intent(MainActivity.this, PlayerCreation.class);
@@ -37,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         exit.setOnClickListener(v -> {
             finish();
             System.exit(0);
+        });
+
+        howToPlay.setOnClickListener(V -> {
+            Intent createPlayer1 = new Intent(MainActivity.this, HowToPlay.class);
+            startActivity(createPlayer1);
+            finish();
         });
 
     }

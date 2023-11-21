@@ -157,35 +157,35 @@ public class GameMap implements SurfaceHolder.Callback {
         this.powerUpCheck.subscribe(powerUps[1]);
     }
 
-    public void playerAttack(int[] playerPos) {
-        int[] e1Pos = enemy1.getPosition();
-        int[] e2Pos = enemy2.getPosition();
-        double distance1 = Math.sqrt((e1Pos[1] - playerPos[1]) * (e1Pos[1] - playerPos[1]) + (e1Pos[0] - playerPos[0]) * (e1Pos[0] - playerPos[0]));
-        double distance2 = Math.sqrt((e2Pos[1] - playerPos[1]) * (e2Pos[1] - playerPos[1]) + (e2Pos[0] - playerPos[0]) * (e2Pos[0] - playerPos[0]));
-        if (distance1 < distance2) {
-            //check if enemy1 is on tile next to player
-            if (e1Pos[0] == playerPos[0] && (e1Pos[1] - 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if (e1Pos[0] == playerPos[0] && (e1Pos[1] + 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e1Pos[0] - 1) == playerPos[0] && e1Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e1Pos[0] + 1) == playerPos[0] && e1Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            }
-        } else {
-            //check if enemy2 is on tile next to player
-            if (e2Pos[0] == playerPos[0] && (e2Pos[1] - 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if (e2Pos[0] == playerPos[0] && (e2Pos[1] + 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e2Pos[0] - 1) == playerPos[0] && e2Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e2Pos[0] + 1) == playerPos[0] && e2Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            }
-        }
-    }
+//    public void playerAttack(int[] playerPos) {
+//        int[] e1Pos = enemy1.getPosition();
+//        int[] e2Pos = enemy2.getPosition();
+//        double distance1 = Math.sqrt((e1Pos[1] - playerPos[1]) * (e1Pos[1] - playerPos[1]) + (e1Pos[0] - playerPos[0]) * (e1Pos[0] - playerPos[0]));
+//        double distance2 = Math.sqrt((e2Pos[1] - playerPos[1]) * (e2Pos[1] - playerPos[1]) + (e2Pos[0] - playerPos[0]) * (e2Pos[0] - playerPos[0]));
+//        if (distance1 < distance2) {
+//            //check if enemy1 is on tile next to player
+//            if (e1Pos[0] == playerPos[0] && (e1Pos[1] - 1) == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            } else if (e1Pos[0] == playerPos[0] && (e1Pos[1] + 1) == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            } else if ((e1Pos[0] - 1) == playerPos[0] && e1Pos[1] == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            } else if ((e1Pos[0] + 1) == playerPos[0] && e1Pos[1] == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            }
+//        } else {
+//            //check if enemy2 is on tile next to player
+//            if (e2Pos[0] == playerPos[0] && (e2Pos[1] - 1) == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            } else if (e2Pos[0] == playerPos[0] && (e2Pos[1] + 1) == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            } else if ((e2Pos[0] - 1) == playerPos[0] && e2Pos[1] == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            } else if ((e2Pos[0] + 1) == playerPos[0] && e2Pos[1] == playerPos[1]) {
+//                //attack enemy1 and remove from screen
+//            }
+//        }
+//    }
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
