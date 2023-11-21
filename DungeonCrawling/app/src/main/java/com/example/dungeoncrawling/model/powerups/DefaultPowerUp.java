@@ -16,6 +16,10 @@ public class DefaultPowerUp implements PowerUp {
         this.spriteSheet = spriteSheet;
     }
 
+    public DefaultPowerUp(int[] pos) {
+        this.pos = pos;
+    }
+
     @Override
     public void powerUp() {
         Player p = Player.getInstance();
