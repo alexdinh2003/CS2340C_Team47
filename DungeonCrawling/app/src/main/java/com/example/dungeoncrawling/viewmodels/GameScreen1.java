@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -168,14 +167,6 @@ public class GameScreen1 extends AppCompatActivity {
         });
 
         play();
-
-        stopMusic.setOnClickListener(v -> {
-            stopPlayer();
-        });
-
-        startMusic.setOnClickListener(v -> {
-            play();
-        });
 
         //player attack
         attack.setOnClickListener(v -> {
