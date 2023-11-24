@@ -14,6 +14,7 @@ public class Player implements Subscriber {
     private int points;
     private static Player player;
     private Sprite sprite;
+    private Sprite sword;
     private SpriteSheet spriteSheet;
     private int speed = 1;
 
@@ -136,6 +137,7 @@ public class Player implements Subscriber {
 
     private void createSprite() {
         this.sprite = this.spriteSheet.getPlayer(this.spriteId);
+        this.sword = this.spriteSheet.getSword();
     }
 
     public int getRow() {
@@ -153,6 +155,10 @@ public class Player implements Subscriber {
             return;
         }
         sprite.draw(
+                canvas,
+                this.col * MapLayout.TILE_WIDTH,
+                this.row * MapLayout.TILE_HEIGHT + 256);
+        sword.draw(
                 canvas,
                 this.col * MapLayout.TILE_WIDTH,
                 this.row * MapLayout.TILE_HEIGHT + 256);
