@@ -1,9 +1,7 @@
 package com.example.dungeoncrawling.model.enemies;
 
 import com.example.dungeoncrawling.model.Subscriber;
-import android.content.Context;
 import android.media.MediaPlayer;
-import com.example.dungeoncrawling.R;
 
 import java.util.ArrayList;
 import java.util.List;
