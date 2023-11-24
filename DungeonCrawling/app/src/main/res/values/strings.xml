@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DungeonCrawling</string>
+    <string name="_2_these_rooms_will_be_from_a_fixed_viewpoint_so_it_will_not_change_based_on_player_position">2. These rooms will be from a fixed viewpoint, so it will not change based on player position.</string>
+    <string name="_1_you_will_control_a_player_character_and_navigate_through_dungeon_rooms_with_different_layouts_and_enemies">1. You will control a player character and navigate through dungeon rooms with different layouts and enemies.</string>
+    <string name="_3_you_will_be_able_to_attack_and_destroy_enemies_collect_powerups_and_reach_exits_that_take_you_to_the_next_room">3. You will be able to attack and destroy enemies, collect powerups, and reach exits that take you to the next room.</string>
+    <string name="_6_the_player_will_be_able_to_earn_a_high_score_on_a_leaderboard_displayed_at_the_end_of_the_game">6. The player will be able to earn a high score on a leaderboard displayed at the end of the game.</string>
+    <string name="_5_to_win_the_player_must_reach_the_exit_of_every_room">5. To win, the player must reach the exit of every room.</string>
+    <string name="_4_the_enemies_will_be_able_to_attack_the_player_and_the_player_will_lose_health_and_if_they_run_out_of_health_the_game_is_over">4. The enemies will be able to attack the player and the player will lose health, and if they run out of health, the game is over.</string>
+    <string name="the_enemies_attack_the_player_and_the_player_lose_health_and_if_they_run_out_of_health_the_game_is_over">The enemies attack the player and the player lose health, and if they run out of health, the game is over.</string>
+    <string name="back">Back</string>
+    <string name="_4_the_enemies_attack_the_player_and_the_player_lose_health_and_if_they_run_out_of_health_the_game_is_over">4. The enemies attack the player and the player lose health, and if they run out of health, the game is over.</string>
 </resources>

@@ -30,6 +30,8 @@
             android:exported="false" />
         <activity android:name=".viewmodels.GameEnd"
             android:exported="false" />
+        <activity android:name=".views.HowToPlay"
+            android:exported="false" />
 
 
     </application>
