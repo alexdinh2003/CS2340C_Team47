@@ -39,7 +39,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:scaleType="fitStart"
-        android:src="@drawable/panda_sprite"
+        android:src="@drawable/char1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
