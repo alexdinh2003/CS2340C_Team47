@@ -166,13 +166,13 @@ public class GameScreen1 extends AppCompatActivity {
             map.render();
         });
 
-        play();
-
         //player attack
         attack.setOnClickListener(v -> {
             int[] pos = player.getPosition();
             map.playerAttack(pos);
         });
+
+        play();
     }
 
     private void movePlayer(String dir) {
