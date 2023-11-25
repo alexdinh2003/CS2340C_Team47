@@ -24,6 +24,7 @@ import com.example.dungeoncrawling.model.graphics.SpriteSheet;
 import com.example.dungeoncrawling.model.map.Tilemap;
 import com.example.dungeoncrawling.model.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameMap implements SurfaceHolder.Callback {
@@ -33,6 +34,7 @@ public class GameMap implements SurfaceHolder.Callback {
     private Player player;
     private WallCheck wallCheck;
     private GameLoop gameLoop;
+    private static List<Enemy> enemies = new ArrayList<>();
     private Enemy enemy1;
     private Enemy enemy2;
     private HP health;
@@ -58,8 +60,11 @@ public class GameMap implements SurfaceHolder.Callback {
         createPowerUps(roomInd, spriteSheet);
 
         createEnemies(roomInd);
-        enemy1.setSpriteSheet(spriteSheet);
-        enemy2.setSpriteSheet(spriteSheet);
+        for (Enemy enemy : enemies) {
+            enemy.setSpriteSheet(spriteSheet);
+        }
+        //enemy1.setSpriteSheet(spriteSheet);
+        //enemy2.setSpriteSheet(spriteSheet);
 
         collisionSetUp();
 
@@ -80,15 +85,21 @@ public class GameMap implements SurfaceHolder.Callback {
                 power.draw(c);
             }
             this.player.draw(c);
-            enemy1.draw(c);
-            enemy2.draw(c);
+            for (Enemy enemy : enemies) {
+                enemy.draw(c);
+            }
+            //enemy1.draw(c);
+            //enemy2.draw(c);
             this.holder.unlockCanvasAndPost(c);
         }
     }
 
     public void update() {
-        enemy1.move();
-        enemy2.move();
+        for (Enemy enemy : enemies) {
+            enemy.move();
+        }
+        //enemy1.move();
+        //enemy2.move();
         enemyPlayerCollision.check(player.getRow(), player.getCol());
         powerUpCheck.check(player.getPosition());
     }
@@ -105,16 +116,22 @@ public class GameMap implements SurfaceHolder.Callback {
     public void createEnemies(int room) {
         switch (room) {
         case 0:
-            enemy1 = EnemyFactory.getEnemy("enemy1", 2, 5);
-            enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
+            enemies.add(EnemyFactory.getEnemy("enemy1", 2, 5));
+            enemies.add(EnemyFactory.getEnemy("enemy2", 20, 3));
+            //enemy1 = EnemyFactory.getEnemy("enemy1", 2, 5);
+            //enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
             break;
         case 1:
-            enemy1 = EnemyFactory.getEnemy("enemy2", 10, 11);
-            enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
+            enemies.add(EnemyFactory.getEnemy("enemy2", 10, 11));
+            enemies.add(EnemyFactory.getEnemy("enemy3", 15, 3));
+            //enemy1 = EnemyFactory.getEnemy("enemy2", 10, 11);
+            //enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
             break;
         case 2:
-            enemy1 = EnemyFactory.getEnemy("enemy3", 1, 5);
-            enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
+            enemies.add(EnemyFactory.getEnemy("enemy3", 1, 5));
+            enemies.add(EnemyFactory.getEnemy("enemy4", 15, 7));
+            //enemy1 = EnemyFactory.getEnemy("enemy3", 1, 5);
+            //enemy2 = EnemyFactory.getEnemy("enemy4", 15, 7);
             break;
         default:
             System.out.println("Error");
@@ -148,48 +165,17 @@ public class GameMap implements SurfaceHolder.Callback {
         this.wallCheck.subscribe(this.player, this.player.getRow(), this.player.getCol());
 
         this.enemyPlayerCollision = new EnemyPlayerCollision(player.getRow(), player.getCol());
-        this.enemyPlayerCollision.subscribe(enemy1);
-        this.enemyPlayerCollision.subscribe(enemy2);
+        for (Enemy enemy : enemies) {
+            this.enemyPlayerCollision.subscribe(enemy);
+        }
+        //this.enemyPlayerCollision.subscribe(enemy1);
+        //this.enemyPlayerCollision.subscribe(enemy2);
 
         this.powerUpCheck = PowerUpCheck.getInstance(player.getPosition());
         this.powerUpCheck.unsubscribeAll();
         this.powerUpCheck.subscribe(powerUps[0]);
         this.powerUpCheck.subscribe(powerUps[1]);
     }
-
-    /*
-    public void playerAttack(int[] playerPos) {
-        int[] e1Pos = enemy1.getPosition();
-        int[] e2Pos = enemy2.getPosition();
-        double distance1 = Math.sqrt((e1Pos[1] - playerPos[1]) * (e1Pos[1] - playerPos[1]) +
-        (e1Pos[0] - playerPos[0]) * (e1Pos[0] - playerPos[0]));
-        double distance2 = Math.sqrt((e2Pos[1] - playerPos[1]) * (e2Pos[1] - playerPos[1]) +
-        (e2Pos[0] - playerPos[0]) * (e2Pos[0] - playerPos[0]));
-        if (distance1 < distance2) {
-            //check if enemy1 is on tile next to player
-            if (e1Pos[0] == playerPos[0] && (e1Pos[1] - 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if (e1Pos[0] == playerPos[0] && (e1Pos[1] + 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e1Pos[0] - 1) == playerPos[0] && e1Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e1Pos[0] + 1) == playerPos[0] && e1Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            }
-        } else {
-            //check if enemy2 is on tile next to player
-            if (e2Pos[0] == playerPos[0] && (e2Pos[1] - 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if (e2Pos[0] == playerPos[0] && (e2Pos[1] + 1) == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e2Pos[0] - 1) == playerPos[0] && e2Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            } else if ((e2Pos[0] + 1) == playerPos[0] && e2Pos[1] == playerPos[1]) {
-                //attack enemy1 and remove from screen
-            }
-        }
-   }*/
-
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         this.gameLoop.startGameLoop();
@@ -204,5 +190,17 @@ public class GameMap implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
 
+    }
+
+    public void playerAttack(int[] pos) {
+        for (int i = 0; i < enemies.size(); i++) {
+            int[] ePos = enemies.get(i).getPosition();
+            double dist = Math.sqrt((ePos[1] - pos[1]) * (ePos[1] - pos[1]) + (ePos[0] - pos[0]) * (ePos[0] - pos[0]));
+            if (dist == 1) {
+                enemies.remove(i);
+                player.setScore(player.getScore() + 5);
+                i--;
+            }
+        }
     }
 }

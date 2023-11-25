@@ -88,6 +88,10 @@ public class SpriteSheet {
         }
 
     }
+
+    public Sprite getSword() {
+        return new Sprite(this, new Rect(1125,20,1150,72));
+    }
     
     public Sprite getEnemy(int id) {
         if (id == 0) {
