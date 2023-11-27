@@ -16,8 +16,8 @@ public class Timer {
     private Player player;
 
     private boolean isPaused = false;
-
-
+    
+    //constructs the timer
     public Timer(long startTime, TextView timerTextView, TextView scoreText) {
         this.startTime = startTime;
         this.timerTextView = timerTextView;
