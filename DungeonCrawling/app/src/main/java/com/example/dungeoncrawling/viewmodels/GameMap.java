@@ -185,11 +185,6 @@ public class GameMap implements SurfaceHolder.Callback {
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
 
     }
-
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
-
     public Player getPlayer() {
         return player;
     }
