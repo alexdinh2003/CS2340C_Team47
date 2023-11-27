@@ -17,6 +17,7 @@ public abstract class Enemy implements EnemySubscriber {
     protected Sprite sprite;
     private int speed;
 
+    //creates enemy
     public Enemy(int row, int col, SpriteSheet spriteSheet) {
         this.row = row;
         this.col = col;
@@ -26,6 +27,7 @@ public abstract class Enemy implements EnemySubscriber {
         createSprite();
     }
 
+    //instantiates enemy attributes
     public Enemy(int row, int col) {
         this.row = row;
         this.col = col;
@@ -83,6 +85,7 @@ public abstract class Enemy implements EnemySubscriber {
                 this.row * MapLayout.TILE_HEIGHT + 256);
     }
 
+    //updates the health of the player
     public void update(EnemyPlayerCollision subject) {
         if (subject.getRow() == this.row && subject.getCol() == this.col) {
             player.loseHealth(1 * health.getDifficulty());
