@@ -22,7 +22,7 @@ public class Enemy1 extends Enemy implements EnemySubscriber {
         this.sprite = this.getSpriteSheet().getEnemy(0);
     }
 
-    //moves left and right
+    //moves up and down
     public void move() {
         //change position in some way every 1/2 sec
         if (moveCount > 24) {
