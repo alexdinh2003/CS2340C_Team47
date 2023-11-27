@@ -176,7 +176,6 @@ public class GameMap implements SurfaceHolder.Callback {
         this.powerUpCheck.subscribe(powerUps[0]);
         this.powerUpCheck.subscribe(powerUps[1]);
     }
-
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         this.gameLoop.startGameLoop();
