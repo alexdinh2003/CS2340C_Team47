@@ -39,6 +39,7 @@ public class WallCheck {
         return col;
     }
 
+    //notifies subscribers of changes
     protected void notifySubscribers() {
         for (Subscriber subscriber : subscribers) {
             subscriber.update(this);
