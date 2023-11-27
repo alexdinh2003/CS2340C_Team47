@@ -186,6 +186,18 @@ public class GameMap implements SurfaceHolder.Callback {
 
     }
 
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
     public void playerAttack(int[] pos) {
         for (int i = 0; i < enemies.size(); i++) {
             int[] ePos = enemies.get(i).getPosition();
