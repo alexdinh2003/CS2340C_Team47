@@ -19,6 +19,7 @@ public class Enemy4 extends Enemy implements EnemySubscriber {
         this.sprite = this.getSpriteSheet().getEnemy(3);
     }
 
+    //square movement enemy (moves in grid shape)
     /** @noinspection checkstyle:FallThrough*/
     public void move() {
         //change position in some way every 1/2 secif (moveCount > 7) {

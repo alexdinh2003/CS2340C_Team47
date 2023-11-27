@@ -24,6 +24,7 @@ public class Enemy3 extends Enemy implements EnemySubscriber {
         this.sprite = this.getSpriteSheet().getEnemy(2);
     }
 
+    //moves diagonal
     public void move() {
         //change position in some way every 1/2 sec
         if (moveCount > 4) {

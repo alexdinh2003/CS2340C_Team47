@@ -21,6 +21,7 @@ public class Enemy2 extends Enemy implements EnemySubscriber {
         this.sprite = this.getSpriteSheet().getEnemy(1);
     }
 
+    //moves left and right
     public void move() {
         if (moveCount > 8) {
             moveCount = 0;

@@ -8,6 +8,7 @@ public class ScoreEntry implements Comparable<ScoreEntry> {
     private int score;
     private Date date;
 
+    //creates score entry for leaderboard
     public ScoreEntry(Date date) {
         this.player = Player.getInstance();
         this.playerName = player.getName();

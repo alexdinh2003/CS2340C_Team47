@@ -12,6 +12,7 @@ public class GameLoop implements Runnable {
         this.running = true;
     }
 
+    //runs the game and updates game screen each loop
     @Override
     public void run() {
         long lastDelta = System.nanoTime();

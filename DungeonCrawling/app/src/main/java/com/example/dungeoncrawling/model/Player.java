@@ -18,6 +18,7 @@ public class Player implements Subscriber {
     private SpriteSheet spriteSheet;
     private int speed = 1;
 
+    //creates player class
     private Player(String name, SpriteSheet spriteSheet, int id, int health,
                    int points, int row, int col) {
         this.spriteId = id;
