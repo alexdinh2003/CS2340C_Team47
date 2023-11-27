@@ -63,8 +63,6 @@ public class GameMap implements SurfaceHolder.Callback {
         for (Enemy enemy : enemies) {
             enemy.setSpriteSheet(spriteSheet);
         }
-        //enemy1.setSpriteSheet(spriteSheet);
-        //enemy2.setSpriteSheet(spriteSheet);
 
         collisionSetUp();
 
@@ -88,8 +86,6 @@ public class GameMap implements SurfaceHolder.Callback {
             for (Enemy enemy : enemies) {
                 enemy.draw(c);
             }
-            //enemy1.draw(c);
-            //enemy2.draw(c);
             this.holder.unlockCanvasAndPost(c);
         }
     }
@@ -98,8 +94,6 @@ public class GameMap implements SurfaceHolder.Callback {
         for (Enemy enemy : enemies) {
             enemy.move();
         }
-        //enemy1.move();
-        //enemy2.move();
         enemyPlayerCollision.check(player.getRow(), player.getCol());
         powerUpCheck.check(player.getPosition());
     }
@@ -202,5 +196,9 @@ public class GameMap implements SurfaceHolder.Callback {
                 i--;
             }
         }
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
     }
 }
