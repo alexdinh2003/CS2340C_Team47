@@ -124,8 +124,7 @@ public class Sprint5Test implements EnemySubscriber {
         // Verify that the health decreased
         assertNotEquals(initialScore - 5, player.getHealth());
     }
-
-
+    
     @Override
     public void update(EnemyPlayerCollision enemyCollision) {
         updateCalled = true;
