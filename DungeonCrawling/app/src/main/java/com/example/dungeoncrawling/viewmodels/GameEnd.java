@@ -44,8 +44,10 @@ public class GameEnd extends AppCompatActivity {
         if (isGameOver) {
             setContentView(R.layout.game_over_screen);
             // Handle the Game Over screen initialization here
+            play3();
         } else {
             setContentView(R.layout.end_screen);
+            play2();
         }
 
         // Initialize views
@@ -78,9 +80,9 @@ public class GameEnd extends AppCompatActivity {
             Intent createPlayer = new Intent(GameEnd.this, MainActivity.class);
             startActivity(createPlayer);
             finish();
+            stop();
         });
 
-        play2();
     }
 
     //winning game
@@ -108,6 +110,21 @@ public class GameEnd extends AppCompatActivity {
             player1 = null;
             Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT);
         }
+    }
+
+    // lose game sound
+    public void play3() {
+        if (player1 == null) {
+            player1 = MediaPlayer.create(this, R.raw.gameover);
+            player1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+
+        player1.start();
     }
 }
 
