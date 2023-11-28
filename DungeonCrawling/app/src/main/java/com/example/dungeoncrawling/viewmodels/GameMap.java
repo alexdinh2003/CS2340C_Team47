@@ -43,6 +43,7 @@ public class GameMap implements SurfaceHolder.Callback {
     private PowerUp[] powerUps;
     private PowerUpCheck powerUpCheck;
 
+    private boolean attack = false;
     public GameMap(SurfaceHolder holder, SpriteSheet spriteSheet, int roomInd, Context context) {
         this.holder = holder;
         this.context = context;
@@ -58,6 +59,8 @@ public class GameMap implements SurfaceHolder.Callback {
         this.health.setSpriteSheet(spriteSheet);
 
         createPowerUps(roomInd, spriteSheet);
+
+        player.changeSprite();
 
         createEnemies(roomInd);
         for (Enemy enemy : enemies) {
@@ -82,7 +85,11 @@ public class GameMap implements SurfaceHolder.Callback {
             for (PowerUp power : powerUpsLeft) {
                 power.draw(c);
             }
+            if (attack) {
+                player.changeSprite();
+            }
             this.player.draw(c);
+
             for (Enemy enemy : enemies) {
                 enemy.draw(c);
             }
@@ -93,6 +100,10 @@ public class GameMap implements SurfaceHolder.Callback {
     public void update() {
         for (Enemy enemy : enemies) {
             enemy.move();
+        }
+        if (attack) {
+            player.changeSprite();
+            attack = false;
         }
         enemyPlayerCollision.check(player.getRow(), player.getCol());
         powerUpCheck.check(player.getPosition());
@@ -196,6 +207,8 @@ public class GameMap implements SurfaceHolder.Callback {
     }
 
     public void playerAttack(int[] pos) {
+        attack = true;
+
         for (int i = 0; i < enemies.size(); i++) {
             int[] ePos = enemies.get(i).getPosition();
             double dist = Math.sqrt((ePos[1] - pos[1]) * (ePos[1] - pos[1]) + (ePos[0] - pos[0]) * (ePos[0] - pos[0]));
