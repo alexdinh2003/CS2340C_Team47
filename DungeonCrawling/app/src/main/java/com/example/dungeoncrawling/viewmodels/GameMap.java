@@ -116,12 +116,14 @@ public class GameMap implements SurfaceHolder.Callback {
             //enemy2 = EnemyFactory.getEnemy("enemy2", 20, 3);
             break;
         case 1:
+            enemies.clear();
             enemies.add(EnemyFactory.getEnemy("enemy2", 10, 11));
             enemies.add(EnemyFactory.getEnemy("enemy3", 15, 3));
             //enemy1 = EnemyFactory.getEnemy("enemy2", 10, 11);
             //enemy2 = EnemyFactory.getEnemy("enemy3", 15, 3);
             break;
         case 2:
+            enemies.clear();
             enemies.add(EnemyFactory.getEnemy("enemy3", 1, 5));
             enemies.add(EnemyFactory.getEnemy("enemy4", 15, 7));
             //enemy1 = EnemyFactory.getEnemy("enemy3", 1, 5);
@@ -196,9 +198,8 @@ public class GameMap implements SurfaceHolder.Callback {
     public void playerAttack(int[] pos) {
         for (int i = 0; i < enemies.size(); i++) {
             int[] ePos = enemies.get(i).getPosition();
-            double dist = Math.sqrt((ePos[1] - pos[1]) * (ePos[1] - pos[1])
-                    + (ePos[0] - pos[0]) * (ePos[0] - pos[0]));
-            if (dist == 1) {
+            double dist = Math.sqrt((ePos[1] - pos[1]) * (ePos[1] - pos[1]) + (ePos[0] - pos[0]) * (ePos[0] - pos[0]));
+            if (dist <= 1) {
                 enemies.remove(i);
                 player.setScore(player.getScore() + 5);
                 i--;
