@@ -177,4 +177,10 @@ public class Player implements Subscriber {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    public void changeSprite() {
+        Sprite temp = sword;
+        this.sword = sprite;
+        this.sprite = temp;
+    }
 }
