@@ -47,8 +47,8 @@ public class PlayerAttackTest {
         gameMap.playerAttack(new int[]{initialPlayerRow, initialPlayerCol});
 
         // Assert
-        assertEquals(0, gameMap.getEnemies().size()); // Enemy should be removed
-        assertEquals(5, gameMap.getPlayer().getScore()); // Score should be incremented
+        assertEquals(0, gameMap.getEnemies().size());
+        assertEquals(5, gameMap.getPlayer().getScore());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class PlayerAttackTest {
         gameMap.playerAttack(new int[]{initialPlayerRow, initialPlayerCol});
 
         // Assert
-        assertEquals(1, gameMap.getEnemies().size()); // Enemy should not be removed
-        assertEquals(0, gameMap.getPlayer().getScore()); // Score should not be incremented
+        assertEquals(1, gameMap.getEnemies().size());
+        assertEquals(0, gameMap.getPlayer().getScore());
     }
 }
