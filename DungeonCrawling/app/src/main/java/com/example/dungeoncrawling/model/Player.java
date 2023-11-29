@@ -183,4 +183,20 @@ public class Player implements Subscriber {
         this.sword = sprite;
         this.sprite = temp;
     }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public Sprite getSword() {
+        return sword;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public void setSword(Sprite sword) {
+        this.sword = sword;
+    }
 }
