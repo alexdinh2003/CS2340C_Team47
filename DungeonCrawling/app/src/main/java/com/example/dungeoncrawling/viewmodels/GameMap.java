@@ -211,7 +211,8 @@ public class GameMap implements SurfaceHolder.Callback {
 
         for (int i = 0; i < enemies.size(); i++) {
             int[] ePos = enemies.get(i).getPosition();
-            double dist = Math.sqrt((ePos[1] - pos[1]) * (ePos[1] - pos[1]) + (ePos[0] - pos[0]) * (ePos[0] - pos[0]));
+            double dist = Math.sqrt((ePos[1] - pos[1]) * (ePos[1] - pos[1])
+                    + (ePos[0] - pos[0]) * (ePos[0] - pos[0]));
             if (dist <= 1) {
                 enemies.remove(i);
                 player.setScore(player.getScore() + 5);
