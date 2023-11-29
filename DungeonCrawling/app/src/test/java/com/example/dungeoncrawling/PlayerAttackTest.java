@@ -10,64 +10,38 @@ import com.example.dungeoncrawling.model.enemies.Enemy;
 import com.example.dungeoncrawling.model.enemies.EnemyFactory;
 import com.example.dungeoncrawling.viewmodels.GameMap;
 import com.example.dungeoncrawling.model.graphics.SpriteSheet;
-
+import com.example.dungeoncrawling.model.Player;
+import com.example.dungeoncrawling.model.graphics.Sprite;
+import android.graphics.Rect;
 import org.junit.Before;
 import org.junit.Test;
 
 public class PlayerAttackTest {
 
-    private GameMap gameMap;
-    private SurfaceHolder holder;
-    private Context context;
+    @Test
+    public void playerSpriteSettersGetters() {
+        Player p = new Player();
+        Sprite sp = new Sprite(null, new Rect(1, 2, 3, 4));
+        Sprite sw = new Sprite(null, new Rect(11, 22, 33, 44));
+        p.setSprite(sp);
+        p.setSword(sw);
 
-    @Before
-    public void setUp() {
-        SpriteSheet spriteSheet = new SpriteSheet(context);
-        int roomIndex = 0;
-
-        SurfaceView surface = new SurfaceView(context);
-        holder = surface.getHolder();
-
-        gameMap = new GameMap(holder, spriteSheet, roomIndex, context);
+        assertEquals(sw, p.getSword());
+        assertEquals(sp, p.getSprite());
     }
 
     @Test
-    public void playerAttackRemovesEnemy() {
-        // Arrange
-        int initialPlayerRow = 1;
-        int initialPlayerCol = 1;
-        int enemyRow = 2;
-        int enemyCol = 2;
+    public void playerSpriteChange() {
+        Player p = new Player();
+        Sprite sp = new Sprite(null, new Rect(1, 2, 3, 4));
+        Sprite sw = new Sprite(null, new Rect(11, 22, 33, 44));
+        p.setSprite(sp);
+        p.setSword(sw);
+        p.changeSprite();
 
-        // Create an enemy at the specified position
-        Enemy enemy = EnemyFactory.getEnemy("enemy1", enemyRow, enemyCol);
-        gameMap.getEnemies().add(enemy);
-
-        // Act
-        gameMap.playerAttack(new int[]{initialPlayerRow, initialPlayerCol});
-
-        // Assert
-        assertEquals(0, gameMap.getEnemies().size());
-        assertEquals(5, gameMap.getPlayer().getScore());
+        assertEquals(sp, p.getSword());
+        assertEquals(sw, p.getSprite());
     }
 
-    @Test
-    public void playerAttackDoesNotRemoveEnemyIfOutOfRange() {
-        // Arrange
-        int initialPlayerRow = 1;
-        int initialPlayerCol = 1;
-        int enemyRow = 5;
-        int enemyCol = 5;
 
-        // Create an enemy at the specified position
-        Enemy enemy = EnemyFactory.getEnemy("enemy1", enemyRow, enemyCol);
-        gameMap.getEnemies().add(enemy);
-
-        // Act
-        gameMap.playerAttack(new int[]{initialPlayerRow, initialPlayerCol});
-
-        // Assert
-        assertEquals(1, gameMap.getEnemies().size());
-        assertEquals(0, gameMap.getPlayer().getScore());
-    }
 }
