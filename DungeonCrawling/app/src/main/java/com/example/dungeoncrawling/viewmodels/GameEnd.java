@@ -44,6 +44,7 @@ public class GameEnd extends AppCompatActivity {
         if (isGameOver) {
             setContentView(R.layout.game_over_screen);
             // Handle the Game Over screen initialization here
+            play3();
         } else {
             setContentView(R.layout.end_screen);
             play2();
